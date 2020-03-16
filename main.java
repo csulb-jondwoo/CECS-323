@@ -106,7 +106,7 @@ public class JDBC {
                 switch(user_input){
                 case 1:
                     //case 1: list all writing groups
-                    sql = "SELECT * FROM writingGroups";
+                    sql = "SELECT groupName, headWriter, yearFormed, subject FROM writingGroups";
                     rs = stmt.executeQuery(sql);
                     System.out.printf(displayFormat, "WRITING GROUP", "HEAD WRITER", "YEAR FORMED", "SUBJECT");
                     while (rs.next()) {
@@ -124,7 +124,7 @@ public class JDBC {
                     break;
                 case 2:
                     //case 2: list all data for a group specified by the user
-                    sql = "SELECT * FROM writingGroups NATURAL JOIN publishers NATURAL JOIN books WHERE groupName= ?";
+                    sql = "SELECT groupName, headWriter, yearFormed, subject, bookTitle, pubName FROM writingGroups NATURAL JOIN publishers NATURAL JOIN books WHERE groupName= ?";
                     System.out.println("Select Group Name:");
                     String group = in.nextLine();
                     prepStmt = conn.prepareStatement(sql);
@@ -147,7 +147,7 @@ public class JDBC {
                     break;
                 case 3:
                     //case 3: list all publishers
-                    sql = "SELECT * FROM publishers";
+                    sql = "SELECT pubName, pubAddress, pubPhone, pubEmail FROM publishers";
                     rs = stmt.executeQuery(sql);
                     System.out.printf(displayFormat, "PUBLISHER", "ADDRESS", "PHONE", "EMAIL");
                     while (rs.next()) {
@@ -166,7 +166,7 @@ public class JDBC {
                     break;
                 case 4:
                     //case 4: list all the data for a publisher specified by the user
-                    sql = "SELECT * FROM publishers NATURAL JOIN books WHERE pubName= ?";
+                    sql = "SELECT pubName, pubAddress, pubPhone, pubEmail, bookTitle FROM publishers NATURAL JOIN books WHERE pubName= ?";
                     System.out.println("Select publisher:");
                     String pub = in.nextLine();
                     prepStmt = conn.prepareStatement(sql);
@@ -188,7 +188,7 @@ public class JDBC {
                     break;
                 case 5:
                     //case 5: list all book titles
-                    sql = "SELECT * FROM books";
+                    sql = "SELECT bookTitle, numOfPages, groupName, pubName FROM books";
                     rs = stmt.executeQuery(sql);
                     System.out.printf(displayFormat, "TITLE", "NUMBER OF PAGES", "WRITING GROUP", "PUBLISHER");
                     while (rs.next()) {
@@ -206,7 +206,7 @@ public class JDBC {
                     break;
                 case 6:
                     //case 6: list all the data for a book specified by the user
-                    sql = "SELECT * FROM books NATURAL JOIN publishers NATURAL JOIN writingGroups WHERE bookTitle = ?";
+                    sql = "SELECT bookTitle, numOfPages, yearPub, groupName, pubName FROM books NATURAL JOIN publishers NATURAL JOIN writingGroups WHERE bookTitle = ?";
                     System.out.println("Select book:");
                     String book = in.nextLine();
                     prepStmt = conn.prepareStatement(sql);
@@ -326,7 +326,8 @@ public class JDBC {
             conn.close();
         } catch (SQLException se) {
             //Handle errors for JDBC
-            se.printStackTrace();
+            System.out.println("Entry already exists");
+//            se.printStackTrace();
         } catch (Exception e) {
             //Handle errors for Class.forName
             e.printStackTrace();
