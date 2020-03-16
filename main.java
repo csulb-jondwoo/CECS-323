@@ -16,8 +16,9 @@ public class JDBC {
     //The number indicates how wide to make the field.
     //The "s" denotes that it's a string.  All of our output in this test are 
     //strings, but that won't always be the case.
-    static final String displayFormat="%-25s%-50s%-25s%-15s\n";
-    static final String displayFormatUserGroup="%-25s%-25s%-25s%-25s%-25s%-25s\n";
+    static final String displayFormat="%-30s%-50s%-25s%-15s\n";
+    static final String displayFormatGroup="%-20s%-20s%-20s%-20s%-30s%-20s\n";
+    static final String displayFormatPub_book="%-25s%-50s%-20s%-25s%-20s\n";
 // JDBC driver name and database URL
     static final String JDBC_DRIVER = "org.apache.derby.jdbc.ClientDriver";
     static String DB_URL = "jdbc:derby://localhost:1527/";
@@ -124,29 +125,31 @@ public class JDBC {
                 case 2:
                     //case 2: list all data for a group specified by the user
                     sql = "SELECT * FROM writingGroups NATURAL JOIN publishers NATURAL JOIN books WHERE groupName= ?";
-                    System.out.println("Select Group Name:\n");
+                    System.out.println("Select Group Name:");
                     String group = in.nextLine();
                     prepStmt = conn.prepareStatement(sql);
-                        prepStmt.setString(1, group);
-                        rs = prepStmt.executeQuery();
-                        System.out.printf(displayFormatUserGroup, "Group Name", "Head Writer", "Year Formed", "Subject", "Title", "Publisher Name");
-                        while (rs.next()) {
-                            String name = rs.getString("groupName");
-                            String head = rs.getString("headWriter");
-                            String year = rs.getString("yearFormed");
-                            String subject = rs.getString("subject");
-                            String title = rs.getString("bookTitle");
-                            String pubName = rs.getString("pubName");
-                            //Display values
-                            System.out.printf(displayFormatUserGroup,
-                            dispNull(name), dispNull(head), dispNull(year), dispNull(subject), dispNull(title), dispNull(pubName));
-                        }
+                    prepStmt.setString(1, group);
+                    rs = prepStmt.executeQuery();
+                    System.out.printf("\n");
+                    System.out.printf(displayFormatGroup, "WRITING GROUP", "HEAD WRITER", "YEAR FORMED", "SUBJECT", "TITLE", "PUBLISHER");
+                    while (rs.next()) {
+                        String name = rs.getString("groupName");
+                        String head = rs.getString("headWriter");
+                        String year = rs.getString("yearFormed");
+                        String subject = rs.getString("subject");
+                        String title = rs.getString("bookTitle");
+                        String pubName = rs.getString("pubName");
+                        //Display values
+                        System.out.printf(displayFormatGroup,
+                        dispNull(name), dispNull(head), dispNull(year), dispNull(subject), dispNull(title), dispNull(pubName));
+                    }
+                    System.out.printf("\n");
                     break;
                 case 3:
                     //case 3: list all publishers
                     sql = "SELECT * FROM publishers";
                     rs = stmt.executeQuery(sql);
-                    System.out.printf(displayFormat, "NAME", "ADDRESS", "PHONE", "EMAIL");
+                    System.out.printf(displayFormat, "PUBLISHER", "ADDRESS", "PHONE", "EMAIL");
                     while (rs.next()) {
                         //Retrieve by column name
                         String name = rs.getString("pubName");
@@ -163,38 +166,151 @@ public class JDBC {
                     break;
                 case 4:
                     //case 4: list all the data for a publisher specified by the user
+                    sql = "SELECT * FROM publishers NATURAL JOIN books WHERE pubName= ?";
+                    System.out.println("Select publisher:");
+                    String pub = in.nextLine();
+                    prepStmt = conn.prepareStatement(sql);
+                    prepStmt.setString(1, pub);
+                    rs = prepStmt.executeQuery();
+                    System.out.printf("\n");
+                    System.out.printf(displayFormatPub_book, "PUBLISHER", "ADDRESS", "PHONE", "EMAIL", "TITLE");
+                    while (rs.next()) {
+                        String name = rs.getString("pubName");
+                        String address = rs.getString("pubAddress");
+                        String phone  = rs.getString("pubPhone");
+                        String email = rs.getString("pubEmail");
+                        String title = rs.getString("bookTitle");
+                        //Display values
+                        System.out.printf(displayFormatPub_book,
+                        dispNull(name), dispNull(address), dispNull(phone), dispNull(email), dispNull(title));
+                    }
+                    System.out.printf("\n");
                     break;
                 case 5:
                     //case 5: list all book titles
                     sql = "SELECT * FROM books";
                     rs = stmt.executeQuery(sql);
-                    System.out.printf(displayFormat, "WRITING GROUP", "TITLE", "PUBLISHER NAME", "NUMBER OF PAGES");
+                    System.out.printf(displayFormat, "TITLE", "NUMBER OF PAGES", "WRITING GROUP", "PUBLISHER");
                     while (rs.next()) {
                         //Retrieve by column name
-                        String name = rs.getString("groupName");
                         String title = rs.getString("bookTitle");
-                        String pubName = rs.getString("pubName");
                         String numPages = rs.getString("numOfPages");
+                        String groupName = rs.getString("groupName");
+                        String pubName = rs.getString("pubName");
                         //Display values
                         System.out.printf(displayFormat, 
-                                dispNull(name), dispNull(title), dispNull(pubName), dispNull(numPages));
+                                dispNull(title), dispNull(numPages), dispNull(groupName), dispNull(pubName));
                         }
                     System.out.println("\n");
                     rs.close();
                     break;
                 case 6:
                     //case 6: list all the data for a book specified by the user
+                    sql = "SELECT * FROM books NATURAL JOIN publishers NATURAL JOIN writingGroups WHERE bookTitle = ?";
+                    System.out.println("Select book:");
+                    String book = in.nextLine();
+                    prepStmt = conn.prepareStatement(sql);
+                    prepStmt.setString(1, book);
+                    rs = prepStmt.executeQuery();
+                    System.out.printf("\n");
+                    System.out.printf(displayFormatPub_book, "TITLE", "NUMBER OF PAGES", "YEAR PUBLISHED", "WRITING GROUP", "PUBLISHER");
+                    while (rs.next()) {
+                        String title = rs.getString("bookTitle");
+                        String num = rs.getString("numOfPages");
+                        String year = rs.getString("yearPub");
+                        String groupName  = rs.getString("groupName");
+                        String pubName = rs.getString("pubName");
+
+                        //Display values
+                        System.out.printf(displayFormatPub_book,
+                        dispNull(title), dispNull(num), dispNull(year), dispNull(groupName), dispNull(pubName));
+                    }
+                    System.out.printf("\n");
                     break;
                 case 7:
                     //case 7: insert a new book
+                    
+                    //gather user book info
+                    System.out.print("Enter Book Title: ");
+                    String title= in.nextLine();
+                    
+                    System.out.print("Enter Number of Pages: ");
+                    int pages = in.nextInt();
+                    in.nextLine();
+                    
+                    System.out.print("Enter Year Published: ");
+                    int year = in.nextInt();
+                    in.nextLine();
+                    
+                    System.out.print("Select Publisher: "); //must exist
+                    String publisher = in.nextLine();
+
+                    System.out.print("Select Writing Group: "); //must exist
+                    String groupName = in.nextLine();
+                    
+                    //insert book
+                    sql = "INSERT INTO books VALUES(?,?,?,?,?)";
+                    prepStmt = conn.prepareStatement(sql);
+                    prepStmt.setString(1, groupName);
+                    prepStmt.setString(2, title);
+                    prepStmt.setString(3, publisher); 
+                    prepStmt.setInt(4, year);
+                    prepStmt.setInt(5, pages);
+                    prepStmt.executeUpdate();
+                    prepStmt.close();
+                    System.out.println("Book has been inserted.\n");
                     break;
                 case 8:
                     //case 8: insert a new publisher and update all books published by one publisher to be published by the new publisher. 
-                    //        leave the old publisher alone, just modify the books that they have published. 
-                    //        assume that the new publisher has bought out the old one, so now any books published by the old publisher are published by the new one.
+                    //leave the old publisher alone, just modify the books that they have published. 
+                    //assume that the new publisher has bought out the old one, so now any books published by the old publisher are published by the new one.
+                    
+                    //gather user publisher info    
+                    System.out.println("Enter New Publisher Name: ");
+                    String pubName = in.nextLine();
+                    System.out.println("Enter New Publisher Address: ");
+                    String pubAddress = in.nextLine();
+                    System.out.println("Enter New Publisher Phone: ");
+                    String pubPhone = in.nextLine();
+                    System.out.println("Enter New Publisher Email: ");
+                    String pubEmail = in.nextLine();
+
+                    //Inserts new publisher
+                    sql = "INSERT INTO publishers VALUES(?,?,?,?)";
+                    prepStmt = conn.prepareStatement(sql);
+                    prepStmt.setString(1, pubName);
+                    prepStmt.setString(2, pubAddress);
+                    prepStmt.setString(3, pubPhone);
+                    prepStmt.setString(4, pubEmail);
+                    prepStmt.executeUpdate();
+                    prepStmt.close();
+                    System.out.print("Publisher has been inserted.\n");
+                    System.out.print("Which publisher would you like to overwrite?: "); 
+                    String pubToOverwrite = in.nextLine();
+
+                    //overwrites old publisher with new publisher 
+                    sql = "UPDATE books SET pubName = ? WHERE pubName = ?";
+                    prepStmt = conn.prepareStatement(sql);
+                    prepStmt.setString(1, pubName);
+                    prepStmt.setString(2, pubToOverwrite);
+                    prepStmt.executeUpdate();
+                    prepStmt.close();
+                    System.out.print(pubToOverwrite + " has been overwritten.\n"); 
+                    System.out.println();
                     break;
                 case 9:
                     //case 9: remove a book specified by the user
+                    //Displays old list of books
+                    System.out.println("Enter name of book to delete: ");
+                    String bookName = in.nextLine();
+
+                    sql = "DELETE FROM books WHERE bookTitle = ?";
+                    prepStmt = conn.prepareStatement(sql);
+                    prepStmt.setString(1, bookName);
+                    prepStmt.executeUpdate();
+                    prepStmt.close();
+                    System.out.println(bookName + " has been deleted.");
+                    System.out.println();
                     break;
                 case 10:
                     //case 10: quit
@@ -205,8 +321,6 @@ public class JDBC {
                     break;
                 }
             }
-            //switch statement from user
-            
             //Clean-up environment
             stmt.close();
             conn.close();
