@@ -6,9 +6,9 @@ import java.util.Scanner;
  * @author Mimi Opkins with some tweaking from Dave Brown
  */
 public class JDBC {
-    //  Database credentials
-//    static String USER;
-//    static String PASS;
+//  Database credentials
+    static String USER;
+    static String PASS;
     static String DBNAME;
     //This is the specification for the printout that I'm doing:
     //each % denotes the start of a new field.
@@ -22,7 +22,7 @@ public class JDBC {
 // JDBC driver name and database URL
     static final String JDBC_DRIVER = "org.apache.derby.jdbc.ClientDriver";
     static String DB_URL = "jdbc:derby://localhost:1527/";
-//            + "testdb;user=";
+
     Scanner in = new Scanner(System.in);
 /**
  * Takes the input string and outputs "N/A" if the string is empty or null.
@@ -76,13 +76,13 @@ public class JDBC {
         Scanner in = new Scanner(System.in);
         System.out.print("Name of the database (not the user account): ");
         DBNAME = in.nextLine();
-//        System.out.print("Database user name: ");
-//        USER = in.nextLine();
-//        System.out.print("Database password: ");
-//        PASS = in.nextLine();
+        System.out.print("Database user name: ");
+      //  USER = in.nextLine();
+      // System.out.print("Database password: ");
+      //  PASS = in.nextLine();
         //Constructing the database URL connection string
-//        DB_URL = DB_URL + DBNAME + ";user="+ USER + ";password=" + PASS;
-        DB_URL = DB_URL + DBNAME;
+        //DB_URL = DB_URL + DBNAME + ";user="+ USER + ";password=" + PASS;
+       DB_URL = DB_URL + DBNAME;
         Connection conn = null; //initialize the connection
         Statement stmt = null;  //initialize the statement that we're using
         try {
@@ -101,6 +101,8 @@ public class JDBC {
             
             boolean menu = true;
             while(menu){
+            // Output the 
+
                 mainMenu();
                 int user_input = inputValidation(in);
                 switch(user_input){
@@ -256,9 +258,29 @@ public class JDBC {
                     prepStmt.setString(3, publisher); 
                     prepStmt.setInt(4, year);
                     prepStmt.setInt(5, pages);
+                    //Try inserting the book and catch the exception
+                    try{
                     prepStmt.executeUpdate();
                     prepStmt.close();
-                    System.out.println("Book has been inserted.\n");
+                    System.out.println("Book Inserted to the database!");
+                    }catch(SQLException exception){
+                        int ERROR = exception.getErrorCode();
+                        String STATE = exception.getSQLState();
+                        // System.out.println(ERROR);
+                        // System.out.println(STATE);
+
+                        switch(STATE){
+                            case "08004":
+                                System.out.println("Could not find or Login to the specified database with the credentials");
+                            break;
+                            case"23505":
+                            System.out.println(exception.getMessage());
+                            break;
+                            default:
+                            System.out.println("Cannot find the reason why the book failed to be inserted. :(");
+                        }
+                    };
+                    
                     break;
                 case 8:
                     //case 8: insert a new publisher and update all books published by one publisher to be published by the new publisher. 
@@ -325,8 +347,26 @@ public class JDBC {
             stmt.close();
             conn.close();
         } catch (SQLException se) {
+            
+            int ERROR = se.getErrorCode();
+            String STATE = se.getSQLState();
+            System.out.println(ERROR);
+            System.out.println(STATE);
+
+            switch(STATE){
+                case "08004":
+                    System.out.println("Could not find or Login to the specified database with the credentials");
+                break;
+                case"":
+                    System.out.println("x");
+                break;
+                default:
+                System.out.println(STATE);
+            }
+
+
             //Handle errors for JDBC
-            System.out.println("Entry already exists");
+//            System.out.println("Entry already exists");
 //            se.printStackTrace();
         } catch (Exception e) {
             //Handle errors for Class.forName
