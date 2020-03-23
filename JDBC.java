@@ -315,20 +315,16 @@ public class JDBC {
                         findPubStmt.setString(1, pubToOverwrite);
                         rs = findPubStmt.executeQuery();
                         if(rs.next()){
+                            //Execute the add new publisher 
+                            prepStmt.executeUpdate();
+                            prepStmt.close();
+                            //Overwrite prepareStatement                            
                             prepStmt = conn.prepareStatement(sql);
                             prepStmt.setString(1, pubName);
                             prepStmt.setString(2, pubToOverwrite);
                         }else{ 
-                            System.out.println("Could not find the publisher to overwrite. Do you still want to add this new publisher?Y/N");
-                            String addPub = in.nextLine();
-                            if(addPub.toUpperCase().equals("Y")){
-                                prepStmt.executeUpdate();
-                                prepStmt.close();
-                                System.out.print("Publisher has been inserted.\n");
-                            }else{
-                                System.out.println("Publisher was not added");
-                                break;
-                            }
+                            System.out.println("Could not find the publisher to overwrite.Failed to insert new publisher.");
+                            break;
                         }
                         try{
                             prepStmt.executeUpdate();
