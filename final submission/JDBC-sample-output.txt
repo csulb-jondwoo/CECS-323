@@ -1,0 +1,354 @@
+run:
+Name of the database (not the user account): JDBC
+Database user name: Connecting to database...
+Main Menu:
+1. List all groups
+2. Select group
+3. List all publishers
+4. Select publisher
+5. List all books 
+6. Select book
+7. Insert new book
+8. Insert new publisher and update
+9. Remove book
+10. Quit
+
+
+Please enter a number from the menu: 
+1
+WRITING GROUP                 HEAD WRITER                                       YEAR FORMED              SUBJECT        
+CoolWriting                   Jake Rayner                                       2002                     Horror         
+HelloWriters                  Tom Brit                                          1994                     Fantasy        
+SavingWriters                 Leslie Kewett                                     2010                     Science Fiction
+GroupPoets                    Preston Kanue                                     1991                     Poetry         
+MarkusWrites                  Markus Max                                        1897                     Fiction        
+TeenWriters                   Jason Gillio                                      2018                     Romance        
+
+
+Main Menu:
+1. List all groups
+2. Select group
+3. List all publishers
+4. Select publisher
+5. List all books 
+6. Select book
+7. Insert new book
+8. Insert new publisher and update
+9. Remove book
+10. Quit
+
+
+Please enter a number from the menu: 
+2
+Select Group Name:
+CoolWriting
+
+WRITING GROUP       HEAD WRITER         YEAR FORMED         SUBJECT             TITLE                         PUBLISHER           
+CoolWriting         Jake Rayner         2002                Horror              Midnight Rose                 Ballast Press       
+CoolWriting         Jake Rayner         2002                Horror              Night of Terror               Father Publishing   
+CoolWriting         Jake Rayner         2002                Horror              The Little Bird               Ballast Press       
+
+Main Menu:
+1. List all groups
+2. Select group
+3. List all publishers
+4. Select publisher
+5. List all books 
+6. Select book
+7. Insert new book
+8. Insert new publisher and update
+9. Remove book
+10. Quit
+
+
+Please enter a number from the menu: 
+3
+PUBLISHER                     ADDRESS                                           PHONE                    EMAIL          
+Father Publishing             5 Harbour Street North Royalton, OH 44133         (598) 693-8367           fp_contacts@gmail.com
+Hampton Hut Media             9701B Poor House St. Dorchester Center, MA 02124  (204) 298-9233           hhm_contacts@gmail.com
+Ballast Press                 7928 Edgewood St. Wayne, NJ 07470                 (710) 244-3286           bp_contacts@gmail.com
+Ernest Shaw                   690 Purple Finch Dr. Dayton, OH 45420             (397) 461-2925           ES_contacts@gmail.com
+Terrell Publishing Co         28 Blackburn Avenue Belmont, MA 02478             (430) 617-1689           tpc_contacts@gmail.com
+Creative International        175 Marshall St. Indian Trail, NC 28079           (633) 763-5282           ci_contacts@gmail.com
+
+
+Main Menu:
+1. List all groups
+2. Select group
+3. List all publishers
+4. Select publisher
+5. List all books 
+6. Select book
+7. Insert new book
+8. Insert new publisher and update
+9. Remove book
+10. Quit
+
+
+Please enter a number from the menu: 
+4
+Select publisher:
+Ballast Press
+
+PUBLISHER                ADDRESS                                           PHONE               EMAIL                    TITLE               
+Ballast Press            7928 Edgewood St. Wayne, NJ 07470                 (710) 244-3286      bp_contacts@gmail.com    Beyond the Oath     
+Ballast Press            7928 Edgewood St. Wayne, NJ 07470                 (710) 244-3286      bp_contacts@gmail.com    Midnight Rose       
+Ballast Press            7928 Edgewood St. Wayne, NJ 07470                 (710) 244-3286      bp_contacts@gmail.com    The Little Bird     
+
+Main Menu:
+1. List all groups
+2. Select group
+3. List all publishers
+4. Select publisher
+5. List all books 
+6. Select book
+7. Insert new book
+8. Insert new publisher and update
+9. Remove book
+10. Quit
+
+
+Please enter a number from the menu: 
+5
+TITLE                         NUMBER OF PAGES                                   WRITING GROUP            PUBLISHER      
+Night of Terror               198                                               CoolWriting              Father Publishing
+The Corpse in the Portrait    201                                               HelloWriters             Hampton Hut Media
+Beyond the Oath               231                                               SavingWriters            Ballast Press  
+Shadows Crying                108                                               GroupPoets               Ernest Shaw    
+Midnight Rose                 330                                               MarkusWrites             Terrell Publishing Co
+Midnight Rose                 400                                               CoolWriting              Ballast Press  
+Flies of Broken Things        172                                               TeenWriters              Creative International
+The Little Bird               74                                                CoolWriting              Ballast Press  
+
+
+Main Menu:
+1. List all groups
+2. Select group
+3. List all publishers
+4. Select publisher
+5. List all books 
+6. Select book
+7. Insert new book
+8. Insert new publisher and update
+9. Remove book
+10. Quit
+
+
+Please enter a number from the menu: 
+6
+Select book:
+Midnight Rose
+
+TITLE                    NUMBER OF PAGES                                   YEAR PUBLISHED      WRITING GROUP            PUBLISHER           
+Midnight Rose            400                                               2006                CoolWriting              Ballast Press       
+Midnight Rose            330                                               1900                MarkusWrites             Terrell Publishing Co
+
+Main Menu:
+1. List all groups
+2. Select group
+3. List all publishers
+4. Select publisher
+5. List all books 
+6. Select book
+7. Insert new book
+8. Insert new publisher and update
+9. Remove book
+10. Quit
+
+
+Please enter a number from the menu: 
+7
+Enter Book Title: Hamster Party
+Enter Number of Pages: 50
+Enter Year Published: 2011
+Select Publisher: Hampton Hut Media'
+Select Writing Group: CoolWriting
+Failed to insert the book.
+The publisher for the book could not be found.
+Main Menu:
+1. List all groups
+2. Select group
+3. List all publishers
+4. Select publisher
+5. List all books 
+6. Select book
+7. Insert new book
+8. Insert new publisher and update
+9. Remove book
+10. Quit
+
+
+Please enter a number from the menu: 
+7
+Enter Book Title: Hamster Party
+Enter Number of Pages: 50
+Enter Year Published: 2011
+Select Publisher: Hampton Hut Media
+Select Writing Group: TeenWriters
+Book Inserted to the database!
+Main Menu:
+1. List all groups
+2. Select group
+3. List all publishers
+4. Select publisher
+5. List all books 
+6. Select book
+7. Insert new book
+8. Insert new publisher and update
+9. Remove book
+10. Quit
+
+
+Please enter a number from the menu: 
+5
+TITLE                         NUMBER OF PAGES                                   WRITING GROUP            PUBLISHER      
+Night of Terror               198                                               CoolWriting              Father Publishing
+The Corpse in the Portrait    201                                               HelloWriters             Hampton Hut Media
+Beyond the Oath               231                                               SavingWriters            Ballast Press  
+Shadows Crying                108                                               GroupPoets               Ernest Shaw    
+Midnight Rose                 330                                               MarkusWrites             Terrell Publishing Co
+Midnight Rose                 400                                               CoolWriting              Ballast Press  
+Flies of Broken Things        172                                               TeenWriters              Creative International
+The Little Bird               74                                                CoolWriting              Ballast Press  
+Hamster Party                 50                                                TeenWriters              Hampton Hut Media
+
+
+Main Menu:
+1. List all groups
+2. Select group
+3. List all publishers
+4. Select publisher
+5. List all books 
+6. Select book
+7. Insert new book
+8. Insert new publisher and update
+9. Remove book
+10. Quit
+
+
+Please enter a number from the menu: 
+8
+Enter New Publisher Name: 
+New Ballast Press
+Enter New Publisher Address: 
+2345 Edgewood St. Wayne, NJ 07470
+Enter New Publisher Phone: 
+(323) 325-6543
+Enter New Publisher Email: 
+newbp_contact@gmail.com
+Which publisher would you like to overwrite?: Ballast Press
+Ballast Press has been overwritten.
+
+Main Menu:
+1. List all groups
+2. Select group
+3. List all publishers
+4. Select publisher
+5. List all books 
+6. Select book
+7. Insert new book
+8. Insert new publisher and update
+9. Remove book
+10. Quit
+
+
+Please enter a number from the menu: 
+3
+PUBLISHER                     ADDRESS                                           PHONE                    EMAIL          
+Father Publishing             5 Harbour Street North Royalton, OH 44133         (598) 693-8367           fp_contacts@gmail.com
+Hampton Hut Media             9701B Poor House St. Dorchester Center, MA 02124  (204) 298-9233           hhm_contacts@gmail.com
+Ballast Press                 7928 Edgewood St. Wayne, NJ 07470                 (710) 244-3286           bp_contacts@gmail.com
+Ernest Shaw                   690 Purple Finch Dr. Dayton, OH 45420             (397) 461-2925           ES_contacts@gmail.com
+Terrell Publishing Co         28 Blackburn Avenue Belmont, MA 02478             (430) 617-1689           tpc_contacts@gmail.com
+Creative International        175 Marshall St. Indian Trail, NC 28079           (633) 763-5282           ci_contacts@gmail.com
+New Ballast Press             2345 Edgewood St. Wayne, NJ 07470                 (323) 325-6543           newbp_contact@gmail.com
+
+
+Main Menu:
+1. List all groups
+2. Select group
+3. List all publishers
+4. Select publisher
+5. List all books 
+6. Select book
+7. Insert new book
+8. Insert new publisher and update
+9. Remove book
+10. Quit
+
+
+Please enter a number from the menu: 
+5
+TITLE                         NUMBER OF PAGES                                   WRITING GROUP            PUBLISHER      
+Night of Terror               198                                               CoolWriting              Father Publishing
+The Corpse in the Portrait    201                                               HelloWriters             Hampton Hut Media
+Beyond the Oath               231                                               SavingWriters            New Ballast Press
+Shadows Crying                108                                               GroupPoets               Ernest Shaw    
+Midnight Rose                 330                                               MarkusWrites             Terrell Publishing Co
+Midnight Rose                 400                                               CoolWriting              New Ballast Press
+Flies of Broken Things        172                                               TeenWriters              Creative International
+The Little Bird               74                                                CoolWriting              New Ballast Press
+Hamster Party                 50                                                TeenWriters              Hampton Hut Media
+
+
+Main Menu:
+1. List all groups
+2. Select group
+3. List all publishers
+4. Select publisher
+5. List all books 
+6. Select book
+7. Insert new book
+8. Insert new publisher and update
+9. Remove book
+10. Quit
+
+
+Please enter a number from the menu: 
+4
+Select publisher:
+Ballast Press
+
+PUBLISHER                ADDRESS                                           PHONE               EMAIL                    TITLE               
+
+Main Menu:
+1. List all groups
+2. Select group
+3. List all publishers
+4. Select publisher
+5. List all books 
+6. Select book
+7. Insert new book
+8. Insert new publisher and update
+9. Remove book
+10. Quit
+
+
+Please enter a number from the menu: 
+4
+Select publisher:
+New Ballast Press
+
+PUBLISHER                ADDRESS                                           PHONE               EMAIL                    TITLE               
+New Ballast Press        2345 Edgewood St. Wayne, NJ 07470                 (323) 325-6543      newbp_contact@gmail.com  Beyond the Oath     
+New Ballast Press        2345 Edgewood St. Wayne, NJ 07470                 (323) 325-6543      newbp_contact@gmail.com  Midnight Rose       
+New Ballast Press        2345 Edgewood St. Wayne, NJ 07470                 (323) 325-6543      newbp_contact@gmail.com  The Little Bird     
+
+Main Menu:
+1. List all groups
+2. Select group
+3. List all publishers
+4. Select publisher
+5. List all books 
+6. Select book
+7. Insert new book
+8. Insert new publisher and update
+9. Remove book
+10. Quit
+
+
+Please enter a number from the menu: 
+10
+Goodbye!
+BUILD SUCCESSFUL (total time: 4 minutes 5 seconds)
+
