@@ -70,14 +70,18 @@ public class JDBC {
     };
 
     public static void sqlResponse(String response){
-        if(response.contains("PUB_PK") && response.contains("PUBLISHERS"))
+        if(response.contains("PUBLISHERS") && response.contains("PUB_PK"))
             System.out.println("Could not add the publisher since the name of the publisher is used.");
-        else if(response.contains("BOOKS") && response.contains("BOOKS_PK"))
+        if(response.contains("BOOKS") && response.contains("BOOKS_PK"))
             System.out.println("Could not insert the book since the book title and groupname is already contained in the database.");
-        else if(response.contains("BOOKS") && response.contains("BOOKS_UK01"))
+        if(response.contains("BOOKS") && response.contains("BOOKS_UK01"))
             System.out.println("Could not insert book since the book title and publisher is already contained in the database.");
-        else if(response.contains("BOOKS") && response.contains("BOOKS_UK01"))
-            System.out.println("Could not ");
+        if(response.contains("BOOKS") && response.contains("BOOKS_PUB_FK02"))
+            System.out.println("The publisher for the book could not be found.");
+        if(response.contains("BOOKS") && response.contains("BOOKS_WG_FK01"))
+            System.out.println("Could not find the publisher inserted.");
+        if(response.contains("WRITINGGROUPS") && response.contains("WRITINGGROUP_PK"))
+            System.out.println("Could not find the writing group inserted.");
     }
 
     public static void main(String[] args) {
@@ -112,8 +116,7 @@ public class JDBC {
             
             boolean menu = true;
             while(menu){
-            // Output the 
-
+            // Output the Menu
                 mainMenu();
                 int user_input = inputValidation(in);
                 switch(user_input){
@@ -242,7 +245,6 @@ public class JDBC {
                     break;
                 case 7:
                     //case 7: insert a new book
-                    
                     //gather user book info
                     System.out.print("Enter Book Title: ");
                     String title= in.nextLine();
@@ -275,21 +277,7 @@ public class JDBC {
                         prepStmt.close();
                         System.out.println("Book Inserted to the database!");
                     }catch(SQLException exception){
-                        int ERROR = exception.getErrorCode();
-                        String STATE = exception.getSQLState();
-                         System.out.println(ERROR);
-                         System.out.println(STATE);
-                        //TODO Create a better output to the terminal for the reason why the book failed to be inserted with REGEX
-                        switch(STATE){
-                            case "08004":
-                                System.out.println("Could not find or Login to the specified database with the credentials");
-                            break;
-                            case"23505":
-                            sqlResponse(exception.getMessage());
-                            break;
-                            default:
-                            System.out.println("Cannot find the reason why the book failed to be inserted. :(");
-                        }
+                        sqlResponse(exception.getMessage());
                     }
                     break;
                 case 8:
@@ -315,48 +303,43 @@ public class JDBC {
                     prepStmt.setString(3, pubPhone);
                     prepStmt.setString(4, pubEmail);
                     try{
-                        prepStmt.executeUpdate();
-                        prepStmt.close();
-            
-                        System.out.print("Publisher has been inserted.\n");
                         System.out.print("Which publisher would you like to overwrite?: "); 
                         String pubToOverwrite = in.nextLine();
 
                         //overwrites old publisher with new publisher 
                         sql = "UPDATE books SET pubName = ? WHERE pubName = ?";
-                        prepStmt = conn.prepareStatement(sql);
-                        prepStmt.setString(1, pubName);
-                        prepStmt.setString(2, pubToOverwrite);
+                        //Get the publisher to be updated to check if the publisher exists
+                        String sqlPub = "SELECT pubName, pubAddress, pubPhone, pubEmail, bookTitle FROM publishers NATURAL JOIN books WHERE pubName= ?";
+                        prepStmt = conn.prepareStatement(sqlPub);
+                        prepStmt.setString(1, pubToOverwrite);
+                        rs = prepStmt.executeQuery();
+                        if(rs.next()){
+                            prepStmt = conn.prepareStatement(sql);
+                            prepStmt.setString(1, pubName);
+                            prepStmt.setString(2, pubToOverwrite);
+                        }else{ 
+                            System.out.println("Could not find the publisher to overwrite. Do you still want to add this new publisher?Y/N");
+                            String addPub = in.nextLine();
+                            if(addPub.toUpperCase().equals("Y")){
+                                prepStmt.executeUpdate();
+                                prepStmt.close();
+                                System.out.print("Publisher has been inserted.\n");
+                            }else{
+                                System.out.println("Publisher was not added");
+                                break;
+                            }
+                        }
                         try{
                             prepStmt.executeUpdate();
                             prepStmt.close();
                             System.out.print(pubToOverwrite + " has been overwritten.\n"); 
                             System.out.println();
                         }catch(SQLException exception){
-                            String STATE = exception.getSQLState();
-                            switch(STATE){
-                                case "08004":
-                                    System.out.println("Could not find or Login to the specified database with the credentials");
-                                break;
-                                case"23505":
-                                sqlResponse(exception.getMessage());
-                                break;
-                                default:
-                                System.out.println("Cannot find the reason why the book failed to be inserted. :(");
-                            }
+                            sqlResponse(exception.getMessage());
                         }
                     }catch(SQLException exception){
-                        String STATE = exception.getSQLState();
-                        switch(STATE){
-                            case "08004":
-                                System.out.println("Could not find or Login to the specified database with the credentials");
-                            break;
-                            case"23505":
-                            sqlResponse(exception.getMessage());
-                            break;
-                            default:
-                            System.out.println("Cannot find the reason why the book failed to be inserted. :(");
-                        }
+                        System.out.println(exception.getMessage());
+                        sqlResponse(exception.getMessage());
                     }
                     break;
                 case 9:
@@ -374,18 +357,7 @@ public class JDBC {
                     System.out.println(bookName + " has been deleted.");
                     System.out.println();
                     }catch(SQLException exception){
-                        String STATE = exception.getSQLState();
-                        System.out.println(STATE);
-                        switch(STATE){
-                            case "08004":
-                                System.out.println("Could not find or Login to the specified database with the credentials");
-                            break;
-                            case"23505":
                             sqlResponse(exception.getMessage());
-                            break;
-                            default:
-                            System.out.println("Cannot find the reason why the book failed to be inserted. :(");
-                        }
                     }
                     break;
                 case 10:
@@ -401,24 +373,10 @@ public class JDBC {
             stmt.close();
             conn.close();
         } catch (SQLException se) {
-            
             int ERROR = se.getErrorCode();
             String STATE = se.getSQLState();
             System.out.println(ERROR);
             System.out.println(STATE);
-
-            switch(STATE){
-                case "08004":
-                    System.out.println("Could not find or Login to the specified database with the credentials");
-                break;
-                default:
-                System.out.println(STATE);
-            }
-
-
-            //Handle errors for JDBC
-//            System.out.println("Entry already exists");
-//            se.printStackTrace();
         } catch (Exception e) {
             //Handle errors for Class.forName
             e.printStackTrace();
@@ -429,7 +387,8 @@ public class JDBC {
                     stmt.close();
                 }
             } catch (SQLException se2) {
-            }// nothing we can do
+            // nothing we can do
+            }
             try {
                 if (conn != null) {
                     conn.close();
@@ -438,8 +397,5 @@ public class JDBC {
                 se.printStackTrace();
             }//end finally try
         }//end try
-        
     }//end main
-    
-    
 }//end FirstExample}
