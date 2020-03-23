@@ -23,4 +23,5 @@ VALUES  ('CoolWriting', 'Night of Terror', 'Father Publishing', 2003, 198),
         ('SavingWriters', 'Beyond the Oath', 'Ballast Press', 2014, 231),
         ('GroupPoets', 'Shadows Crying', 'Ernest Shaw', 1997, 108),
         ('MarkusWrites', 'Midnight Rose', 'Terrell Publishing Co', 1900, 330),
+        ('CoolWriting', 'Midnight Rose', 'Ballast Press', 2006, 400),
         ('TeenWriters', 'Flies of Broken Things', 'Creative International', 2018, 172);
