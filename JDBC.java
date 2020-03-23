@@ -349,8 +349,19 @@ public class JDBC {
                     String bookName = in.nextLine();
 
                     sql = "DELETE FROM books WHERE bookTitle = ?";
-                    prepStmt = conn.prepareStatement(sql);
+                    //Get the publisher to be updated to check if the publisher exists
+                    String sqlBook = "SELECT bookTitle, numOfPages, yearPub, groupName, pubName FROM books NATURAL JOIN publishers NATURAL JOIN writingGroups WHERE bookTitle = ?";
+                    prepStmt = conn.prepareStatement(sqlBook);
                     prepStmt.setString(1, bookName);
+                    rs = prepStmt.executeQuery();
+                    if(rs.next()){
+                        prepStmt = conn.prepareStatement(sql);
+                        prepStmt.setString(1, bookName);
+                    }else{
+                        System.out.println("Could not find the book to be deleted.");
+                        break;
+                    }
+                    //We can get rid of try statements since we know that the book exists but for debugging purposes we will leave this for now 
                     try{
                     prepStmt.executeUpdate();
                     prepStmt.close();
