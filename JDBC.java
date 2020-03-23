@@ -277,6 +277,7 @@ public class JDBC {
                         prepStmt.close();
                         System.out.println("Book Inserted to the database!");
                     }catch(SQLException exception){
+                        System.out.println("Failed to insert the book.");
                         sqlResponse(exception.getMessage());
                     }
                     break;
@@ -310,9 +311,9 @@ public class JDBC {
                         sql = "UPDATE books SET pubName = ? WHERE pubName = ?";
                         //Get the publisher to be updated to check if the publisher exists
                         String sqlPub = "SELECT pubName, pubAddress, pubPhone, pubEmail, bookTitle FROM publishers NATURAL JOIN books WHERE pubName= ?";
-                        prepStmt = conn.prepareStatement(sqlPub);
-                        prepStmt.setString(1, pubToOverwrite);
-                        rs = prepStmt.executeQuery();
+                        PreparedStatement findPubStmt = conn.prepareStatement(sqlPub);
+                        findPubStmt.setString(1, pubToOverwrite);
+                        rs = findPubStmt.executeQuery();
                         if(rs.next()){
                             prepStmt = conn.prepareStatement(sql);
                             prepStmt.setString(1, pubName);
