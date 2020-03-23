@@ -69,6 +69,17 @@ public class JDBC {
         return user_input;
     };
 
+    public static void sqlResponse(String response){
+        if(response.contains("PUB_PK") && response.contains("PUBLISHERS"))
+            System.out.println("Could not add the publisher since the name of the publisher is used.");
+        else if(response.contains("BOOKS") && response.contains("BOOKS_PK"))
+            System.out.println("Could not insert the book since the book title and groupname is already contained in the database.");
+        else if(response.contains("BOOKS") && response.contains("BOOKS_UK01"))
+            System.out.println("Could not insert book since the book title and publisher is already contained in the database.");
+        else if(response.contains("BOOKS") && response.contains("BOOKS_UK01"))
+            System.out.println("Could not ");
+    }
+
     public static void main(String[] args) {
         //Prompt the user for the database name, and the credentials.
         //If your database has no credentials, you can update this code to 
@@ -266,15 +277,15 @@ public class JDBC {
                     }catch(SQLException exception){
                         int ERROR = exception.getErrorCode();
                         String STATE = exception.getSQLState();
-                        // System.out.println(ERROR);
-                        // System.out.println(STATE);
+                         System.out.println(ERROR);
+                         System.out.println(STATE);
                         //TODO Create a better output to the terminal for the reason why the book failed to be inserted with REGEX
                         switch(STATE){
                             case "08004":
                                 System.out.println("Could not find or Login to the specified database with the credentials");
                             break;
                             case"23505":
-                            System.out.println(exception.getMessage());
+                            sqlResponse(exception.getMessage());
                             break;
                             default:
                             System.out.println("Cannot find the reason why the book failed to be inserted. :(");
@@ -328,7 +339,7 @@ public class JDBC {
                                     System.out.println("Could not find or Login to the specified database with the credentials");
                                 break;
                                 case"23505":
-                                System.out.println(exception.getMessage());
+                                sqlResponse(exception.getMessage());
                                 break;
                                 default:
                                 System.out.println("Cannot find the reason why the book failed to be inserted. :(");
@@ -341,7 +352,7 @@ public class JDBC {
                                 System.out.println("Could not find or Login to the specified database with the credentials");
                             break;
                             case"23505":
-                            System.out.println(exception.getMessage());
+                            sqlResponse(exception.getMessage());
                             break;
                             default:
                             System.out.println("Cannot find the reason why the book failed to be inserted. :(");
@@ -357,10 +368,25 @@ public class JDBC {
                     sql = "DELETE FROM books WHERE bookTitle = ?";
                     prepStmt = conn.prepareStatement(sql);
                     prepStmt.setString(1, bookName);
+                    try{
                     prepStmt.executeUpdate();
                     prepStmt.close();
                     System.out.println(bookName + " has been deleted.");
                     System.out.println();
+                    }catch(SQLException exception){
+                        String STATE = exception.getSQLState();
+                        System.out.println(STATE);
+                        switch(STATE){
+                            case "08004":
+                                System.out.println("Could not find or Login to the specified database with the credentials");
+                            break;
+                            case"23505":
+                            sqlResponse(exception.getMessage());
+                            break;
+                            default:
+                            System.out.println("Cannot find the reason why the book failed to be inserted. :(");
+                        }
+                    }
                     break;
                 case 10:
                     //case 10: quit
@@ -384,9 +410,6 @@ public class JDBC {
             switch(STATE){
                 case "08004":
                     System.out.println("Could not find or Login to the specified database with the credentials");
-                break;
-                case"":
-                    System.out.println("x");
                 break;
                 default:
                 System.out.println(STATE);
