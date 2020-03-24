@@ -277,6 +277,7 @@ public class JDBC {
                         prepStmt.close();
                         System.out.println("Book Inserted to the database!");
                     }catch(SQLException exception){
+                        System.out.println("Failed to insert the book.");
                         sqlResponse(exception.getMessage());
                     }
                     break;
@@ -310,24 +311,20 @@ public class JDBC {
                         sql = "UPDATE books SET pubName = ? WHERE pubName = ?";
                         //Get the publisher to be updated to check if the publisher exists
                         String sqlPub = "SELECT pubName, pubAddress, pubPhone, pubEmail, bookTitle FROM publishers NATURAL JOIN books WHERE pubName= ?";
-                        prepStmt = conn.prepareStatement(sqlPub);
-                        prepStmt.setString(1, pubToOverwrite);
-                        rs = prepStmt.executeQuery();
+                        PreparedStatement findPubStmt = conn.prepareStatement(sqlPub);
+                        findPubStmt.setString(1, pubToOverwrite);
+                        rs = findPubStmt.executeQuery();
                         if(rs.next()){
+                            //Execute the add new publisher 
+                            prepStmt.executeUpdate();
+                            prepStmt.close();
+                            //Overwrite prepareStatement                            
                             prepStmt = conn.prepareStatement(sql);
                             prepStmt.setString(1, pubName);
                             prepStmt.setString(2, pubToOverwrite);
                         }else{ 
-                            System.out.println("Could not find the publisher to overwrite. Do you still want to add this new publisher?Y/N");
-                            String addPub = in.nextLine();
-                            if(addPub.toUpperCase().equals("Y")){
-                                prepStmt.executeUpdate();
-                                prepStmt.close();
-                                System.out.print("Publisher has been inserted.\n");
-                            }else{
-                                System.out.println("Publisher was not added");
-                                break;
-                            }
+                            System.out.println("Could not find the publisher to overwrite.Failed to insert new publisher.");
+                            break;
                         }
                         try{
                             prepStmt.executeUpdate();
