@@ -28,14 +28,7 @@ def getContents(ws,colRange,rowRange):
 
 # get range of attributes and rows
 def getRange():
-    # attributeList = []
     colRange = input("how many attributes?\n")
-    # print("type in each attribute name. q to quit")
-    # while(True):
-    #     attribute = input()
-    #     if attribute == 'q':
-    #         break
-    #     attributeList.append(attribute)
     rowRange = input("How many rows?\n")
 
     return int(colRange), int(rowRange)
