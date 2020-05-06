@@ -1,5 +1,6 @@
 CREATE DATABASE mimings_cuisine;	
 use mimings_cuisine;
+
 -- create tables for Staff
 CREATE TABLE employees (
 	empID			INT NOT NULL,
@@ -173,57 +174,10 @@ CREATE TABLE lineCookStation (
 );
 
 -- for sooyoung's use
--- create table OrderItem(
---     orderNumber int not null,
---     orderDateTime datetime not null,
---     orderItemNum int not null,
---     menuItemNum int not null,
---     menu varchar(20) not null,
---     meat varchar(20) not null,
---     spiciness varchar(20) not null,
---     primary key (orderNumber, orderDateTime, orderItemNum),
---     constraint orderItem_orders_fk01 foreign key (orderNumber, orderDateTime) references Orders(orderNumber, orderDateTime),
---     constraint orderItem_menuPrices_fk01 foreign key (menuItemNum, menu) references MenuPrices(menuItemNum, menu),
---     constraint orderItem_meats_fk01 foreign key (meat) references Meats(name),
---     constraint orderItem_spiceLevels_fk01 foreign key (spiciness) references SpiceLevels(name));
 
--- FIX: for omar's use 
--- CREATE TABLE customer (
---     accountNo INT(10) NOT NULL,
---     city VARCHAR (15),
---     address VARCHAR(30),
---     state VARCHAR(2),
---     custName VARCHAR(20),
---     mimingMoney INT,
---     CONSTRAINT customers_pk PRIMARY KEY (accountNo),
---     CONSTRAINT customers_uk01 UNIQUE (city, address, state, custName),
--- );
 
--- CREATE TABLE individual {
---     'Account#' VARCHAR NOT NULL,
---     'EmailAddress' VARCHAR(25) NOT NULL,
---     'DOB' DATE NOT NULL,
---     CONSTRAINT 'IND_CUSTOMERS_PK' PRIMARY KEY('Account#'),
---     CONSTRAINT 'INDIVIDUAL_CK1' KEY('City','Address','State','CustName'),
---     CONSTRAINT 'ind_customer_fk1' FOREIGN KEY ('Account#') REFERENCES 'Customer'
--- };
-
--- CREATE TABLE 'Company_Customer' {
---     'Account#' VARCHAR NOT NULL,
---     'CompanyDep' VARCHAR,
---     'CompanyName' VARCHAR,
---     'ContactEmail' VARCHAR,
---     'ContactPhone' VARCHAR,
---     CONSTRAINT 'COMP_CUSTOMERS_PK' PRIMARY KEY('Account#'),
---     CONSTRAINT 'COMPANY_CK1' KEY('CompanyDep','CompnayName','ContactEmail','ContactPhone'),
---     CONSTRAINT 'comp_customer_fk1' FOREIGN KEY ('Account#') REFERENCES 'Customer'
--- };
-
-<<<<<<< HEAD
-
-=======
 CREATE TABLE customer (
-    accountNo INT(10) NOT NULL,
+    accountNo INT NOT NULL,
     city VARCHAR (15),
     address VARCHAR(30),
     state VARCHAR(2),
@@ -234,7 +188,7 @@ CREATE TABLE customer (
 );
 
 CREATE TABLE individual (
-    accountNo INTEGER NOT NULL,
+    accountNo INT NOT NULL,
     emailAddress VARCHAR(25) NOT NULL,
     DOB DATE NOT NULL,
     CONSTRAINT individual_customer_pk PRIMARY KEY(accountNo),
@@ -243,7 +197,7 @@ CREATE TABLE individual (
 );
 
 CREATE TABLE company (
-    accountNo INTEGER NOT NULL,
+    accountNo INT NOT NULL,
     companyDep VARCHAR(15) NOT NULL,
     companyName VARCHAR(20) NOT NULL,
     contactEmail VARCHAR(25) NOT NULL,
@@ -264,7 +218,7 @@ CREATE TABLE Bill (
 CREATE TABLE Orders (
     orderNumber INT NOT NULL,
     paymentType VARCHAR(20),
-    orderDateTime TIMESTAMP,
+    orderDateTime DATETIME,
     AccountNo INT,
     CONSTRAINT Order_pk PRIMARY KEY (orderNumber),
     CONSTRAINT Order_customer_fk01 FOREIGN KEY (AccountNo) REFERENCES customer(AccountNo),
@@ -272,6 +226,19 @@ CREATE TABLE Orders (
     
 );
 
+create table OrderItem(
+    orderNumber int not null,
+    orderItemNum int not null,
+    menuItemNum int not null,
+    menu varchar(20) not null,
+    meat varchar(20) not null,
+    spiciness varchar(20) not null,
+    primary key (orderNumber, orderItemNum),
+    constraint orderItem_orders_fk01 foreign key (orderNumber) references Orders(orderNumber),
+    constraint orderItem_menuPrices_fk01 foreign key (menuItemNum, menu) references MenuPrices(menuItemNum, menu),
+    constraint orderItem_meats_fk01 foreign key (meat) references Meats(name),
+    constraint orderItem_spiceLevels_fk01 foreign key (spiciness) references SpiceLevels(name));
+    
 CREATE TABLE `Online` (
     orderNumber INT NOT NULL,
     OrdererEmail VARCHAR(35),
@@ -307,5 +274,6 @@ CREATE TABLE Seat (
     CONSTRAINT Seat_EatIn_fk02 FOREIGN KEY (orderNumber) REFERENCES EatIn(orderNumber),
     CONSTRAINT Seat_waitStaff_fk03 FOREIGN KEY (empID) REFERENCES waitStaff(empID)
 );
->>>>>>> 48730562a3c33676eca8a7e89fea38a2c4b2001b
+
+
 -- DROP DATABASE mimings_cuisine;
