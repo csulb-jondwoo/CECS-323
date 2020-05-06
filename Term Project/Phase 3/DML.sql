@@ -1,9 +1,11 @@
 use mimings_cuisine;
 
+-- must alter table to avoid "chicken and egg" problem for "shift" and "empShift" table
 ALTER TABLE shift 
 ADD CONSTRAINT shift_empShift_fk04 FOREIGN KEY (managerID, shiftDate, dayType) REFERENCES empShift(empID, shiftDate, dayType),
 ADD CONSTRAINT shift__empShift_fk05 FOREIGN KEY (chefID, shiftDate, dayType) REFERENCES empShift(empID, shiftDate, dayType);
 
+-- insert data into employees table
 INSERT INTO employees (empID, empName, dob, designatedArea, incomeType)
 VALUES 
 (1004, 'Shona Kidd', '1993-03-19', 'BOH', 'Salary'),
@@ -49,6 +51,7 @@ VALUES
 (4314, 'Ammaarah Wright', '1993-02-02', 'BOH', 'Hourly'),
 (4402, 'Sachin Orozco', '1995-09-12', 'BOH', 'Hourly');
 
+-- set to 0 to intialize empShift with data
 SET FOREIGN_KEY_CHECKS=0;
 INSERT INTO empShift (empID, shiftDate, dayType, managerID, chefID)
 VALUES 
@@ -166,6 +169,7 @@ VALUES
 (4292, '2020-01-08', 'Evening', 9732, 1055);
 SET FOREIGN_KEY_CHECKS=1;
 
+-- insert data into chef table
 INSERT INTO chef (empID)
 VALUES 
 (1004),
@@ -189,6 +193,7 @@ VALUES
 (1241),
 (1247);
 
+-- insert data into headChef table
 INSERT INTO headChef(empID)
 VALUES 
 (1004),
@@ -196,6 +201,7 @@ VALUES
 (1016),
 (1017);
 
+-- insert data into lineCook table
 INSERT INTO lineCook (empID)
 VALUES 
 (1208),
@@ -208,6 +214,7 @@ VALUES
 (1241),
 (1247);
 
+-- insert data into station table
 INSERT INTO station (stationName)
 VALUES 
 ('butcher'),
@@ -218,6 +225,7 @@ VALUES
 ('roast'),
 ('saute');
  
+-- insert data into lineCookStation table
 INSERT INTO lineCookStation (stationName, chefID, shiftDate, dayType)
 VALUES 
 ('butcher', 1208, '2020-01-01', 'Afternoon'),
@@ -301,6 +309,7 @@ VALUES
 ('saute', 1239, '2020-01-08', 'Afternoon'),
 ('saute', 1240, '2020-01-08', 'Evening');
 
+-- insert data into maitre_d table
 INSERT INTO maitre_d (empID)
 VALUES 
 (2008),
@@ -308,6 +317,7 @@ VALUES
 (2175),
 (2373);
 
+-- insert data into manager table
 INSERT INTO manager (empID)
 VALUES 
 (9410),
@@ -316,11 +326,13 @@ VALUES
 (9811),
 (9899);
 
+-- insert data into timeOfDay table
 INSERT INTO timeOfDay (dayType)
 VALUES 
 ('Afternoon'),
 ('Evening');
 
+-- set to 0 to intialize shift with data
 SET FOREIGN_KEY_CHECKS=0;
 INSERT INTO shift (shiftDate, dayType, managerID, chefID)
 VALUES 
@@ -342,6 +354,7 @@ VALUES
 ('2020-01-08', 'Evening', 9732, 1017);
 SET FOREIGN_KEY_CHECKS=1;
 
+-- insert data into sousChef table
 INSERT INTO sousChef (empID)
 VALUES 
 (1101),
@@ -352,6 +365,7 @@ VALUES
 (1152),
 (1153);
 
+-- insert data into waitStaff table
 INSERT INTO waitStaff(empID)
 VALUES 
 (3028),
@@ -365,6 +379,7 @@ VALUES
 (3370),
 (3371);
 
+-- insert data into recipes table
 INSERT INTO recipes (recipeNo, recipeName, chefID)
 VALUES 
 (1, 'Hot and Sour Soup', 1004),
@@ -376,7 +391,7 @@ VALUES
 (7, 'Egg Foo Young', 1016),
 (8, 'Chop Suey', 1017);
 
-
+-- insert data into Table table
 INSERT INTO `Table` (TableNumber)
 VALUES
 ('0'),
@@ -400,12 +415,14 @@ VALUES
 ('18'),
 ('19');
 
+-- insert data into Menus table
 insert into Menus (name)
     values ('Evening'),
     ('Lunch'),
     ('Childrens'),
     ('Sunday Brunch Buffet');
     
+-- insert data into AvailableDays table
 insert into AvailableDays (dayName)
     values ('Sunday'),
     ('Monday'),
@@ -415,6 +432,7 @@ insert into AvailableDays (dayName)
     ('Friday'),
     ('Saturday');
     
+-- insert data into Meats table
 insert into Meats (name)
 values ('Chefs Special'),
     ('Pork'),
@@ -424,12 +442,14 @@ values ('Chefs Special'),
     ('Vegetables'),
     ('N/A');
     
+-- insert data into SpiceLevels table
 insert into SpiceLevels (name)
 values ('Tangy'),
     ('Piquant'),
     ('Hot'),
     ('Oh My God');
 
+-- insert data into MenuItems table
 insert into MenuItems (itemNum, name, description, recipeNo)
     values (1, 'Hot and Sour Soup', 'Spicy and savory soup, made with pork, mushrooms, bamboo shoots, tofu, and eggs in a savory seasoned broth with soy sauce and vinegar.', 1),
     (2, 'Wonton Soup', 'Light and airy pork wontons in a chicken broth.', 2),
@@ -442,6 +462,7 @@ insert into MenuItems (itemNum, name, description, recipeNo)
     (9, 'N/A', 'Sunday Afternoon Brunch Special', NULL),
     (10, 'N/A', 'Sunday Evening Brunch Special', NULL);
 
+-- insert data into expertise table
 INSERT INTO expertise(itemNum, chefID)
 VALUES 
 (1, 1101),
@@ -453,6 +474,7 @@ VALUES
 (7, 1101),
 (8, 1114);
 
+-- insert data into MenuUsage table
 insert into MenuUsage (name, day, useStartTime, useEndTime) 
     values ('Lunch', 'Monday', '10:00', '14:00'),
     ('Lunch', 'Tuesday', '10:00', '14:00'),
@@ -476,6 +498,7 @@ insert into MenuUsage (name, day, useStartTime, useEndTime)
     ('Childrens', 'Sunday', '10:00', '23:00'),
     ('Sunday Brunch Buffet', 'Sunday', '10:00', '14:00');
 
+-- insert data into customers table
 INSERT INTO customers (accountNo, city, address, state, custName, mimingMoney)
 VALUES
 ('61515', 'Los Angeles', '15296 The Walks', 'CA', 'Openlane accounting', '0'),
@@ -539,6 +562,7 @@ VALUES
 ('23283', 'Oakland', '29857 Medway Street', 'CA', 'Elena Sellers', '0'),
 ('48131', 'Bakersfield', '44795 Hall Park Road', 'CA', 'Eliza Mccray', '0');
 
+-- insert data into company table
 INSERT INTO company (accountNo, companyName, companyDep, contactEmail, contactPhone)
 VALUES
 ('61515', 'Openlane', 'accounting', 'cgarcia@live.com', '909-555-0103'),
@@ -573,6 +597,7 @@ VALUES
 ('81859', 'Labdrill', 'planning', 'isotopian@att.net', '562-555-0161')
 ;
 
+-- insert data into individual table
 INSERT INTO individual (accountNo, emailAddress, DOB)
 VALUES
 ('26054', 'cgarcia@live.com', '1981-10-03'),
@@ -606,6 +631,7 @@ VALUES
 ('23283', 'wikinerd@yahoo.com', '1993-02-03'),
 ('48131', 'sopwith@yahoo.ca', '2000-02-01');
 
+-- insert data into Bill table
 INSERT INTO Bill (orderNumber, paymentType, AccountNo)
 VALUES
 ('1000','Credit Card'		, '71860'),
@@ -639,6 +665,7 @@ VALUES
 ('1028','Debit Card'		, '87373'),
 ('1029','Credit Card'		, '99286');
 
+-- insert data into Orders table
 INSERT INTO Orders (orderNumber, paymentType, orderDateTime, AccountNo)
 VALUES 
 ('1000'	,'Credit Card'		,'2020-01-01 9:30:00'	,'71860'),
@@ -672,6 +699,7 @@ VALUES
 ('1028'	,'Debit Card'		,'2020-01-08 14:45:00'	,'87373'),
 ('1029'	,'Credit Card'		,'2020-01-08 15:15:00'	,'99286');
 
+-- insert data into Online table
 INSERT INTO `Online` (orderNumber, OrdererEmail, EstPickupTime, ReadyPickupTime)
 VALUES 
 ('1000'	,'hedwig@aol.com','2020-01-01 9:45:00','2020-01-01 9:45:00'),
@@ -685,6 +713,7 @@ VALUES
 ('1008'	,'lukka@msn.com','2020-01-02 16:45:00','2020-01-02 17:00:00'),
 ('1009'	,'mahbub@yahoo.ca','2020-01-03 9:15:00','2020-01-03 9:30:00');
 
+-- insert data into Phone table
 INSERT INTO Phone (orderNumber, PhonerNumber, EstPickupTime, ReadyPickupTime)
 VALUES 
 ('1010'	,'202-555-0133'				,'2020-01-03 11:15:00'	,'2020-01-03 10:45:00'),
@@ -698,6 +727,7 @@ VALUES
 ('1018'	,'917-749-4473'				,'2020-01-05 8:45:00'	,'2020-01-05 9:00:00'),
 ('1019'	,'334-544-4020'				,'2020-01-06 9:30:00'	,'2020-01-06 9:45:00');
 
+-- insert data into EatIn table
 INSERT INTO EatIn (orderNumber)
 VALUES
 ('1020'),
@@ -711,6 +741,7 @@ VALUES
 ('1028'),
 ('1029');
 
+-- insert data into Seat table
 INSERT INTO Seat (TableNumber, SeatNumber, orderNumber, empID)
 VALUES
 ('0', '1', '1020', '3028'),
@@ -724,8 +755,7 @@ VALUES
 ('15', '5', '1028', '3370'),
 ('18', '4', '1029', '3371');
 
-
-
+-- insert data into MenuPrices table
 insert into MenuPrices (menuItemNum, menu, price) 
 	values (1, 'Lunch', 4),
 	(1, 'Evening', 5),
@@ -754,6 +784,7 @@ insert into MenuPrices (menuItemNum, menu, price)
 	(9, 'Sunday Brunch Buffet', 16),
 	(10, 'Sunday Brunch Buffet', 12);
 
+-- insert data into OrderItem table
 INSERT INTO OrderItem (orderNumber, orderItemNum, menuItemNum, menu, meat, spiciness)
 VALUES 
 (1000, 1, 1, 'Lunch', 'Pork', 'Hot'),
