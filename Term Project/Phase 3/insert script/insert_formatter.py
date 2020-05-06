@@ -45,31 +45,30 @@ def parseContents(data, colRange, rowRange):
                 parsedData.append(new_str)
 
             # if table has DATE
-            # if (dateFlag):
             if isinstance(value, datetime.datetime):
                 parsedData.append(value.strftime('%Y-%m-%d'))
         
             # if table has TIME           
-            # if (timeFlag):
             if isinstance(value, datetime.time):
                 parsedData.append(value.strftime('%H:%M:%S'))
             
         else:
             parsedData.append(value)
-    
+
     # make a new list of tuple sets with correct INSERT format
     compositeList = [tuple(parsedData[x:x+colRange]) for x in range(0, len(parsedData),colRange)]
+
     return compositeList
 
-def displayOutput(output, tableName):
-    print("INSERT INTO " + tableName, output[0])
+def displayOutput(compositeList, tableName):
+    print("INSERT INTO " + tableName, compositeList[0])
     print("VALUES ")    
-    for entry in range(1, len(output)):
-        if (entry == len(output) - 1):
-            print(output[entry])
+    for entry in range(1, len(compositeList)):
+        if (entry == len(compositeList) - 1):
+            print(compositeList[entry])
             print(";")
         else:
-            print(str(output[entry]) + ",")
+            print(str(compositeList[entry]) + ",")
     
     
 def main():
