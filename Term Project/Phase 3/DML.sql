@@ -173,3 +173,66 @@ VALUES
 ('1027'	,'Credit Card'		, '1000'),
 ('1028'	,'Debit Card'		, '1000'),
 ('1029'	,'Credit Card'		, '1000');
+
+insert into menus (name)
+	values ('Evening'),
+    ('Lunch'),
+    ('Childrens'),
+    ('Sunday Brunch Buffet');
+    
+insert into AvailableDays (dayName)
+	values ('Sunday'),
+    ('Monday'),
+    ('Tuesday'),
+    ('Wednesday'),
+    ('Thursday'),
+    ('Friday'),
+    ('Saturday');
+    
+insert into meats (name)
+values ('Chefs Special'),
+    ('Pork'),
+    ('Chicken'),
+    ('Beef'),
+    ('Seafood'),
+    ('Vegetables'),
+    ('N/A');
+    
+insert into SpiceLevels (name)
+values ('Tangy'),
+    ('Piquant'),
+    ('Hot'),
+    ('Oh My God');
+    
+insert into MenuItems (itemNum, name, description, recipeNo)
+    values (1, 'Hot and Sour Soup', 'Spicy and savory soup, made with pork, mushrooms, bamboo shoots, tofu, and eggs in a savory seasoned broth with soy sauce and vinegar.', 1),
+    (2, 'Wonton Soup', 'Light and airy pork wontons in a chicken broth.', 2),
+    (3, 'Egg Drop Soup', 'Wispy beaten eggs in boiled chicken broth.', 3),
+    (4, 'Fried Wontons', 'Tender wrappers stuffed with ground pork, mushrooms and seasonings, then deep fried to crispy golden brown', 4),
+    (5, 'Egg Rolls', 'Deep-fried appetizers. Savory roll with shredded cabbage, chopped pork, and other fillings.', 5),
+    (6, 'Chow Mein', 'Chinese stir-fried noodles with choice of meat.', 6),
+    (7, 'Egg Foo Young', 'Chinese egg omelette dish made with an easy gravy topping, vegatable and choice of meat', 7),
+    (8, 'Chop Suey', 'Choice of meat and eggs, cooked quickly with vegetables such as bean sprouts, cabbage, and celery and flavorful ', 8);
+    
+insert into menuusage (name, day, useStartTime, useEndTime) 
+    values ('Lunch', 'Monday', '10:00', '14:00'),
+    ('Lunch', 'Tuesday', '10:00', '14:00'),
+    ('Lunch', 'Wednesday', '10:00', '14:00'),
+    ('Lunch', 'Thursday', '10:00', '14:00'),
+    ('Lunch', 'Friday', '10:00', '14:00'),
+    ('Lunch', 'Saturday', '10:00', '14:00'),
+    ('Evening', 'Monday', '14:00', '23:00'),
+    ('Evening', 'Tuesday', '14:00', '23:00'),
+    ('Evening', 'Wednesday', '14:00', '23:00'),
+    ('Evening', 'Thursday', '14:00', '23:00'),
+    ('Evening', 'Friday', '14:00', '23:00'),
+    ('Evening', 'Saturday', '14:00', '23:00'),
+    ('Evening', 'Sunday', '10:00', '23:00'),
+    ('Childrens', 'Monday', '10:00', '23:00'),
+    ('Childrens', 'Tuesday', '10:00', '23:00'),
+    ('Childrens', 'Wednesday', '10:00', '23:00'),
+    ('Childrens', 'Thursday', '10:00', '23:00'),
+    ('Childrens', 'Friday', '10:00', '23:00'),
+    ('Childrens', 'Saturday', '10:00', '23:00'),
+    ('Childrens', 'Sunday', '10:00', '23:00'),
+    ('Sunday Brunch Buffet', 'Sunday', '10:00', '14:00');
