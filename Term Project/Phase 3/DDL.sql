@@ -1,5 +1,5 @@
-CREATE DATABASE mimings_cuisine;
-use mimings_cuisine;
+
+use cecs323sec07s20;
 
 -- create tables for Staff
 CREATE TABLE employees (
@@ -190,35 +190,34 @@ CREATE TABLE lineCookStation (
 --     constraint orderItem_spiceLevels_fk01 foreign key (spiciness) references SpiceLevels(name));
 
 -- FIX: for omar's use 
--- CREATE TABLE customer (
---     accountNo INT(10) NOT NULL,
---     city VARCHAR (15),
---     address VARCHAR(30),
---     state VARCHAR(2),
---     custName VARCHAR(20),
---     mimingMoney INT,
---     CONSTRAINT customers_pk PRIMARY KEY (accountNo),
---     CONSTRAINT customers_uk01 UNIQUE (city, address, state, custName),
--- );
+CREATE TABLE customer (
+    accountNo INT(10) NOT NULL,
+    city VARCHAR (15),
+    address VARCHAR(30),
+    state VARCHAR(2),
+    custName VARCHAR(20),
+    mimingMoney INT,
+    CONSTRAINT customers_pk PRIMARY KEY (accountNo),
+    CONSTRAINT customers_uk01 UNIQUE (city, address, state, custName)
+);
 
--- CREATE TABLE individual {
---     'Account#' VARCHAR NOT NULL,
---     'EmailAddress' VARCHAR(25) NOT NULL,
---     'DOB' DATE NOT NULL,
---     CONSTRAINT 'IND_CUSTOMERS_PK' PRIMARY KEY('Account#'),
---     CONSTRAINT 'INDIVIDUAL_CK1' KEY('City','Address','State','CustName'),
---     CONSTRAINT 'ind_customer_fk1' FOREIGN KEY ('Account#') REFERENCES 'Customer'
--- };
+CREATE TABLE individual (
+    accountNo INTEGER NOT NULL,
+    emailAddress VARCHAR(25) NOT NULL,
+    DOB DATE NOT NULL,
+    CONSTRAINT individual_customer_pk PRIMARY KEY(accountNo),
+    CONSTRAINT individual_uk01 UNIQUE (emailAddress,DOB),
+    CONSTRAINT ind_customer_fk01 FOREIGN KEY (accountNo) REFERENCES customer(accountNo)
+);
 
--- CREATE TABLE 'Company_Customer' {
---     'Account#' VARCHAR NOT NULL,
---     'CompanyDep' VARCHAR,
---     'CompanyName' VARCHAR,
---     'ContactEmail' VARCHAR,
---     'ContactPhone' VARCHAR,
---     CONSTRAINT 'COMP_CUSTOMERS_PK' PRIMARY KEY('Account#'),
---     CONSTRAINT 'COMPANY_CK1' KEY('CompanyDep','CompnayName','ContactEmail','ContactPhone'),
---     CONSTRAINT 'comp_customer_fk1' FOREIGN KEY ('Account#') REFERENCES 'Customer'
--- };
-
+CREATE TABLE company (
+    accountNo INTEGER NOT NULL,
+    companyDep VARCHAR(15) NOT NULL,
+    companyName VARCHAR(20) NOT NULL,
+    contactEmail VARCHAR(25) NOT NULL,
+    contactPhone VARCHAR(10) NOT NULL,
+    CONSTRAINT company_customer_pk PRIMARY KEY(accountNo),
+    CONSTRAINT copmany_ck01 UNIQUE (companyDep,companyName,contactEmail,contactPhone),
+    CONSTRAINT comp_customer_fk01 FOREIGN KEY (accountNo) REFERENCES customer(accountNo)
+);
 -- DROP DATABASE mimings_cuisine;
