@@ -99,7 +99,9 @@ FROM Customer INNER JOIN (Individual INNER JOIN Company ON Individual.emailAddre
 
 
 -- 15) List the contents and prices of each of the menus.
-
+select menu as "Menu", `Dish Name`, price from menuitem_v 
+	order by menu asc, `Dish Name` asc;							   
+						   
 
 -- 16) Three additional queries that demonstrate the five additional business rules. Feel free to
 -- create additional views to support these queries if you so desire
