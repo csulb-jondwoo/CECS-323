@@ -174,10 +174,10 @@ CREATE TABLE lineCookStation (
 
 CREATE TABLE customers (
     accountNo INT NOT NULL,
-    city VARCHAR (15) NOT NULL,
-    address VARCHAR(30) NOT NULL,
+    city VARCHAR (50) NOT NULL,
+    address VARCHAR(50) NOT NULL,
     state VARCHAR(2) NOT NULL,
-    custName VARCHAR(20) NOT NULL,
+    custName VARCHAR(50) NOT NULL,
     mimingMoney INT,
     CONSTRAINT customers_pk PRIMARY KEY (accountNo),
     CONSTRAINT customers_uk01 UNIQUE (city, address, state, custName)
@@ -185,7 +185,7 @@ CREATE TABLE customers (
 
 CREATE TABLE individual (
     accountNo INT NOT NULL,
-    emailAddress VARCHAR(25) NOT NULL,
+    emailAddress VARCHAR(50) NOT NULL,
     DOB DATE NOT NULL,
     CONSTRAINT individual_customer_pk PRIMARY KEY(accountNo),
     CONSTRAINT individual_uk01 UNIQUE (emailAddress,DOB),
@@ -194,10 +194,10 @@ CREATE TABLE individual (
 
 CREATE TABLE company (
     accountNo INT NOT NULL,
-    companyDep VARCHAR(15) NOT NULL,
-    companyName VARCHAR(20) NOT NULL,
-    contactEmail VARCHAR(25) NOT NULL,
-         VARCHAR(10) NOT NULL,
+    companyDep VARCHAR(50) NOT NULL,
+    companyName VARCHAR(50) NOT NULL,
+    contactEmail VARCHAR(50) NOT NULL,
+    contactPhone VARCHAR(20) NOT NULL,
     CONSTRAINT company_customer_pk PRIMARY KEY(accountNo),
     CONSTRAINT copmany_ck01 UNIQUE (companyDep,companyName,contactEmail,contactPhone),
     CONSTRAINT comp_customer_fk01 FOREIGN KEY (accountNo) REFERENCES customers(accountNo)
@@ -219,7 +219,6 @@ CREATE TABLE Orders (
     CONSTRAINT Order_pk PRIMARY KEY (orderNumber),
     CONSTRAINT Order_customer_fk01 FOREIGN KEY (AccountNo) REFERENCES customers(AccountNo),
     CONSTRAINT Order_Bill_fk02 FOREIGN KEY (orderNumber, paymentType) REFERENCES Bill(orderNumber, paymentType)
-    
 );
 
 create table OrderItem(

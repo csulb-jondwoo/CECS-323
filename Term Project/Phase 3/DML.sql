@@ -377,82 +377,6 @@ VALUES
 (8, 'Chop Suey', 1017);
 
 
---populate after customers table
-INSERT INTO Orders (orderNumber, paymentType, orderDateTime, AccountNo)
-VALUES 
-('1000'	,'Credit Card'		,'2020-01-01 9:30:00'	,'71860'),
-('1001'	,'Cash'				,'2020-01-01 10:00:00'	,'3557'),
-('1002'	,'Debit Card'		,'2020-01-01 14:30:00'	,'69309'),
-('1003'	,'Miming\'s Money'	,'2020-01-01 17:00:00'	,'66269'),
-('1004'	,'Debit Card'		,'2020-01-02 10:45:00'	,'74945'),
-('1005'	,'Credit Card'		,'2020-01-02 14:30:00'	,'45028'),
-('1006'	,'Credit Card'		,'2020-01-02 15:15:00'	,'40394'),
-('1007'	,'Cash'				,'2020-01-02 16:00:00'	,'14443'),
-('1008'	,'Cash'				,'2020-01-02 16:30:00'	,'14145'),
-('1009'	,'Credit Card'		,'2020-01-03 8:30:00'	,'79501'),
-('1010'	,'Miming\'s Money'	,'2020-01-03 10:15:00'	,'44014'),
-('1011'	,'Cash'				,'2020-01-03 10:30:00'	,'92978'),
-('1012'	,'Credit Card'		,'2020-01-03 11:45:00'	,'14771'),
-('1013'	,'Miming\'s Money'	,'2020-01-03 13:30:00'	,'84760'),
-('1014'	,'Credit Card'		,'2020-01-04 8:30:00'	,'85537'),
-('1015'	,'Debit Card'		,'2020-01-04 10:15:00'	,'55372'),
-('1016'	,'Debit Card'		,'2020-01-04 14:15:00'	,'81859'),
-('1017'	,'Credit Card'		,'2020-01-04 15:00:00'	,'26054'),
-('1018'	,'Cash'				,'2020-01-05 7:45:00'	,'55864'),
-('1019'	,'Credit Card'		,'2020-01-06 8:30:00'	,'94439'),
-('1020'	,'Debit Card'		,'2020-01-06 9:45:00'	,'7052'),
-('1021'	,'Miming\'s Money'	,'2020-01-06 13:00:00'	,'20818'),
-('1022'	,'Miming\'s Money'	,'2020-01-07 9:30:00'	,'4599'),
-('1023'	,'Cash'				,'2020-01-07 10:15:00'	,'41407'),
-('1024'	,'Credit Card'		,'2020-01-07 13:45:00'	,'15874'),
-('1025'	,'Debit Card'		,'2020-01-08 10:30:00'	,'7520'),
-('1026'	,'Credit Card'		,'2020-01-08 12:30:00'	,'25442'),
-('1027'	,'Credit Card'		,'2020-01-08 14:15:00'	,'70975'),
-('1028'	,'Debit Card'		,'2020-01-08 14:45:00'	,'87373'),
-('1029'	,'Credit Card'		,'2020-01-08 15:15:00'	,'99286');
-
--- populate after orders
--- INSERT INTO `Online` (orderNumber, OrdererEmail, EstPickupTime, ReadyPickupTime)
--- VALUES 
--- ('1000'	,'hedwig@aol.com','2020-01-01 9:45:00','2020-01-01 9:45:00'),
--- ('1001'	,'leocharre@outlook.com','2020-01-01 10:45:00','2020-01-01 11:00:00'),
--- ('1002'	,'njpayne@hotmail.com','2020-01-01 14:45:00','2020-01-01 14:45:00'),
--- ('1003'	,'amichalo@gmail.com','2020-01-01 17:15:00','2020-01-01 17:15:00'),
--- ('1004'	,'pthomsen@icloud.com','2020-01-02 11:45:00','2020-01-02 12:00:00'),
--- ('1005'	,'elflord@gmail.com','2020-01-02 15:00:00','2020-01-02 15:30:00'),
--- ('1006'	,'cantu@outlook.com','2020-01-02 15:45:00','2020-01-02 15:45:00'),
--- ('1007'	,'cumarana@yahoo.ca','2020-01-02 16:15:00','2020-01-02 16:15:00'),
--- ('1008'	,'lukka@msn.com','2020-01-02 16:45:00','2020-01-02 17:00:00'),
--- ('1009'	,'mahbub@yahoo.ca','2020-01-03 9:15:00','2020-01-03 9:30:00');
-
--- populate after orders
--- INSERT INTO Phone (orderNumber, PhonerNumber, EstPickupTime, ReadyPickupTime)
--- VALUES 
--- ('1010'	,'202-555-0133'				,'2020-01-03 11:15:00'	,'2020-01-03 10:45:00'),
--- ('1011'	,'202-555-0168'				,'2020-01-03 11:15:00'	,'2020-01-03 11:45:00'),
--- ('1012'	,'202-555-0159'				,'2020-01-03 12:15:00'	,'2020-01-03 12:00:00'),
--- ('1013'	,'202-555-0196'				,'2020-01-03 14:30:00'	,'2020-01-03 14:15:00'),
--- ('1014'	,'202-555-0178'				,'2020-01-04 9:00:00'	,'2020-01-04 9:15:00'),
--- ('1015'	,'202-555-0191'				,'2020-01-04 10:30:00'	,'2020-01-04 10:45:00'),
--- ('1016'	,'920-663-3172'				,'2020-01-04 14:30:00'	,'2020-01-04 14:30:00'),
--- ('1017'	,'903-987-7380'				,'2020-01-04 15:15:00'	,'2020-01-04 15:30:00'),
--- ('1018'	,'917-749-4473'				,'2020-01-05 8:45:00'	,'2020-01-05 9:00:00'),
--- ('1019'	,'334-544-4020'				,'2020-01-06 9:30:00'	,'2020-01-06 9:45:00');
-
--- populate after orders
--- INSERT INTO EatIn (orderNumber)
--- VALUES
--- ('1020'),
--- ('1021'),
--- ('1022'),
--- ('1023'),
--- ('1024'),
--- ('1025'),
--- ('1026'),
--- ('1027'),
--- ('1028'),
--- ('1029');
-
 INSERT INTO `Table` (TableNumber)
 VALUES
 ('0'),
@@ -475,54 +399,6 @@ VALUES
 ('17'),
 ('18'),
 ('19');
-
--- populate after orders
--- INSERT INTO Seat (TableNumber, SeatNumber, orderNumber, empID)
--- VALUES
--- ('0', '1', '1020', '3028'),
--- ('2', '3', '1021', '3065'),
--- ('3', '1', '1022', '3067'),
--- ('5', '3', '1023', '3069'),
--- ('6', '1', '1024', '3069'),
--- ('7', '5', '1025', '3178'),
--- ('10', '4', '1026', '3178'),
--- ('13', '2', '1027', '3366'),
--- ('15', '5', '1028', '3370'),
--- ('18', '4', '1029', '3371');
-
-populate after orders
-INSERT INTO Bill (orderNumber, paymentType, AccountNo)
-VALUES
-('1000','Credit Card'		, '71860'),
-('1001','Cash'				, '3557'),
-('1002','Debit Card'		, '69309'),
-('1003','Miming\'s Money'	, '66269'),
-('1004','Debit Card'		, '74945'),
-('1005','Credit Card'		, '45028'),
-('1006','Credit Card'		, '40394'),
-('1007','Cash'				, '14443'),
-('1008','Cash'				, '14145'),
-('1009','Credit Card'		, '79501'),
-('1010','Miming\'s Money'	, '44014'),
-('1011','Cash'				, '92978'),
-('1012','Credit Card'		, '14771'),
-('1013','Miming\'s Money'	, '84760'),
-('1014','Credit Card'		, '85537'),
-('1015','Debit Card'		, '55372'),
-('1016','Debit Card'		, '81859'),
-('1017','Credit Card'		, '26054'),
-('1018','Cash'				, '55864'),
-('1019','Credit Card'		, '94439'),
-('1020','Debit Card'		, '7052'),
-('1021','Miming\'s Money'	, '20818'),
-('1022','Miming\'s Money'	, '4599'),
-('1023','Cash'				, '41407'),
-('1024','Credit Card'		, '15874'),
-('1025','Debit Card'		, '7520'),
-('1026','Credit Card'		, '25442'),
-('1027','Credit Card'		, '70975'),
-('1028','Debit Card'		, '87373'),
-('1029','Credit Card'		, '99286');
 
 insert into Menus (name)
     values ('Evening'),
@@ -599,75 +475,8 @@ insert into MenuUsage (name, day, useStartTime, useEndTime)
     ('Childrens', 'Saturday', '10:00', '23:00'),
     ('Childrens', 'Sunday', '10:00', '23:00'),
     ('Sunday Brunch Buffet', 'Sunday', '10:00', '14:00');
-    
-INSERT INTO company (accountNo, companyName, companyDep, contactEmail, contactPhone)
-VALUES
-('61515', 'Openlane', 'accounting', 'cgarcia@live.com', '909-555-0103'),
-('25514', 'Yearin', 'finance', 'jhardin@optonline.net', '909-555-0197'),
-('63146', 'Goodsilron', 'sales', 'gtaylor@msn.com', '909-555-0141'),
-('31169', 'Condax', 'research and development', 'singer@mac.com', '909-555-0161'),
-('2635', 'Opentech', 'IT', 'kiddailey@att.net', '909-555-0185'),
-('31095', 'Golddex', 'management', 'rkobes@sbcglobal.net', '909-555-0163'),
-('13125', 'year-job', 'administration', 'jmmuller@yahoo.com', '323-555-0104'),
-('40619', 'Isdom', 'customer service', 'konit@mac.com', '323-555-0146'),
-('79632', 'Gogozoom', 'customer support', 'arathi@optonline.net', '323-555-0141'),
-('93817', 'Y-corporation', 'technical support', 'gordonjcp@verizon.net', '323-555-0165'),
-('30649', 'Nam-zim', 'marketing', 'rjones@att.net', '323-555-0150'),
-('95749', 'Donquadtech', 'logistics', 'cliffski@msn.com', '323-555-0115'),
-('26442', 'Warephase', 'operations', 'rnewman@icloud.com', '714-555-0170'),
-('71860', 'Donware', 'planning', 'nelson@yahoo.ca', '714-555-0177'),
-('3557', 'Faxquote', 'human resources', 'jugalator@verizon.net', '714-555-0166'),
-('69309', 'Sunnamplex', 'purchasing', 'giafly@comcast.net', '714-555-0181'),
-('66269', 'Lexiqvolax', 'quality assurance', 'drjlaw@live.com', '714-555-0158'),
-('74945', 'Sumace', 'engineering', 'multiplx@yahoo.com', '714-555-0172'),
-('45028', 'Treequote', 'export', 'ournews@outlook.com', '805-555-0186'),
-('40394', 'Iselectrics', 'shipping', 'kassiesa@comcast.net', '805-555-0112'),
-('14443', 'Zencorporation', 'public relations', 'pierce@msn.com', '805-555-0114'),
-('14145', 'Plusstrip', 'production', 'syrinx@icloud.com', '805-555-0170'),
-('79501', 'dambase', 'supervision', 'dimensio@live.com', '805-555-0112'),
-('44014', 'Toughzap', 'product quality', 'jkegl@mac.com', '805-555-0173'),
-('92978', 'Codehow', 'inventory', 'amimojo@verizon.net', '562-555-0113'),
-('14771', 'Zotware', 'technical support', 'rafasgj@comcast.net', '562-555-0126'),
-('84760', 'Statholdings', 'marketing', 'rwelty@yahoo.ca', '562-555-0181'),
-('85537', 'Conecom', 'logistics', 'hauma@aol.com', '562-555-0104'),
-('55372', 'Zathunicon', 'operations', 'notaprguy@msn.com', '562-555-0170'),
-('81859', 'Labdrill', 'planning', 'isotopian@att.net', '562-555-0161')
-;
 
-INSERT INTO Individual (accountNo, emailAddress, DOB)
-VALUES
-('26054', 'lpalmer@att.net', '1981-10-03'),
-('55864', 'boein@outlook.com', '1996-05-24'),
-('94439', 'augusto@gmail.com', '1993-03-23'),
-('7052', 'dwheeler@hotmail.com', '1990-07-29'),
-('20818', 'mrsam@yahoo.com', '1971-06-07'),
-('4599', 'cgcra@live.com', '1971-08-09'),
-('41407', 'jcholewa@live.com', '2001-09-18'),
-('15874', 'sherzodr@outlook.com', '1990-05-31'),
-('7520', 'ideguy@yahoo.com', '1971-08-19'),
-('25442', 'kspiteri@sbcglobal.net', '1998-06-22'),
-('70975', 'okroeger@yahoo.ca', '1969-06-01'),
-('87373', 'dhwon@aol.com', '1990-08-14'),
-('99286', 'amaranth@sbcglobal.net', '1993-02-25'),
-('64016', 'jaxweb@icloud.com', '1966-09-15'),
-('98149', 'ilial@att.net', '1994-06-02'),
-('78032', 'wayward@yahoo.ca', '1983-06-04'),
-('69522', 'emcleod@aol.com', '1972-12-15'),
-('60052', 'loscar@yahoo.ca', '1984-09-10'),
-('84461', 'malvar@att.net', '1982-09-13'),
-('72735', 'treit@comcast.net', '1979-03-22'),
-('1093', 'denism@msn.com', '1993-07-15'),
-('9434', 'arandal@me.com', '2000-10-06'),
-('99215', 'nichoj@att.net', '2001-11-18'),
-('89635', 'russotto@yahoo.ca', '1995-11-08'),
-('55897', 'bjornk@hotmail.com', '1991-08-25'),
-('9347', 'dimensio@gmail.com', '1993-05-25'),
-('12787', 'crobles@msn.com', '1981-10-31'),
-('18763', 'miltchev@yahoo.com', '1971-01-23'),
-('23283', 'wikinerd@yahoo.com', '1993-02-03'),
-('48131', 'sopwith@yahoo.ca', '2000-02-01');
-
-INSERT INTO Customers (accountNo, city, address, state, custName, mimingMoney)
+INSERT INTO customers (accountNo, city, address, state, custName, mimingMoney)
 VALUES
 ('61515', 'Los Angeles', '15296 The Walks', 'CA', 'Openlane accounting', '0'),
 ('25514', 'San Diego', '22029 Kings Parade', 'CA', 'Yearin finance', '1'),
@@ -730,6 +539,193 @@ VALUES
 ('23283', 'Oakland', '29857 Medway Street', 'CA', 'Elena Sellers', '0'),
 ('48131', 'Bakersfield', '44795 Hall Park Road', 'CA', 'Eliza Mccray', '0');
 
+INSERT INTO company (accountNo, companyName, companyDep, contactEmail, contactPhone)
+VALUES
+('61515', 'Openlane', 'accounting', 'cgarcia@live.com', '909-555-0103'),
+('25514', 'Yearin', 'finance', 'jhardin@optonline.net', '909-555-0197'),
+('63146', 'Goodsilron', 'sales', 'gtaylor@msn.com', '909-555-0141'),
+('31169', 'Condax', 'research and development', 'singer@mac.com', '909-555-0161'),
+('2635', 'Opentech', 'IT', 'kiddailey@att.net', '909-555-0185'),
+('31095', 'Golddex', 'management', 'rkobes@sbcglobal.net', '909-555-0163'),
+('13125', 'year-job', 'administration', 'jmmuller@yahoo.com', '323-555-0104'),
+('40619', 'Isdom', 'customer service', 'konit@mac.com', '323-555-0146'),
+('79632', 'Gogozoom', 'customer support', 'arathi@optonline.net', '323-555-0141'),
+('93817', 'Y-corporation', 'technical support', 'gordonjcp@verizon.net', '323-555-0165'),
+('30649', 'Nam-zim', 'marketing', 'rjones@att.net', '323-555-0150'),
+('95749', 'Donquadtech', 'logistics', 'cliffski@msn.com', '323-555-0115'),
+('26442', 'Warephase', 'operations', 'rnewman@icloud.com', '714-555-0170'),
+('71860', 'Donware', 'planning', 'nelson@yahoo.ca', '714-555-0177'),
+('3557', 'Faxquote', 'human resources', 'jugalator@verizon.net', '714-555-0166'),
+('69309', 'Sunnamplex', 'purchasing', 'giafly@comcast.net', '714-555-0181'),
+('66269', 'Lexiqvolax', 'quality assurance', 'drjlaw@live.com', '714-555-0158'),
+('74945', 'Sumace', 'engineering', 'multiplx@yahoo.com', '714-555-0172'),
+('45028', 'Treequote', 'export', 'ournews@outlook.com', '805-555-0186'),
+('40394', 'Iselectrics', 'shipping', 'kassiesa@comcast.net', '805-555-0112'),
+('14443', 'Zencorporation', 'public relations', 'pierce@msn.com', '805-555-0114'),
+('14145', 'Plusstrip', 'production', 'syrinx@icloud.com', '805-555-0170'),
+('79501', 'dambase', 'supervision', 'dimensio@live.com', '805-555-0112'),
+('44014', 'Toughzap', 'product quality', 'jkegl@mac.com', '805-555-0173'),
+('92978', 'Codehow', 'inventory', 'amimojo@verizon.net', '562-555-0113'),
+('14771', 'Zotware', 'technical support', 'rafasgj@comcast.net', '562-555-0126'),
+('84760', 'Statholdings', 'marketing', 'rwelty@yahoo.ca', '562-555-0181'),
+('85537', 'Conecom', 'logistics', 'hauma@aol.com', '562-555-0104'),
+('55372', 'Zathunicon', 'operations', 'notaprguy@msn.com', '562-555-0170'),
+('81859', 'Labdrill', 'planning', 'isotopian@att.net', '562-555-0161')
+;
+
+INSERT INTO individual (accountNo, emailAddress, DOB)
+VALUES
+('26054', 'cgarcia@live.com', '1981-10-03'),
+('55864', 'jhardin@optonline.net', '1996-05-24'),
+('94439', 'gtaylor@msn.com', '1993-03-23'),
+('7052', 'dwheeler@hotmail.com', '1990-07-29'),
+('20818', 'mrsam@yahoo.com', '1971-06-07'),
+('4599', 'cgcra@live.com', '1971-08-09'),
+('41407', 'jcholewa@live.com', '2001-09-18'),
+('15874', 'sherzodr@outlook.com', '1990-05-31'),
+('7520', 'ideguy@yahoo.com', '1971-08-19'),
+('25442', 'kspiteri@sbcglobal.net', '1998-06-22'),
+('70975', 'okroeger@yahoo.ca', '1969-06-01'),
+('87373', 'dhwon@aol.com', '1990-08-14'),
+('99286', 'amaranth@sbcglobal.net', '1993-02-25'),
+('64016', 'jaxweb@icloud.com', '1966-09-15'),
+('98149', 'ilial@att.net', '1994-06-02'),
+('78032', 'wayward@yahoo.ca', '1983-06-04'),
+('69522', 'emcleod@aol.com', '1972-12-15'),
+('60052', 'loscar@yahoo.ca', '1984-09-10'),
+('84461', 'malvar@att.net', '1982-09-13'),
+('72735', 'treit@comcast.net', '1979-03-22'),
+('1093', 'denism@msn.com', '1993-07-15'),
+('9434', 'arandal@me.com', '2000-10-06'),
+('99215', 'nichoj@att.net', '2001-11-18'),
+('89635', 'russotto@yahoo.ca', '1995-11-08'),
+('55897', 'bjornk@hotmail.com', '1991-08-25'),
+('9347', 'dimensio@gmail.com', '1993-05-25'),
+('12787', 'crobles@msn.com', '1981-10-31'),
+('18763', 'miltchev@yahoo.com', '1971-01-23'),
+('23283', 'wikinerd@yahoo.com', '1993-02-03'),
+('48131', 'sopwith@yahoo.ca', '2000-02-01');
+
+INSERT INTO Bill (orderNumber, paymentType, AccountNo)
+VALUES
+('1000','Credit Card'		, '71860'),
+('1001','Cash'				, '3557'),
+('1002','Debit Card'		, '69309'),
+('1003','Miming\'s Money'	, '66269'),
+('1004','Debit Card'		, '74945'),
+('1005','Credit Card'		, '45028'),
+('1006','Credit Card'		, '40394'),
+('1007','Cash'				, '14443'),
+('1008','Cash'				, '14145'),
+('1009','Credit Card'		, '79501'),
+('1010','Miming\'s Money'	, '44014'),
+('1011','Cash'				, '92978'),
+('1012','Credit Card'		, '14771'),
+('1013','Miming\'s Money'	, '84760'),
+('1014','Credit Card'		, '85537'),
+('1015','Debit Card'		, '55372'),
+('1016','Debit Card'		, '81859'),
+('1017','Credit Card'		, '26054'),
+('1018','Cash'				, '55864'),
+('1019','Credit Card'		, '94439'),
+('1020','Debit Card'		, '7052'),
+('1021','Miming\'s Money'	, '20818'),
+('1022','Miming\'s Money'	, '4599'),
+('1023','Cash'				, '41407'),
+('1024','Credit Card'		, '15874'),
+('1025','Debit Card'		, '7520'),
+('1026','Credit Card'		, '25442'),
+('1027','Credit Card'		, '70975'),
+('1028','Debit Card'		, '87373'),
+('1029','Credit Card'		, '99286');
+
+INSERT INTO Orders (orderNumber, paymentType, orderDateTime, AccountNo)
+VALUES 
+('1000'	,'Credit Card'		,'2020-01-01 9:30:00'	,'71860'),
+('1001'	,'Cash'				,'2020-01-01 10:00:00'	,'3557'),
+('1002'	,'Debit Card'		,'2020-01-01 14:30:00'	,'69309'),
+('1003'	,'Miming\'s Money'	,'2020-01-01 17:00:00'	,'66269'),
+('1004'	,'Debit Card'		,'2020-01-02 10:45:00'	,'74945'),
+('1005'	,'Credit Card'		,'2020-01-02 14:30:00'	,'45028'),
+('1006'	,'Credit Card'		,'2020-01-02 15:15:00'	,'40394'),
+('1007'	,'Cash'				,'2020-01-02 16:00:00'	,'14443'),
+('1008'	,'Cash'				,'2020-01-02 16:30:00'	,'14145'),
+('1009'	,'Credit Card'		,'2020-01-03 8:30:00'	,'79501'),
+('1010'	,'Miming\'s Money'	,'2020-01-03 10:15:00'	,'44014'),
+('1011'	,'Cash'				,'2020-01-03 10:30:00'	,'92978'),
+('1012'	,'Credit Card'		,'2020-01-03 11:45:00'	,'14771'),
+('1013'	,'Miming\'s Money'	,'2020-01-03 13:30:00'	,'84760'),
+('1014'	,'Credit Card'		,'2020-01-04 8:30:00'	,'85537'),
+('1015'	,'Debit Card'		,'2020-01-04 10:15:00'	,'55372'),
+('1016'	,'Debit Card'		,'2020-01-04 14:15:00'	,'81859'),
+('1017'	,'Credit Card'		,'2020-01-04 15:00:00'	,'26054'),
+('1018'	,'Cash'				,'2020-01-05 7:45:00'	,'55864'),
+('1019'	,'Credit Card'		,'2020-01-06 8:30:00'	,'94439'),
+('1020'	,'Debit Card'		,'2020-01-06 9:45:00'	,'7052'),
+('1021'	,'Miming\'s Money'	,'2020-01-06 13:00:00'	,'20818'),
+('1022'	,'Miming\'s Money'	,'2020-01-07 9:30:00'	,'4599'),
+('1023'	,'Cash'				,'2020-01-07 10:15:00'	,'41407'),
+('1024'	,'Credit Card'		,'2020-01-07 13:45:00'	,'15874'),
+('1025'	,'Debit Card'		,'2020-01-08 10:30:00'	,'7520'),
+('1026'	,'Credit Card'		,'2020-01-08 12:30:00'	,'25442'),
+('1027'	,'Credit Card'		,'2020-01-08 14:15:00'	,'70975'),
+('1028'	,'Debit Card'		,'2020-01-08 14:45:00'	,'87373'),
+('1029'	,'Credit Card'		,'2020-01-08 15:15:00'	,'99286');
+
+INSERT INTO `Online` (orderNumber, OrdererEmail, EstPickupTime, ReadyPickupTime)
+VALUES 
+('1000'	,'hedwig@aol.com','2020-01-01 9:45:00','2020-01-01 9:45:00'),
+('1001'	,'leocharre@outlook.com','2020-01-01 10:45:00','2020-01-01 11:00:00'),
+('1002'	,'njpayne@hotmail.com','2020-01-01 14:45:00','2020-01-01 14:45:00'),
+('1003'	,'amichalo@gmail.com','2020-01-01 17:15:00','2020-01-01 17:15:00'),
+('1004'	,'pthomsen@icloud.com','2020-01-02 11:45:00','2020-01-02 12:00:00'),
+('1005'	,'elflord@gmail.com','2020-01-02 15:00:00','2020-01-02 15:30:00'),
+('1006'	,'cantu@outlook.com','2020-01-02 15:45:00','2020-01-02 15:45:00'),
+('1007'	,'cumarana@yahoo.ca','2020-01-02 16:15:00','2020-01-02 16:15:00'),
+('1008'	,'lukka@msn.com','2020-01-02 16:45:00','2020-01-02 17:00:00'),
+('1009'	,'mahbub@yahoo.ca','2020-01-03 9:15:00','2020-01-03 9:30:00');
+
+INSERT INTO Phone (orderNumber, PhonerNumber, EstPickupTime, ReadyPickupTime)
+VALUES 
+('1010'	,'202-555-0133'				,'2020-01-03 11:15:00'	,'2020-01-03 10:45:00'),
+('1011'	,'202-555-0168'				,'2020-01-03 11:15:00'	,'2020-01-03 11:45:00'),
+('1012'	,'202-555-0159'				,'2020-01-03 12:15:00'	,'2020-01-03 12:00:00'),
+('1013'	,'202-555-0196'				,'2020-01-03 14:30:00'	,'2020-01-03 14:15:00'),
+('1014'	,'202-555-0178'				,'2020-01-04 9:00:00'	,'2020-01-04 9:15:00'),
+('1015'	,'202-555-0191'				,'2020-01-04 10:30:00'	,'2020-01-04 10:45:00'),
+('1016'	,'920-663-3172'				,'2020-01-04 14:30:00'	,'2020-01-04 14:30:00'),
+('1017'	,'903-987-7380'				,'2020-01-04 15:15:00'	,'2020-01-04 15:30:00'),
+('1018'	,'917-749-4473'				,'2020-01-05 8:45:00'	,'2020-01-05 9:00:00'),
+('1019'	,'334-544-4020'				,'2020-01-06 9:30:00'	,'2020-01-06 9:45:00');
+
+INSERT INTO EatIn (orderNumber)
+VALUES
+('1020'),
+('1021'),
+('1022'),
+('1023'),
+('1024'),
+('1025'),
+('1026'),
+('1027'),
+('1028'),
+('1029');
+
+INSERT INTO Seat (TableNumber, SeatNumber, orderNumber, empID)
+VALUES
+('0', '1', '1020', '3028'),
+('2', '3', '1021', '3065'),
+('3', '1', '1022', '3067'),
+('5', '3', '1023', '3069'),
+('6', '1', '1024', '3069'),
+('7', '5', '1025', '3178'),
+('10', '4', '1026', '3178'),
+('13', '2', '1027', '3366'),
+('15', '5', '1028', '3370'),
+('18', '4', '1029', '3371');
+
+
+
 insert into MenuPrices (menuItemNum, menu, price) 
 	values (1, 'Lunch', 4),
 	(1, 'Evening', 5),
@@ -758,7 +754,6 @@ insert into MenuPrices (menuItemNum, menu, price)
 	(9, 'Sunday Brunch Buffet', 16),
 	(10, 'Sunday Brunch Buffet', 12);
 
--- populate after orders
 INSERT INTO OrderItem (orderNumber, orderItemNum, menuItemNum, menu, meat, spiciness)
 VALUES 
 (1000, 1, 1, 'Lunch', 'Pork', 'Hot'),
