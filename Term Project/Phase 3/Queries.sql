@@ -10,13 +10,13 @@
 
 -- 2) List the top three customers in terms of their net spending for the past two years (last
 -- 730 days), and the total that they have spent in that period.
-SELECT c.custName, SUM(mp.price) as "Bill Total" , DATEDIFF(NOW(),o.orderDateTime) as numDays FROM customers as c
-INNER JOIN Orders as o ON (c.accountNo = o.AccountNo)
-INNER JOIN OrderItem as oi ON (o.orderNumber = oi.orderNumber)
-INNER JOIN MenuPrices as mp ON (oi.menuItemNum =  mp.menuItemNum)
-GROUP BY c.custName, mp.price
+SELECT c.custName as "customer", SUM(mp.price) as "amount", DATEDIFF(CURDATE(),o.orderDateTime) as numDays FROM customers c
+INNER JOIN Orders o ON (c.accountNo = o.accountNo)
+INNER JOIN OrderItem oi ON (o.orderNumber = oi.orderNumber)
+INNER JOIN MenuPrices mp ON (oi.menuItemNum =  mp.menuItemNum)
+GROUP BY c.custName
 HAVING numDays < 731
-ORDER BY SUM(mp.price)
+ORDER BY SUM(mp.price) DESC
 LIMIT 3;
 
 -- 3) Find all of the sous chefs who have three or more menu items that they can prepare. For
