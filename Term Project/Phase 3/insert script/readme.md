@@ -10,7 +10,7 @@ a couple things about this script:
 2. the excel file MUST be in the same folder as the script
 3. when entering date into excel columns make sure DATE(yy-mm-dd) and TIME(hh:mm:ss) are formatted correctly 
 4. make sure data matches up with what you guys want in the table rows (ex: CA for state, not California or vice versa)
-5. output is missing the necessary comma for each row and semicolon at the end. but that should be simple enough to include into DML by hand
+5. erase apostrophes in column names before executing the insert
 
 *sample excel sheets with dummy data provided<br/>
 *not exhaustively tested<br/>
