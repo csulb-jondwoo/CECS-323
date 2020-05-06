@@ -1,7 +1,6 @@
 CREATE DATABASE mimings_cuisine;	
 use mimings_cuisine;
 
--- create tables for Staff
 CREATE TABLE employees (
 	empID			INT NOT NULL,
     empName			VARCHAR(20) NOT NULL,
@@ -172,9 +171,6 @@ CREATE TABLE lineCookStation (
     CONSTRAINT lineCookStation_lineCook_fk02 FOREIGN KEY (chefID) REFERENCES lineCook(empID),
     CONSTRAINT lineCookStation_empShift_fk03 FOREIGN KEY (chefID, shiftDate, dayType) REFERENCES empShift(empID, shiftDate, dayType)
 );
-
--- for sooyoung's use
-
 
 CREATE TABLE customer (
     accountNo INT NOT NULL,
