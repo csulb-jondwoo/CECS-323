@@ -212,7 +212,9 @@ insert into MenuItems (itemNum, name, description, recipeNo)
     (5, 'Egg Rolls', 'Deep-fried appetizers. Savory roll with shredded cabbage, chopped pork, and other fillings.', 5),
     (6, 'Chow Mein', 'Chinese stir-fried noodles with choice of meat.', 6),
     (7, 'Egg Foo Young', 'Chinese egg omelette dish made with an easy gravy topping, vegatable and choice of meat', 7),
-    (8, 'Chop Suey', 'Choice of meat and eggs, cooked quickly with vegetables such as bean sprouts, cabbage, and celery and flavorful ', 8);
+    (8, 'Chop Suey', 'Choice of meat and eggs, cooked quickly with vegetables such as bean sprouts, cabbage, and celery and flavorful ', 8)
+    (9, 'Adult Buffet', 'All you can eat buffet for adults 12 and over', 9),
+    (10, 'Childrens Buffet', 'All you can eat buffet for children 11 and under', 10);
     
 insert into menuusage (name, day, useStartTime, useEndTime) 
     values ('Lunch', 'Monday', '10:00', '14:00'),
