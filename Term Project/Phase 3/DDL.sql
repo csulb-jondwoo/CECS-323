@@ -149,10 +149,6 @@ CREATE TABLE shift (
     CONSTRAINT shift_manager_fk01 FOREIGN KEY (managerID) REFERENCES manager(empID),
     CONSTRAINT shift__headChef_fk02 FOREIGN KEY (chefID) REFERENCES headChef(empID),
     CONSTRAINT shift_timeOfDay_fk03 FOREIGN KEY (dayType) REFERENCES timeOfDay(dayType)
-    
-    -- how to add if these foreign keys are primary keys for empShift table which needs foreign keys migrated from shift table 
-    --  CONSTRAINT shift_fk04 FOREIGN KEY (shiftDate, dayType, managerID) REFERENCES empShift(empID, shiftDate, dayType), 
-    --  CONSTRAINT shift_fk05 FOREIGN KEY (shiftDate, dayType, chefID) REFERENCES empShift(empID, shiftDate, dayType) 
 );
 
 CREATE TABLE empShift (
