@@ -23,7 +23,12 @@ LIMIT 3;
 -- each sous chef, list their name, the number of menu items that they can prepare, and
 -- each of the menu items. You can use group_concat to get all of a given sous chef’s data
 -- on one row, or print out one row per sous chef per menu item.
-
+	SELECT empName, COUNT(`name`) AS `Item Count`, GROUP_CONCAT(`name`) AS `Menu Items`
+    FROM employees NATURAL JOIN (sousChef INNER JOIN (MenuItems INNER JOIN expertise ON expertise.itemNum = MenuItems.itemNum) ON empID = chefID)
+    GROUP BY empID
+    HAVING COUNT(`name`) >= 3;
+    
+    
 -- 4) Find all of the sous chefs who have three or more menu items in common.
 -- i. Please give the name of each of the two sous chefs sharing three or more menu
 -- items.
@@ -35,6 +40,12 @@ LIMIT 3;
 
 -- 5) Find the three menu items most often ordered from the Children’s menu and order them
 -- from most frequently ordered to least frequently ordered.
+select name, count(orderItemNum) from orderItem
+inner join menuitems on menuItems.itemNum = orderItem.menuItemNum
+where menu = 'Childrens'
+group by name
+order by count(orderItemNum) desc
+limit 3;
 
 -- 6) Show by week, how many hours each employee works.
 
@@ -91,8 +102,9 @@ FROM Customer INNER JOIN (Individual INNER JOIN Company ON Individual.emailAddre
 
 
 -- 15) List the contents and prices of each of the menus.
-    
-
+select menu as "Menu", `Dish Name`, price from menuitem_v 
+	order by menu asc, `Dish Name` asc;							   
+						   
 -- 16) Three additional queries that demonstrate the five additional business rules. Feel free to
 -- create additional views to support these queries if you so desire
 
