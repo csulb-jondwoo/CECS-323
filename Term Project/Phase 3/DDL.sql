@@ -21,7 +21,7 @@ CREATE TABLE employees (
 CREATE TABLE manager (
 	empID		INT NOT NULL,
     CONSTRAINT manager_pk PRIMARY KEY (empID),
-    CONSTRAINT manager_employees__fk01 FOREIGN KEY (empID) REFERENCES employees(empID)
+    CONSTRAINT manager_employees_fk01 FOREIGN KEY (empID) REFERENCES employees(empID)
 );
 
 -- create chef table
@@ -211,7 +211,7 @@ CREATE TABLE shift (
     chefID		INT NOT NULL,
     CONSTRAINT shift_pk PRIMARY KEY (shiftDate, dayType),
     CONSTRAINT shift_manager_fk01 FOREIGN KEY (managerID) REFERENCES manager(empID),
-    CONSTRAINT shift__headChef_fk02 FOREIGN KEY (chefID) REFERENCES headChef(empID),
+    CONSTRAINT shift_headChef_fk02 FOREIGN KEY (chefID) REFERENCES headChef(empID),
     CONSTRAINT shift_timeOfDay_fk03 FOREIGN KEY (dayType) REFERENCES timeOfDay(dayType)
 );
 
