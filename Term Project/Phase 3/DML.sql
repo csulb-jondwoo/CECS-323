@@ -2793,6 +2793,7 @@ insert into MenuUsage (name, day, useStartTime, useEndTime)
     ('Childrens', 'Saturday', '10:00', '23:00'),
     ('Childrens', 'Sunday', '10:00', '23:00'),
     ('Sunday Brunch Buffet', 'Sunday', '10:00', '14:00');
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 INSERT INTO company ('accountNo', 'companyName', 'companyDep', 'contactEmail', 'contactPhone')
@@ -2955,3 +2956,5 @@ insert into menuPrices (menuItemNum, menu, price)
 	(9, 'Sunday Brunch Buffet', 16),
 	(10, 'Sunday Brunch Buffet', 12);
 >>>>>>> b8c3529f27fff5793c9acc821d43e3c479e14ab3
+=======
+>>>>>>> parent of b8c3529... Posted menu prices
