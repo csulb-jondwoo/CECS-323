@@ -16,3 +16,9 @@ INNER JOIN MenuPrices mp ON (oi.menuItemNum =  mp.menuItemNum)
 GROUP BY c.custName
 HAVING numDays < 731
 ORDER BY SUM(mp.price);
+
+create or replace view MenuItem_v as
+	(select menuItems.name as "Dish Name", "Mild" as "Spiciness",
+    menuPrices.menu as "Menu", menuPrices.price as "Price"
+    from menuPrices
+    inner join menuItems on menuItems.itemNum = menuPrices.menuItemNum);
