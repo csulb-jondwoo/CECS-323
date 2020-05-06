@@ -604,10 +604,7 @@ insert into MenuUsage (name, day, useStartTime, useEndTime)
     ('Childrens', 'Saturday', '10:00', '23:00'),
     ('Childrens', 'Sunday', '10:00', '23:00'),
     ('Sunday Brunch Buffet', 'Sunday', '10:00', '14:00');
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-<<<<<<< HEAD
 INSERT INTO company ('accountNo', 'companyName', 'companyDep', 'contactEmail', 'contactPhone')
 VALUES
 ('61515', 'Openlane', 'accounting', 'cgarcia@live.com', '909-555-0103'),
