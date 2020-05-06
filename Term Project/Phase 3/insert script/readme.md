@@ -1,8 +1,8 @@
 This script reads in a correctly formatted excel sheet and outputs text in a SQL INSERT ready statement.
 
-Dependencies:
-Python3
-openpyxl (pip install)
+Dependencies:<br/>
+Python3<br/>
+openpyxl (pip install)<br/>
 
 
 a couple things about this script:
@@ -12,6 +12,6 @@ a couple things about this script:
 4. make sure data matches up with what you guys want in the table rows (ex: CA for state, not California or vice versa)
 
 
-*sample excel sheets with dummy data provided
-*not exhaustively tested
-*check links.txt for random generators for commonly used things
+*sample excel sheets with dummy data provided<br/>
+*not exhaustively tested<br/>
+*check links.txt for random generators for commonly used things<br/>
