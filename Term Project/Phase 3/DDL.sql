@@ -1,5 +1,5 @@
-
-use cecs323sec07s20;
+CREATE DATABASE mimings_cuisine;	
+use mimings_cuisine;
 
 -- create tables for Staff
 CREATE TABLE employees (
