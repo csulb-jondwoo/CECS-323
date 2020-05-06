@@ -46,19 +46,50 @@ CREATE TABLE sousChef (
     CONSTRAINT sousChef_fk01 FOREIGN KEY (empID) REFERENCES chef(empID)
 );
 
--- placeholder until shak's implementation
--- required for expertise table 
-CREATE TABLE menuItems (
-	recipeNo		INT(3),
-    itemNum			INT(2),
-    itemName		VARCHAR(30),
-    itemDescription	VARCHAR(50),
-    CONSTRAINT menuItems_pk PRIMARY KEY (itemNum),
-    CONSTRAINT menuItem_uk01 UNIQUE (itemName, itemDescription)
-);
+create table Menus(
+    name varchar(20) not null,
+    primary key (name));
+    
+create table AvailableDays(
+    dayName varchar(10) not null,
+    primary key (dayName));
+    
+create table MenuUsage(
+    name varchar(20) not null,
+    day varchar(10) not null,
+    useStartTime time not null,
+    useEndTime time not null,
+    primary key (name, day),
+    constraint menuUsage_menus_fk01 foreign key (name) references Menus(name),
+    constraint menuUsage_availableDays_fk01 foreign key (day) references AvailableDays(dayName));
+    
+create table Meats(
+    name varchar(20) not null,
+    primary key (name));
+    
+create table SpiceLevels(
+    name varchar(20) not null,
+    primary key (name));
+    
+create table MenuItems(
+    itemNum int(2) not null,
+    name varchar(40) not null,
+    description varchar(200) not null,
+    recipeNo int(3) not null,
+    primary key (itemNum),
+    constraint menuItems_uk01 unique (name, description),
+    constraint menuItems_recipes_fk01 foreign key (recipeNo) references recipes(recipeNo));
+    
+create table MenuPrices(
+    menuItemNum int(2) not null,
+    menu varchar(20) not null,
+    price decimal(5,2) not null,
+    primary key (menuItemNum, menu),
+    constraint menuPrices_menuItems_fk01 foreign key (menuItemNum) references MenuItems(itemNum),
+    constraint menuPrices_menu_fk01 foreign key (menu) references menus(name));
 
 CREATE TABLE expertise (
-	itemNum 	INT(2),
+    itemNum 	INT(2),
     chefID		INT(5),
     CONSTRAINT expertise_pk PRIMARY KEY (itemNum, chefID),
     CONSTRAINT expertse_fk01 FOREIGN KEY (itemNum) REFERENCES menuItems(itemNum),
@@ -66,29 +97,29 @@ CREATE TABLE expertise (
 );
 
 CREATE TABLE mentorship (
-	itemNum		INT(3),
+    itemNum		INT(3),
     mentorID	INT(5),
     menteeID	INT(5),
     startDate	DATE,
     endDate		DATE,
-	CONSTRAINT mentorship_pk PRIMARY KEY (itemNum, mentorID, menteeID),
+    CONSTRAINT mentorship_pk PRIMARY KEY (itemNum, mentorID, menteeID),
     CONSTRAINT mentorship_fk01 FOREIGN KEY (itemNum, mentorID) REFERENCES expertise(itemNum, chefID),
     CONSTRAINT mentorship_fk02 FOREIGN KEY (menteeID) REFERENCES sousChef(empID)
 );
 
 CREATE TABLE lineCook (
-	empID		INT(5),
+    empID		INT(5),
     CONSTRAINT lineCook_pk PRIMARY KEY (empID),
     CONSTRAINT lineCook_fk01 FOREIGN KEY (empID) REFERENCES chef(empID)
 );
 
 CREATE TABLE station (
-	stationName	VARCHAR(10),
+    stationName	VARCHAR(10),
     CONSTRAINT station_pk PRIMARY KEY (stationName)
 );
 
 CREATE TABLE maitre_d (
-	empID		INT(5),
+    empID		INT(5),
     CONSTRAINT maitre_d_pk PRIMARY KEY (empID),
     CONSTRAINT maitre_d_fk01 FOREIGN KEY (empID) REFERENCES employees(empID)
 );
@@ -148,6 +179,19 @@ CREATE TABLE lineCookStation (
 );
 
 
+create table OrderItem(
+    orderNumber int not null,
+    orderDateTime datetime not null,
+    orderItemNum int not null,
+    menuItemNum int not null,
+    menu varchar(20) not null,
+    meat varchar(20) not null,
+    spiciness varchar(20) not null,
+    primary key (orderNumber, orderDateTime, orderItemNum),
+    constraint orderItem_orders_fk01 foreign key (orderNumber, orderDateTime) references Orders(orderNumber, orderDateTime),
+    constraint orderItem_menuPrices_fk01 foreign key (menuItemNum, menu) references MenuPrices(menuItemNum, menu),
+    constraint orderItem_meats_fk01 foreign key (meat) references Meats(name),
+    constraint orderItem_spiceLevels_fk01 foreign key (spiciness) references SpiceLevels(name));
 
 
 
