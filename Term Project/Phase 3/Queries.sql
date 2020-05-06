@@ -36,7 +36,22 @@ LIMIT 3;
 -- iii. Please list the items that the two Sous Chefs have in common. Again, you can use
 -- group_concat to get all of those items into one value in the output.
 
-
+	SELECT sChef1.empName, sChef2.empName
+	FROM
+	   (
+	   SELECT empName, COUNT(`name`) AS `Item Count`, GROUP_CONCAT(`name`) AS `Menu Items`
+		FROM employees NATURAL JOIN (sousChef INNER JOIN (MenuItems INNER JOIN expertise ON expertise.itemNum = MenuItems.itemNum) ON empID = chefID)
+		GROUP BY empID
+		) sChef1
+	   INNER JOIN
+	   (
+	   SELECT empName, COUNT(`name`) AS `Item Count`, GROUP_CONCAT(`name`) AS `Menu Items`
+		FROM employees NATURAL JOIN (sousChef INNER JOIN (MenuItems INNER JOIN expertise ON expertise.itemNum = MenuItems.itemNum) ON empID = chefID)
+		GROUP BY empID
+	   ) sChef2
+	   ON sChef1.empName = sChef2.empName
+	WHERE sChef1.empName < sChef2.empName
+	ORDER BY sChef1.empName
 
 -- 5) Find the three menu items most often ordered from the Children’s menu and order them
 -- from most frequently ordered to least frequently ordered.
