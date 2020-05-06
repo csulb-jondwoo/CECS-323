@@ -1,7 +1,11 @@
 DATETIME:
 http://random-date-generator.com/
 
-INTEGER:
+TIME: generate times that make sense. (i.e no times when stores are closed, ready times can't be before estPickup times)
+https://www.browserling.com/tools/random-time
+
+
+INTEGER: make sure ID's match (like chefID from headChef table must be and empID from employees table, orderNumber from online must be same from orders)
 https://www.random.org/integers/
 
 NAME:
