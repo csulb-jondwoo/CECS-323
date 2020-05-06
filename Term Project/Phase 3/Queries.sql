@@ -7,9 +7,16 @@
 
 -- Customer_Value_v – List each customer and the total $ amount of their orders for the
 -- past year (365 days), in order of the value of customer orders, from highest to the lowest.
+SELECT c.custName, SUM(mp.price) as "Bill Total" FROM customer c
+INNER JOIN Orders o ON (c.accountNo = o.accountNo)
+INNER JOIN OrderItem oi ON (o.orderNumber = oi.orderNumber)
+INNER JOIN MenuPrices mp ON (oi.menuItemNum =  mp.menuItemNum)
+GROUP BY c.custName
+HAVING DATEDIFF(day,o.orderDateTime,CURRENT_DATE) < 366;
+
 SELECT SUM(cust.MimingMoney) as "TotalSpent", c.CustName FROM customers as c
 INNER JOIN Orders as o  ON (o.Account# = c.Account#)
-WHERE DATEDIFF(day, o.DATEDIFF, CURRENT_DATE) < 366;
+WHERE DATEDIFF(day, o.DATEDIFF,) < 366;
 
 -- List the customers. For each customer, indicate which category he or she fall into, and
 -- his or her contact information. If you have more than one independent categorization of 
@@ -31,16 +38,27 @@ ORDER BY cust."Miming Money";
 
 -- List the customers and the total that they have spent at Miming’s ever, in descending
 -- order by the amount that they have spent.
-SELECT c.custName FROM Customer as c 
-INNER JOIN Bill as b ON (C.Account# = b.Account#)
-WHERE b.amount
--- Report on the customers at Miming’s by the number of timesthat they come in by month
+SELECT c.accountNo, SUM(c.MimingMoney) as "TotalSpent"FROM customers as c
+INNER JOIN Orders as o  ON (o.Account# = c.Account#)
+GROUP BY c.accountNo
+ORDER BY SUM(c.MimingMoney);
+-- Report on the customers at Miming’s by the number of times that they come in by month
 -- and order the report from most frequent to the least frequent. Each row in the output
 -- should have the Customer name, the month, the year, and the number of times that
 -- customer came in during that month of that year.
+SELECT c.accountNo,COUNT() FROM customer c 
+INNER JOIN Orders o ON (c.AccountNo = o.'Account#');
+
+
+SELECT c.accountNo, COUNT() FROM (SELECT c.accountNo,o.orderDateTime FROM customer c 
+INNER JOIN Orders o ON (c.AccountNo = o."Account#")) as "VisitsTable"
 
 -- List the three customers who have spent the most at Miming’s over the past year (365
 -- days). Order by the amount that they spent, from largest to smallest
+SELECT SUM(o.) as "TotalSpent", c.CustName FROM customers as c
+INNER JOIN Orders as o  ON (o.Account# = c.Account#)
+WHERE DATEDIFF(day, o.DATEDIFF, CURRENT_DATE) < 366
+ORDER BY SUM(o.MimingMoney);
 
 -- List all of the customers who eat at Miming’s on their own as well as ordering for their
 -- corporation.
