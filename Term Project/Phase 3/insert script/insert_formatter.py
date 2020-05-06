@@ -65,7 +65,12 @@ def displayOutput(output, tableName):
     print("INSERT INTO " + tableName, output[0])
     print("VALUES ")    
     for entry in range(1, len(output)):
-        print(output[entry])
+        if (entry == len(output) - 1):
+            print(output[entry])
+            print(";")
+        else:
+            print(str(output[entry]) + ",")
+    
     
 def main():
     repeat = True
