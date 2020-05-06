@@ -1,14 +1,7 @@
 use mimings_cuisine;
-
--- ALTER TABLE shift 
--- ADD CONSTRAINT shift_empShift_fk04 FOREIGN KEY (managerID, shiftDate, dayType) REFERENCES empShift(empID, shiftDate, dayType),
--- ADD CONSTRAINT shift__empShift_fk05 FOREIGN KEY (chefID, shiftDate, dayType) REFERENCES empShift(empID, shiftDate, dayType);
-
--- before inserting into shift and empshift
--- SET FOREIGN_KEY_CHECKS=0; 
-
--- after inserting
--- SET FOREIGN_KEY_CHECKS=1; 
+ALTER TABLE shift 
+ADD CONSTRAINT shift_empShift_fk04 FOREIGN KEY (managerID, shiftDate, dayType) REFERENCES empShift(empID, shiftDate, dayType),
+ADD CONSTRAINT shift__empShift_fk05 FOREIGN KEY (chefID, shiftDate, dayType) REFERENCES empShift(empID, shiftDate, dayType);
 
 INSERT INTO employees (empID, empName, dob, designatedArea, incomeType)
 VALUES 
@@ -56,7 +49,6 @@ VALUES
 (4402, 'Sachin Orozco', '1995-09-12', 'BOH', 'Hourly');
 
 SET FOREIGN_KEY_CHECKS=0;
-
 INSERT INTO empShift (empID, shiftDate, dayType, managerID, chefID)
 VALUES 
 (1004, '2020-01-01', 'Afternoon', 9410, 1004),
@@ -171,7 +163,6 @@ VALUES
 (4314, '2020-01-07', 'Evening', 9465, 1042),
 (4402, '2020-01-08', 'Afternoon', 9732, 1055),
 (4292, '2020-01-08', 'Evening', 9732, 1055);
-
 SET FOREIGN_KEY_CHECKS=1;
 
 INSERT INTO chef (empID)
@@ -329,6 +320,7 @@ VALUES
 ('Afternoon'),
 ('Evening');
 
+SET FOREIGN_KEY_CHECKS=0;
 INSERT INTO shift (shiftDate, dayType, managerID, chefID)
 VALUES 
 ('2020-01-01', 'Afternoon', 9410, 1004),
@@ -347,6 +339,7 @@ VALUES
 ('2020-01-07', 'Evening', 9465, 1016),
 ('2020-01-08', 'Afternoon', 9732, 1017),
 ('2020-01-08', 'Evening', 9732, 1017);
+SET FOREIGN_KEY_CHECKS=1;
 
 INSERT INTO sousChef (empID)
 VALUES 
@@ -381,7 +374,6 @@ VALUES
 (6, 'Chow Mein', 1015),
 (7, 'Egg Foo Young', 1016),
 (8, 'Chop Suey', 1017);
-
 
 -- populate after customers table
 -- INSERT INTO Orders (orderNumber, paymentType, orderDateTime, AccountNo)
@@ -418,8 +410,8 @@ VALUES
 -- ('1029'	,'Credit Card'		,'2020-01-08 15:15:00'	,'1000');
 
 -- populate after orders
-INSERT INTO `Online` (orderNumber, OrdererEmail, EstPickupTime, ReadyPickupTime)
-VALUES 
+-- INSERT INTO `Online` (orderNumber, OrdererEmail, EstPickupTime, ReadyPickupTime)
+-- VALUES 
 -- ('1000'	,'hedwig@aol.com','2020-01-01 9:45:00','2020-01-01 9:45:00'),
 -- ('1001'	,'leocharre@outlook.com','2020-01-01 10:45:00','2020-01-01 11:00:00'),
 -- ('1002'	,'njpayne@hotmail.com','2020-01-01 14:45:00','2020-01-01 14:45:00'),
@@ -568,7 +560,9 @@ insert into MenuItems (itemNum, name, description, recipeNo)
     (5, 'Egg Rolls', 'Deep-fried appetizers. Savory roll with shredded cabbage, chopped pork, and other fillings.', 5),
     (6, 'Chow Mein', 'Chinese stir-fried noodles with choice of meat.', 6),
     (7, 'Egg Foo Young', 'Chinese egg omelette dish made with an easy gravy topping, vegatable and choice of meat', 7),
-    (8, 'Chop Suey', 'Choice of meat and eggs, cooked quickly with vegetables such as bean sprouts, cabbage, and celery and flavorful ', 8);
+    (8, 'Chop Suey', 'Choice of meat and eggs, cooked quickly with vegetables such as bean sprouts, cabbage, and celery and flavorful ', 8),
+    (9, 'N/A', 'Sunday Afternoon Brunch Special', NULL),
+    (10, 'N/A', 'Sunday Evening Brunch Special', NULL);
 
 INSERT INTO expertise(itemNum, chefID)
 VALUES 
@@ -580,7 +574,6 @@ VALUES
 (6, 1114),
 (7, 1101),
 (8, 1114);
-
 
 insert into MenuUsage (name, day, useStartTime, useEndTime) 
     values ('Lunch', 'Monday', '10:00', '14:00'),
@@ -605,7 +598,7 @@ insert into MenuUsage (name, day, useStartTime, useEndTime)
     ('Childrens', 'Sunday', '10:00', '23:00'),
     ('Sunday Brunch Buffet', 'Sunday', '10:00', '14:00');
 
-insert into menuPrices (menuItemNum, menu, price) 
+insert into MenuPrices (menuItemNum, menu, price) 
 	values (1, 'Lunch', 4),
 	(1, 'Evening', 5),
 	(1, 'Childrens', 3),
@@ -632,3 +625,37 @@ insert into menuPrices (menuItemNum, menu, price)
 	(8, 'Childrens', 5),
 	(9, 'Sunday Brunch Buffet', 16),
 	(10, 'Sunday Brunch Buffet', 12);
+
+-- populate after orders
+INSERT INTO OrderItem (orderNumber, orderItemNum, menuItemNum, menu, meat, spiciness)
+VALUES 
+(1000, 1, 1, 'Lunch', 'Pork', 'Hot'),
+(1001, 2, 2, 'Childrens', 'Pork', 'Tangy'),
+(1002, 3, 3, 'Evening', 'Pork', 'Hot'),
+(1003, 4, 4, 'Lunch', 'Seafood', 'Hot'),
+(1004, 5, 5, 'Lunch', 'Chicken', 'Piquant'),
+(1005, 6, 1, 'Childrens', 'Chicken', 'Tangy'),
+(1006, 7, 2, 'Lunch', 'Chicken', 'Piquant'),
+(1007, 8, 6, 'Childrens', 'Beef', 'Tangy'),
+(1008, 9, 7, 'Childrens', 'Chefs Special', 'Tangy'),
+(1009, 10, 8, 'Evening', 'Chefs Special', 'Hot'),
+(1010, 11, 2, 'Evening', 'Chefs Special', 'Piquant'),
+(1011, 12, 7, 'Evening', 'Beef', 'Hot'),
+(1012, 13, 4, 'Evening', 'Beef', 'Oh My God'),
+(1013, 14, 2, 'Evening', 'Vegetables', 'Tangy'),
+(1014, 15, 4, 'Evening', 'Vegetables', 'Piquant'),
+(1015, 16, 6, 'Lunch', 'Beef', 'Oh My God'),
+(1016, 17, 5, 'Lunch', 'Seafood', 'Oh My God'),
+(1017, 18, 3, 'Lunch', 'Beef', 'Oh My God'),
+(1018, 19, 1, 'Lunch', 'Seafood', 'Tangy'),
+(1019, 20, 8, 'Lunch', 'Pork', 'Tangy'),
+(1020, 21, 9, 'Sunday Brunch Buffet', 'N/A', NULL),
+(1021, 22, 9, 'Sunday Brunch Buffet', 'N/A', NULL),
+(1022, 23, 10, 'Sunday Brunch Buffet', 'N/A', NULL),
+(1023, 24, 9, 'Sunday Brunch Buffet', 'N/A', NULL),
+(1024, 25, 10, 'Sunday Brunch Buffet', 'N/A', NULL),
+(1025, 26, 8, 'Evening', 'Beef', 'Piquant'),
+(1026, 27, 7, 'Evening', 'Beef', 'Piquant'),
+(1027, 28, 5, 'Childrens', 'Seafood', 'Tangy'),
+(1028, 29, 4, 'Childrens', 'Vegetables', 'Tangy'),
+(1029, 30, 6, 'Childrens', 'Vegetables', 'Tangy');

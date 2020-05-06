@@ -73,11 +73,11 @@ create table MenuItems(
     itemNum int not null,
     name varchar(40) not null,
     description varchar(200) not null,
-    recipeNo int not null,
+    recipeNo INT,
     primary key (itemNum),
     constraint menuItems_uk01 unique (name, description),
     constraint menuItems_recipes_fk01 foreign key (recipeNo) references recipes(recipeNo));
-    
+
 create table MenuPrices(
     menuItemNum int not null,
     menu varchar(20) not null,
@@ -228,7 +228,7 @@ create table OrderItem(
     menuItemNum int not null,
     menu varchar(20) not null,
     meat varchar(20) not null,
-    spiciness varchar(20) not null,
+    spiciness varchar(20),
     primary key (orderNumber, orderItemNum),
     constraint orderItem_orders_fk01 foreign key (orderNumber) references Orders(orderNumber),
     constraint orderItem_menuPrices_fk01 foreign key (menuItemNum, menu) references MenuPrices(menuItemNum, menu),
