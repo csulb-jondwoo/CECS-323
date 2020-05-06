@@ -1,9 +1,11 @@
 -- Customer_addresses_v – for each customer, indicate whether they are an individual or a
 -- corporate account, and display all of the information that we are managing for that
 -- customer.
-    SELECT * FROM Individual_Customer
-    UNION 
-    SELECT * FROM Company_Cusomer;
+    SELECT * FROM customers c 
+    INNER JOIN individuals i ON (c.accountNo = i.accountNo)
+    UNION
+    SELECT * FROM customers c 
+    INNER JOIN company comp ON (c.accountNo = comp.accountNo);
 
 -- Customer_Value_v – List each customer and the total $ amount of their orders for the
 -- past year (365 days), in order of the value of customer orders, from highest to the lowest.
@@ -62,6 +64,8 @@ ORDER BY SUM(o.MimingMoney);
 
 -- List all of the customers who eat at Miming’s on their own as well as ordering for their
 -- corporation.
+SELECT custName
+FROM Customer INNER JOIN (Individual INNER JOIN Company ON Individual.emailAddress = Company.contactEmail as IndivCustom) ON Customer.accountNo = IndivCustom.accountNo;
 
 --An individual customer can only have one miming account
 

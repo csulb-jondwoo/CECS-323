@@ -194,17 +194,10 @@ CREATE TABLE individual (
 
 CREATE TABLE company (
     accountNo INT NOT NULL,
-<<<<<<< HEAD
-    companyDep VARCHAR(50) NOT NULL,
-    companyName VARCHAR(50) NOT NULL,
-    contactEmail VARCHAR(50) NOT NULL,
-    contactPhone VARCHAR(20) NOT NULL,
-=======
     companyDep VARCHAR(15) NOT NULL,
     companyName VARCHAR(20) NOT NULL,
     contactEmail VARCHAR(25) NOT NULL,
     contactPhone VARCHAR(10) NOT NULL,
->>>>>>> c3dd7786dc218863fad2ece0e92c1f90975b21eb
     CONSTRAINT company_customer_pk PRIMARY KEY(accountNo),
     CONSTRAINT copmany_ck01 UNIQUE (companyDep,companyName,contactEmail,contactPhone),
     CONSTRAINT comp_customer_fk01 FOREIGN KEY (accountNo) REFERENCES customers(accountNo)
