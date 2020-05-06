@@ -1,4 +1,4 @@
-CREATE DATABASE mimings_cuisine;
+CREATE DATABASE mimings_cuisine;	
 use mimings_cuisine;
 
 -- create tables for Staff
@@ -189,6 +189,7 @@ CREATE TABLE lineCookStation (
 --     constraint orderItem_spiceLevels_fk01 foreign key (spiciness) references SpiceLevels(name));
 
 -- FIX: for omar's use 
+<<<<<<< HEAD
 -- CREATE TABLE customer (
 --     accountNo INT(10) NOT NULL,
 --     city VARCHAR (15),
@@ -221,4 +222,36 @@ CREATE TABLE lineCookStation (
 -- };
 
 
+=======
+CREATE TABLE customer (
+    accountNo INT(10) NOT NULL,
+    city VARCHAR (15),
+    address VARCHAR(30),
+    state VARCHAR(2),
+    custName VARCHAR(20),
+    mimingMoney INT,
+    CONSTRAINT customers_pk PRIMARY KEY (accountNo),
+    CONSTRAINT customers_uk01 UNIQUE (city, address, state, custName)
+);
+
+CREATE TABLE individual (
+    accountNo INTEGER NOT NULL,
+    emailAddress VARCHAR(25) NOT NULL,
+    DOB DATE NOT NULL,
+    CONSTRAINT individual_customer_pk PRIMARY KEY(accountNo),
+    CONSTRAINT individual_uk01 UNIQUE (emailAddress,DOB),
+    CONSTRAINT ind_customer_fk01 FOREIGN KEY (accountNo) REFERENCES customer(accountNo)
+);
+
+CREATE TABLE company (
+    accountNo INTEGER NOT NULL,
+    companyDep VARCHAR(15) NOT NULL,
+    companyName VARCHAR(20) NOT NULL,
+    contactEmail VARCHAR(25) NOT NULL,
+    contactPhone VARCHAR(10) NOT NULL,
+    CONSTRAINT company_customer_pk PRIMARY KEY(accountNo),
+    CONSTRAINT copmany_ck01 UNIQUE (companyDep,companyName,contactEmail,contactPhone),
+    CONSTRAINT comp_customer_fk01 FOREIGN KEY (accountNo) REFERENCES customer(accountNo)
+);
+>>>>>>> 3487258555ca9a8fd720bc552da25262f6c08726
 -- DROP DATABASE mimings_cuisine;
