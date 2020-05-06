@@ -1,48 +1,49 @@
+
 CREATE DATABASE mimings_cuisine;
 use mimings_cuisine;
 
 -- create tables for Staff
 CREATE TABLE employees (
-	empID			INT(5),
-    empName			VARCHAR(20),
-	dob				DATE,
-    designatedArea	VARCHAR(15),
+	empID			INT(5) NOT NULL,
+    empName			VARCHAR(20) NOT NULL,
+	dob				DATE NOT NULL,
+    designatedArea	VARCHAR(15) NOT NULL,
     incomeType		VARCHAR(10),
     CONSTRAINT emp_pk PRIMARY KEY (empID),
     CONSTRAINT emp_uk01 UNIQUE (empName, dob, designatedArea)
 );
 
 CREATE TABLE manager (
-	empID		INT(5),
+	empID		INT(5) NOT NULL,
     CONSTRAINT manager_pk PRIMARY KEY (empID),
-    CONSTRAINT manager_fk01 FOREIGN KEY (empID) REFERENCES employees(empID)
+    CONSTRAINT manager_employees__fk01 FOREIGN KEY (empID) REFERENCES employees(empID)
 );
 
 CREATE TABLE chef (
-	empID		INT(5),
+	empID		INT(5) NOT NULL,
     CONSTRAINT chef_pk PRIMARY KEY (empID),
-    CONSTRAINT chef_fk01 FOREIGN KEY (empID) REFERENCES employees(empID)
+    CONSTRAINT chef_employees_fk01 FOREIGN KEY (empID) REFERENCES employees(empID)
 );
 
 CREATE TABLE headChef (
-	empID		INT(5),
+	empID		INT(5) NOT NULL,
     CONSTRAINT headChef_pk PRIMARY KEY (empID),
-    CONSTRAINT headChef_fk01 FOREIGN KEY (empID) REFERENCES chef(empID)
+    CONSTRAINT headChef_chef_fk01 FOREIGN KEY (empID) REFERENCES chef(empID)
 );
 
 CREATE TABLE recipes (
-	recipeNo	INT(3),
-	recipeName	VARCHAR(30),
-    chefID		INT(5),
+	recipeNo	INT(3) NOT NULL,
+	recipeName	VARCHAR(30) NOT NULL,
+    chefID		INT(5) NOT NULL,
     CONSTRAINT recipes_pk PRIMARY KEY (recipeNo),
-    CONSTRAINT recipes_fk01 FOREIGN KEY (chefID) REFERENCES headChef(empID),
+    CONSTRAINT recipes_headChef_fk01 FOREIGN KEY (chefID) REFERENCES headChef(empID),
     CONSTRAINT recipes_uk01 UNIQUE (recipeName, chefID)
 );
 
 CREATE TABLE sousChef (
-	empID		INT(5),
+	empID		INT(5) NOT NULL,
     CONSTRAINT sousChef_pk PRIMARY KEY (empID),
-    CONSTRAINT sousChef_fk01 FOREIGN KEY (empID) REFERENCES chef(empID)
+    CONSTRAINT sousChef_chef_fk01 FOREIGN KEY (empID) REFERENCES chef(empID)
 );
 
 create table Menus(
@@ -88,67 +89,67 @@ create table MenuPrices(
     constraint menuPrices_menu_fk01 foreign key (menu) references menus(name));
 
 CREATE TABLE expertise (
-    itemNum 	INT(2),
-    chefID		INT(5),
+    itemNum 	INT(2) NOT NULL,
+    chefID		INT(5) NOT NULL,
     CONSTRAINT expertise_pk PRIMARY KEY (itemNum, chefID),
-    CONSTRAINT expertse_fk01 FOREIGN KEY (itemNum) REFERENCES menuItems(itemNum),
-    CONSTRAINT expertse_fk02 FOREIGN KEY (chefID) REFERENCES sousChef(empID)
+    CONSTRAINT expertise_menuItems_fk01 FOREIGN KEY (itemNum) REFERENCES menuItems(itemNum),
+    CONSTRAINT expertise_sousChef_fk02 FOREIGN KEY (chefID) REFERENCES sousChef(empID)
 );
 
 CREATE TABLE mentorship (
-    itemNum		INT(3),
-    mentorID	INT(5),
-    menteeID	INT(5),
+    itemNum		INT(3) NOT NULL,
+    mentorID	INT(5) NOT NULL,
+    menteeID	INT(5) NOT NULL,
     startDate	DATE,
     endDate		DATE,
     CONSTRAINT mentorship_pk PRIMARY KEY (itemNum, mentorID, menteeID),
-    CONSTRAINT mentorship_fk01 FOREIGN KEY (itemNum, mentorID) REFERENCES expertise(itemNum, chefID),
-    CONSTRAINT mentorship_fk02 FOREIGN KEY (menteeID) REFERENCES sousChef(empID)
+    CONSTRAINT mentorship_expertise_fk01 FOREIGN KEY (itemNum, mentorID) REFERENCES expertise(itemNum, chefID),
+    CONSTRAINT mentorship_sousChef_fk02 FOREIGN KEY (menteeID) REFERENCES sousChef(empID)
 );
 
 CREATE TABLE lineCook (
-    empID		INT(5),
+    empID		INT(5) NOT NULL,
     CONSTRAINT lineCook_pk PRIMARY KEY (empID),
-    CONSTRAINT lineCook_fk01 FOREIGN KEY (empID) REFERENCES chef(empID)
+    CONSTRAINT lineCook_chef_fk01 FOREIGN KEY (empID) REFERENCES chef(empID)
 );
 
 CREATE TABLE station (
-    stationName	VARCHAR(10),
+    stationName	VARCHAR(10) NOT NULL,
     CONSTRAINT station_pk PRIMARY KEY (stationName)
 );
 
 CREATE TABLE maitre_d (
-    empID		INT(5),
+    empID		INT(5) NOT NULL,
     CONSTRAINT maitre_d_pk PRIMARY KEY (empID),
-    CONSTRAINT maitre_d_fk01 FOREIGN KEY (empID) REFERENCES employees(empID)
+    CONSTRAINT maitre_d_employees_fk01 FOREIGN KEY (empID) REFERENCES employees(empID)
 );
 
 CREATE TABLE dishwasher (
-	empID		INT(5),
+	empID		INT(5) NOT NULL,
     CONSTRAINT dishwasher_pk PRIMARY KEY (empID),
-    CONSTRAINT dishwasher_fk01 FOREIGN KEY (empID) REFERENCES employees(empID)
+    CONSTRAINT dishwasher_employees_fk01 FOREIGN KEY (empID) REFERENCES employees(empID)
 );
 
 CREATE TABLE waitStaff (
-	empID		INT(5),
+	empID		INT(5) NOT NULL,
     CONSTRAINT waitStaff_pk PRIMARY KEY (empID),
-    CONSTRAINT waitStaff_fk01 FOREIGN KEY (empID) REFERENCES employees(empID)
+    CONSTRAINT waitStaff_employees_fk01 FOREIGN KEY (empID) REFERENCES employees(empID)
 );
 
 CREATE TABLE timeOfDay (
-	dayType		VARCHAR(10),
+	dayType		VARCHAR(10) NOT NULL,
     CONSTRAINT timeOfDay_pk PRIMARY KEY (dayType)
 );
 
 CREATE TABLE shift (
-	shiftDate	DATE,
-    dayType		VARCHAR(10),
-    managerID	INT(5),
-    chefID		INT(5),
+	shiftDate	DATE NOT NULL,
+    dayType		VARCHAR(10) NOT NULL,
+    managerID	INT(5) NOT NULL,
+    chefID		INT(5) NOT NULL,
     CONSTRAINT shift_pk PRIMARY KEY (shiftDate, dayType),
-    CONSTRAINT shift_fk01 FOREIGN KEY (managerID) REFERENCES manager(empID),
-    CONSTRAINT shift_fk02 FOREIGN KEY (chefID) REFERENCES headChef(empID),
-    CONSTRAINT shift_fk03 FOREIGN KEY (dayType) REFERENCES timeOfDay(dayType)
+    CONSTRAINT shift_manager_fk01 FOREIGN KEY (managerID) REFERENCES manager(empID),
+    CONSTRAINT shift__headChef_fk02 FOREIGN KEY (chefID) REFERENCES headChef(empID),
+    CONSTRAINT shift_timeOfDay_fk03 FOREIGN KEY (dayType) REFERENCES timeOfDay(dayType)
     
     -- how to add if these foreign keys are primary keys for empShift table which needs foreign keys migrated from shift table 
     --  CONSTRAINT shift_fk04 FOREIGN KEY (shiftDate, dayType, managerID) REFERENCES empShift(empID, shiftDate, dayType), 
@@ -156,25 +157,25 @@ CREATE TABLE shift (
 );
 
 CREATE TABLE empShift (
-	empID		INT(5),
-    shiftDate	DATE,
-    dayType		VARCHAR(10),
-    managerID	INT(5),
-    chefID		INT(5),
+	empID		INT(5) NOT NULL,
+    shiftDate	DATE NOT NULL,
+    dayType		VARCHAR(10) NOT NULL,
+    managerID	INT(5) NOT NULL,
+    chefID		INT(5) NOT NULL,
     CONSTRAINT empShift_pk PRIMARY KEY (empID, shiftDate, dayType),
-    CONSTRAINT empShift_fk01 FOREIGN KEY (shiftDate, dayType) REFERENCES shift(shiftDate, dayType),
-    CONSTRAINT empShift_fk02 FOREIGN KEY (empID) REFERENCES employees(empID)
+    CONSTRAINT empShift_shift_fk01 FOREIGN KEY (shiftDate, dayType) REFERENCES shift(shiftDate, dayType),
+    CONSTRAINT empShift_employees_fk02 FOREIGN KEY (empID) REFERENCES employees(empID)
 );
 
 CREATE TABLE lineCookStation (
-	stationName	VARCHAR(10),
-    chefID		INT(5),
-    shiftDate	DATE,
-    dayType		VARCHAR(10),
+	stationName	VARCHAR(10) NOT NULL,
+    chefID		INT(5) NOT NULL,
+    shiftDate	DATE NOT NULL,
+    dayType		VARCHAR(10) NOT NULL,
     CONSTRAINT lineCookStation_pk PRIMARY KEY (stationName, chefID, shiftDate, dayType),
-    CONSTRAINT lineCookStation_fk01 FOREIGN KEY (stationName) REFERENCES station(stationName),
-    CONSTRAINT lineCookStation_fk02 FOREIGN KEY (chefID) REFERENCES lineCook(empID),
-    CONSTRAINT lineCookStation_fk03 FOREIGN KEY (chefID, shiftDate, dayType) REFERENCES empShift(empID, shiftDate, dayType)
+    CONSTRAINT lineCookStation_station_fk01 FOREIGN KEY (stationName) REFERENCES station(stationName),
+    CONSTRAINT lineCookStation_lineCook_fk02 FOREIGN KEY (chefID) REFERENCES lineCook(empID),
+    CONSTRAINT lineCookStation_empShift_fk03 FOREIGN KEY (chefID, shiftDate, dayType) REFERENCES empShift(empID, shiftDate, dayType)
 );
 
 
@@ -192,7 +193,36 @@ create table OrderItem(
     constraint orderItem_meats_fk01 foreign key (meat) references Meats(name),
     constraint orderItem_spiceLevels_fk01 foreign key (spiciness) references SpiceLevels(name));
 
+-- FIX 
+CREATE TABLE customer (
+    accountNo INT(10) NOT NULL,
+    city VARCHAR (15),
+    address VARCHAR(30),
+    state VARCHAR(2),
+    custName VARCHAR(20),
+    mimingMoney INT,
+    CONSTRAINT customers_pk PRIMARY KEY (accountNo),
+    CONSTRAINT customers_uk01 UNIQUE (city, address, state, custName),
+);
 
+CREATE TABLE individual {
+    'Account#' VARCHAR NOT NULL,
+    'EmailAddress' VARCHAR(25) NOT NULL,
+    'DOB' DATE NOT NULL,
+    CONSTRAINT 'IND_CUSTOMERS_PK' PRIMARY KEY('Account#'),
+    CONSTRAINT 'INDIVIDUAL_CK1' KEY('City','Address','State','CustName'),
+    CONSTRAINT 'ind_customer_fk1' FOREIGN KEY ('Account#') REFERENCES 'Customer'
+};
 
+CREATE TABLE 'Company_Customer' {
+    'Account#' VARCHAR NOT NULL,
+    'CompanyDep' VARCHAR,
+    'CompanyName' VARCHAR,
+    'ContactEmail' VARCHAR,
+    'ContactPhone' VARCHAR,
+    CONSTRAINT 'COMP_CUSTOMERS_PK' PRIMARY KEY('Account#'),
+    CONSTRAINT 'COMPANY_CK1' KEY('CompanyDep','CompnayName','ContactEmail','ContactPhone'),
+    CONSTRAINT 'comp_customer_fk1' FOREIGN KEY ('Account#') REFERENCES 'Customer'
+};
 
 -- DROP DATABASE mimings_cuisine;
