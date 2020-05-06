@@ -6,7 +6,7 @@ https://www.browserling.com/tools/random-time
 
 
 INTEGER: make sure ID's match (like chefID from headChef table must be and empID from employees table, orderNumber from online must be same from orders)
-https://www.random.org/integers/
+https://www.random.org/integer-sets/
 
 NAME:
 https://www.name-generator.org.uk/quick/
@@ -24,4 +24,5 @@ CITY:
 https://www.name-generator.org.uk/?i=1znascgv
 
 STATE: (only keep the 2 letters)
-https://randomlistgenerator.com/us-states
+https://randomlistgenerator.com/us-statesAydin Hanson
+
