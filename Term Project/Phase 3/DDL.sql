@@ -172,7 +172,7 @@ CREATE TABLE lineCookStation (
     CONSTRAINT lineCookStation_empShift_fk03 FOREIGN KEY (chefID, shiftDate, dayType) REFERENCES empShift(empID, shiftDate, dayType)
 );
 
-CREATE TABLE customer (
+CREATE TABLE customers (
     accountNo INT NOT NULL,
     city VARCHAR (15),
     address VARCHAR(30),
@@ -189,7 +189,7 @@ CREATE TABLE individual (
     DOB DATE NOT NULL,
     CONSTRAINT individual_customer_pk PRIMARY KEY(accountNo),
     CONSTRAINT individual_uk01 UNIQUE (emailAddress,DOB),
-    CONSTRAINT ind_customer_fk01 FOREIGN KEY (accountNo) REFERENCES customer(accountNo)
+    CONSTRAINT ind_customer_fk01 FOREIGN KEY (accountNo) REFERENCES customers(accountNo)
 );
 
 CREATE TABLE company (
@@ -200,7 +200,7 @@ CREATE TABLE company (
     contactPhone VARCHAR(10) NOT NULL,
     CONSTRAINT company_customer_pk PRIMARY KEY(accountNo),
     CONSTRAINT copmany_ck01 UNIQUE (companyDep,companyName,contactEmail,contactPhone),
-    CONSTRAINT comp_customer_fk01 FOREIGN KEY (accountNo) REFERENCES customer(accountNo)
+    CONSTRAINT comp_customer_fk01 FOREIGN KEY (accountNo) REFERENCES customers(accountNo)
 );
 
 CREATE TABLE Bill (
@@ -208,7 +208,7 @@ CREATE TABLE Bill (
     paymentType VARCHAR(20) NOT NULL,
     AccountNo INT,
     CONSTRAINT Bill_pk PRIMARY KEY (orderNumber, paymentType),
-    CONSTRAINT Bill_customer_fk01 FOREIGN KEY (AccountNo) REFERENCES customer(AccountNo)
+    CONSTRAINT Bill_customer_fk01 FOREIGN KEY (AccountNo) REFERENCES customers(AccountNo)
 );
 
 CREATE TABLE Orders (
@@ -217,7 +217,7 @@ CREATE TABLE Orders (
     orderDateTime DATETIME,
     AccountNo INT,
     CONSTRAINT Order_pk PRIMARY KEY (orderNumber),
-    CONSTRAINT Order_customer_fk01 FOREIGN KEY (AccountNo) REFERENCES customer(AccountNo),
+    CONSTRAINT Order_customer_fk01 FOREIGN KEY (AccountNo) REFERENCES customers(AccountNo),
     CONSTRAINT Order_Bill_fk02 FOREIGN KEY (orderNumber, paymentType) REFERENCES Bill(orderNumber, paymentType)
     
 );
