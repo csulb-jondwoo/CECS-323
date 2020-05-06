@@ -23,12 +23,10 @@ LIMIT 3;
 -- each sous chef, list their name, the number of menu items that they can prepare, and
 -- each of the menu items. You can use group_concat to get all of a given sous chef’s data
 -- on one row, or print out one row per sous chef per menu item.
-	-- count sousChef expertise
-    SELECT itemNum, chefID, mentorID, menteeID
-    FROM expertise
-    INNER JOIN mentorship USING itemNum;
-    
-    -- filter by three or more
+	SELECT empName, COUNT(`name`) AS `Item Count`, GROUP_CONCAT(`name`) AS `Menu Items`
+    FROM employees NATURAL JOIN (sousChef INNER JOIN (MenuItems INNER JOIN expertise ON expertise.itemNum = MenuItems.itemNum) ON empID = chefID)
+    GROUP BY empID
+    HAVING COUNT(`name`) >= 3;
     
     
 -- 4) Find all of the sous chefs who have three or more menu items in common.
