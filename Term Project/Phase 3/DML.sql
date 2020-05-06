@@ -175,13 +175,13 @@ VALUES
 ('1029'	,'Credit Card'		, '1000');
 
 insert into menus (name)
-	values ('Evening'),
+    values ('Evening'),
     ('Lunch'),
     ('Childrens'),
     ('Sunday Brunch Buffet');
     
 insert into AvailableDays (dayName)
-	values ('Sunday'),
+    values ('Sunday'),
     ('Monday'),
     ('Tuesday'),
     ('Wednesday'),
