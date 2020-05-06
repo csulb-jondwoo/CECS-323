@@ -2,22 +2,21 @@
 -- his or her contact information. If you have more than one independent categorization of customers, 
 -- please indicate which category the customer falls into for all of the
 -- categorizations.
-
-    SELECT "Catergory" as 'Individual', * FROM customers c 
-    INNER JOIN individuals i ON (c.accountNo = i.accountNo)
+    SELECT 'Individual' as "Category",c.custName,c.city,c.address,c.state,c.custName,c.mimingMoney,i.emailAddress as "Email",i.DOB as "DOB",NULL as "companyDep",NULL as "companyName",NULL as "contactPhone" FROM customers c 
+    INNER JOIN individual i ON (c.accountNo = i.accountNo)
     UNION
-    SELECT "Catergory" as 'Individual', * FROM customers c 
+	SELECT 'Individual' as "Category",c.custName,c.city,c.address,c.state,c.custName,c.mimingMoney,comp.contactEmail as "Email",NULL as "DOB",comp.companyDep as "companyDep",comp.companyName as "companyName",comp.contactPhone as "contactPhone" FROM customers c 
     INNER JOIN company comp ON (c.accountNo = comp.accountNo);
 
 -- 2) List the top three customers in terms of their net spending for the past two years (last
 -- 730 days), and the total that they have spent in that period.
-SELECT c.custName, SUM(mp.price) as "Bill Total" , DATEDIFF(NOW(),o.orderDateTime) as numDays FROM customers as c
-INNER JOIN Orders as o ON (c.accountNo = o.AccountNo)
-INNER JOIN OrderItem as oi ON (o.orderNumber = oi.orderNumber)
-INNER JOIN MenuPrices as mp ON (oi.menuItemNum =  mp.menuItemNum)
-GROUP BY c.custName, mp.price
+SELECT c.custName as "customer", SUM(mp.price) as "amount", DATEDIFF(CURDATE(),o.orderDateTime) as numDays FROM customers c
+INNER JOIN Orders o ON (c.accountNo = o.accountNo)
+INNER JOIN OrderItem oi ON (o.orderNumber = oi.orderNumber)
+INNER JOIN MenuPrices mp ON (oi.menuItemNum =  mp.menuItemNum)
+GROUP BY c.custName
 HAVING numDays < 731
-ORDER BY SUM(mp.price)
+ORDER BY SUM(mp.price) DESC
 LIMIT 3;
 
 -- 3) Find all of the sous chefs who have three or more menu items that they can prepare. For
@@ -42,37 +41,36 @@ LIMIT 3;
 
 -- 7) List the customers, sorted by the amount of Miming’s Money that they have, from largest
 -- to smallest.
-SELECT cust.CustName FROM Customer as cust 
-ORDER BY cust.MimingMoney;
+SELECT cust.CustName,cust.MimingMoney FROM customers as cust 
+ORDER BY cust.MimingMoney DESC;
 
 
 -- 8) List the customers and the total that they have spent at Miming’s ever, in descending
 -- order by the amount that they have spent.
-SELECT c.custName, SUM(mp.price) as "Bill Total" FROM customer c
-INNER JOIN Orders o ON (c.accountNo = o.accountNumber)
+SELECT c.custName as "customer", SUM(mp.price) as "amount"FROM customers c
+INNER JOIN Orders o ON (c.accountNo = o.accountNo)
 INNER JOIN OrderItem oi ON (o.orderNumber = oi.orderNumber)
 INNER JOIN MenuPrices mp ON (oi.menuItemNum =  mp.menuItemNum)
 GROUP BY c.custName
 ORDER BY SUM(mp.price) DESC;
 
-
--- 9) Report on the customers at Miming’s by the number of timesthat they come in by month
+-- 9) Report on the customers at Miming’s by the number of times that they come in by month
 -- and order the report from most frequent to the least frequent. Each row in the output
 -- should have the Customer name, the month, the year, and the number of times that
 -- customer came in during that month of that year.
-SELECT * FROM customer c
-INNER JOIN Orders o ON(c.accountNo = o.accountNumber)
+
 
 
 -- 10) List the three customers who have spent the most at Miming’s over the past year (365
 -- days). Order by the amount that they spent, from largest to smallest.
-SELECT c.custName, SUM(mp.price) as "Bill Total", DATEDIFF(day,o.orderDateTime,CURDATE()) as numDays FROM customer c
+SELECT c.custName as "customer", SUM(mp.price) as "amount", DATEDIFF(CURDATE(),o.orderDateTime) as numDays FROM customers c
 INNER JOIN Orders o ON (c.accountNo = o.accountNo)
 INNER JOIN OrderItem oi ON (o.orderNumber = oi.orderNumber)
 INNER JOIN MenuPrices mp ON (oi.menuItemNum =  mp.menuItemNum)
 GROUP BY c.custName
-HAVING numDays < 366
-ORDER BY SUM(mp.price) ASC;
+HAVING numDays < 365
+ORDER BY SUM(mp.price) DESC
+LIMIT 3;
 
 
 -- 11) List the five menu items that have generated the most revenue for Miming’s over the past
@@ -93,44 +91,17 @@ FROM Customer INNER JOIN (Individual INNER JOIN Company ON Individual.emailAddre
 
 
 -- 15) List the contents and prices of each of the menus.
-
+    
 
 -- 16) Three additional queries that demonstrate the five additional business rules. Feel free to
 -- create additional views to support these queries if you so desire
 
 -- Business Rules
 -- 1) An individual customer can only have one miming account
+    SELECT c.custName, cust.custName FROM individual a INNER JOIN customers c ON c.accountNo = a.accountNo , individual b INNER JOIN customers cust ON cust.accountNo = b.accountNo 
+    WHERE a.emailAddress = b.emailAddress AND c.custName != cust.custName;
 -- 2) company accounts can share a contact (the person ordering the food)
+    SELECT c.custName,a.emailAddress, cust.custName,b.contactEmail FROM individual a INNER JOIN customers c ON c.accountNo = a.accountNo ,company b INNER JOIN customers cust ON cust.accountNo = b.accountNo 
+    WHERE a.emailAddress = b.contactEmail AND c.custName != cust.custName;
 -- 3) During Birthday Month, customers (individuals) receive double the miming dollar amount
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
