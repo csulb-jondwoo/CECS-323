@@ -1,37 +1,20 @@
--- Customer_addresses_v – for each customer, indicate whether they are an individual or a
--- corporate account, and display all of the information that we are managing for that
--- customer.
-    SELECT * FROM customers c 
-    INNER JOIN individuals i ON (c.accountNo = i.accountNo)
-    UNION
-    SELECT * FROM customers c 
-    INNER JOIN company comp ON (c.accountNo = comp.accountNo);
-
--- Customer_Value_v – List each customer and the total $ amount of their orders for the
--- past year (365 days), in order of the value of customer orders, from highest to the lowest.
-SELECT c.custName, SUM(mp.price) as "Bill Total" FROM customer c
-INNER JOIN Orders o ON (c.accountNo = o.accountNo)
-INNER JOIN OrderItem oi ON (o.orderNumber = oi.orderNumber)
-INNER JOIN MenuPrices mp ON (oi.menuItemNum =  mp.menuItemNum)
-GROUP BY c.custName
-HAVING DATEDIFF(day,o.orderDateTime,CURRENT_DATE) < 366;
-
-SELECT SUM(cust.MimingMoney) as "TotalSpent", c.CustName FROM customers as c
-INNER JOIN Orders as o  ON (o.Account# = c.Account#)
-WHERE DATEDIFF(day, o.DATEDIFF,) < 366;
-
 -- List the customers. For each customer, indicate which category he or she fall into, and
 -- his or her contact information. If you have more than one independent categorization of 
 -- CECS 323 Term Project.docx 1/13/2020 1:47:00 PM 9
 -- customers, please indicate which category the customer falls into for all of the
 -- categorizations
+
 SELECT "Catergory" as 'Individual Customer' FROM ;
 
 -- List the top three customers in terms of their net spending for the past two years (last
 -- 730 days), and the total that they have spent in that period.
-SELECT TOP 3 * FROM (SELECT SUM(cust.MimingMoney) as "TotalSpent", c.CustName FROM customers as c
-INNER JOIN Orders as o  ON (o.Account# = c.Account#)
-WHERE DATEDIFF(day, o.DATEDIFF, CURRENT_DATE) < 731) as "SpentTable";
+SELECT c.custName, SUM(mp.price) as "Bill Total" FROM customer c
+INNER JOIN Orders o ON (c.accountNo = o.accountNo)
+INNER JOIN OrderItem oi ON (o.orderNumber = oi.orderNumber)
+INNER JOIN MenuPrices mp ON (oi.menuItemNum =  mp.menuItemNum)
+GROUP BY c.custName
+HAVING DATEDIFF(day,o.orderDateTime,CURRENT_DATE) < 731
+ORDER BY SUM(mp.price);
 
 -- List the customers, sorted by the amount of Miming’s Money that they have, from largest
 -- to smallest.
