@@ -11,5 +11,7 @@ a couple things about this script:
 3. went entering date into excel columns make sure DATE(yy-mm-dd) and TIME(hh:mm:ss) are formatted correctly 
 4. make sure data matches up with what you guys want in the table rows (ex: CA for state, not California or vice versa)
 
+
+*sample excel sheets with dummy data provided
 *not exhaustively tested
-*random generators for commonly used things are linked within the folder
+*check links.txt for random generators for commonly used things
