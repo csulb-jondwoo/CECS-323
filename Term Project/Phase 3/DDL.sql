@@ -174,10 +174,10 @@ CREATE TABLE lineCookStation (
 
 CREATE TABLE customers (
     accountNo INT NOT NULL,
-    city VARCHAR (15),
-    address VARCHAR(30),
-    state VARCHAR(2),
-    custName VARCHAR(20),
+    city VARCHAR (15) NOT NULL,
+    address VARCHAR(30) NOT NULL,
+    state VARCHAR(2) NOT NULL,
+    custName VARCHAR(20) NOT NULL,
     mimingMoney INT,
     CONSTRAINT customers_pk PRIMARY KEY (accountNo),
     CONSTRAINT customers_uk01 UNIQUE (city, address, state, custName)
@@ -197,7 +197,7 @@ CREATE TABLE company (
     companyDep VARCHAR(15) NOT NULL,
     companyName VARCHAR(20) NOT NULL,
     contactEmail VARCHAR(25) NOT NULL,
-    contactPhone VARCHAR(10) NOT NULL,
+         VARCHAR(10) NOT NULL,
     CONSTRAINT company_customer_pk PRIMARY KEY(accountNo),
     CONSTRAINT copmany_ck01 UNIQUE (companyDep,companyName,contactEmail,contactPhone),
     CONSTRAINT comp_customer_fk01 FOREIGN KEY (accountNo) REFERENCES customers(accountNo)
