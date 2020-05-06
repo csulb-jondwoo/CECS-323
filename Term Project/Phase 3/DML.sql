@@ -444,7 +444,8 @@ values ('Chefs Special'),
     
 -- insert data into SpiceLevels table
 insert into SpiceLevels (name)
-values ('Tangy'),
+    values ('Mild'),
+    ('Tangy'),
     ('Piquant'),
     ('Hot'),
     ('Oh My God');
@@ -788,24 +789,24 @@ insert into MenuPrices (menuItemNum, menu, price)
 INSERT INTO OrderItem (orderNumber, orderItemNum, menuItemNum, menu, meat, spiciness)
 VALUES 
 (1000, 1, 1, 'Lunch', 'Pork', 'Hot'),
-(1001, 2, 2, 'Childrens', 'Pork', 'Tangy'),
+(1001, 2, 2, 'Childrens', 'Pork', 'Mild'),
 (1002, 3, 3, 'Evening', 'Pork', 'Hot'),
 (1003, 4, 4, 'Lunch', 'Seafood', 'Hot'),
 (1004, 5, 5, 'Lunch', 'Chicken', 'Piquant'),
-(1005, 6, 1, 'Childrens', 'Chicken', 'Tangy'),
+(1005, 6, 1, 'Childrens', 'Chicken', 'Mild'),
 (1006, 7, 2, 'Lunch', 'Chicken', 'Piquant'),
 (1007, 8, 6, 'Childrens', 'Beef', 'Tangy'),
-(1008, 9, 7, 'Childrens', 'Chefs Special', 'Tangy'),
+(1008, 9, 7, 'Childrens', 'Chefs Special', 'Mild'),
 (1009, 10, 8, 'Evening', 'Chefs Special', 'Hot'),
 (1010, 11, 2, 'Evening', 'Chefs Special', 'Piquant'),
 (1011, 12, 7, 'Evening', 'Beef', 'Hot'),
 (1012, 13, 4, 'Evening', 'Beef', 'Oh My God'),
-(1013, 14, 2, 'Evening', 'Vegetables', 'Tangy'),
+(1013, 14, 2, 'Evening', 'Vegetables', 'Mild'),
 (1014, 15, 4, 'Evening', 'Vegetables', 'Piquant'),
 (1015, 16, 6, 'Lunch', 'Beef', 'Oh My God'),
 (1016, 17, 5, 'Lunch', 'Seafood', 'Oh My God'),
 (1017, 18, 3, 'Lunch', 'Beef', 'Oh My God'),
-(1018, 19, 1, 'Lunch', 'Seafood', 'Tangy'),
+(1018, 19, 1, 'Lunch', 'Seafood', 'Mild'),
 (1019, 20, 8, 'Lunch', 'Pork', 'Tangy'),
 (1020, 21, 9, 'Sunday Brunch Buffet', 'N/A', NULL),
 (1021, 22, 9, 'Sunday Brunch Buffet', 'N/A', NULL),
@@ -815,5 +816,5 @@ VALUES
 (1025, 26, 8, 'Evening', 'Beef', 'Piquant'),
 (1026, 27, 7, 'Evening', 'Beef', 'Piquant'),
 (1027, 28, 5, 'Childrens', 'Seafood', 'Tangy'),
-(1028, 29, 4, 'Childrens', 'Vegetables', 'Tangy'),
+(1028, 29, 4, 'Childrens', 'Vegetables', 'Mild'),
 (1029, 30, 6, 'Childrens', 'Vegetables', 'Tangy');
