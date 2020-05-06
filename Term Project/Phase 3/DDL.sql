@@ -183,7 +183,6 @@ CREATE TABLE lineCookStation (
 --     meat varchar(20) not null,
 --     spiciness varchar(20) not null,
 --     primary key (orderNumber, orderDateTime, orderItemNum),
--- 	-- 
 --     constraint orderItem_orders_fk01 foreign key (orderNumber, orderDateTime) references Orders(orderNumber, orderDateTime),
 --     constraint orderItem_menuPrices_fk01 foreign key (menuItemNum, menu) references MenuPrices(menuItemNum, menu),
 --     constraint orderItem_meats_fk01 foreign key (meat) references Meats(name),
@@ -220,5 +219,6 @@ CREATE TABLE lineCookStation (
 --     CONSTRAINT 'COMPANY_CK1' KEY('CompanyDep','CompnayName','ContactEmail','ContactPhone'),
 --     CONSTRAINT 'comp_customer_fk1' FOREIGN KEY ('Account#') REFERENCES 'Customer'
 -- };
+
 
 -- DROP DATABASE mimings_cuisine;
