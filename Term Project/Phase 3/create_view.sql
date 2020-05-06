@@ -24,7 +24,7 @@ create or replace view Customer_addresses_v as
 
 -- 5) Customer_Value_v – List each customer and the total $ amount of their orders for the
 -- past year (365 days), in order of the value of customer orders, from highest to the lowest.
-<<<<<<< HEAD
+
 -- Please perform a select * from each view and put the results of that select into a single
 -- file called view_output.docx, or .pdf. If you like, you can put the SQL for the view in the
 -- same file with the output.

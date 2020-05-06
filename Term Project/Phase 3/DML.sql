@@ -365,6 +365,30 @@ VALUES
 (1152),
 (1153);
 
+-- insert data into mentorship table
+INSERT INTO mentorship (itemNum, mentorID, menteeID, startDate, endDate)
+VALUES 
+(1, 1101, 1142, '2018-01-01', '2019-05-12'),
+(1, 1101, 1145, '2018-01-09', '2019-05-17'),
+(1, 1101, 1149, '2018-01-22', '2019-06-02'),
+(2, 1114, 1142, '2018-02-12', '2019-06-23'),
+(2, 1114, 1152, '2018-02-23', '2019-07-07'),
+(2, 1114, 1153, '2018-02-27', '2019-07-26'),
+(3, 1101, 1149, '2018-03-03', '2019-07-28'),
+(3, 1101, 1152, '2018-03-13', '2019-08-11'),
+(4, 1114, 1142, '2018-03-25', '2019-08-17'),
+(4, 1114, 1145, '2018-05-30', '2019-09-05'),
+(4, 1114, 1153, '2018-06-19', '2019-09-20'),
+(5, 1101, 1142, '2018-07-11', '2019-10-06'),
+(5, 1101, 1153, '2018-08-11', '2019-10-16'),
+(6, 1114, 1142, '2018-09-18', '2019-11-02'),
+(6, 1114, 1145, '2018-09-24', '2019-11-04'),
+(6, 1114, 1153, '2018-11-18', '2019-11-27'),
+(7, 1101, 1142, '2018-11-28', '2019-11-30'),
+(8, 1114, 1142, '2018-12-07', '2019-11-30'),
+(8, 1114, 1149, '2018-12-08', '2019-12-04');
+
+
 -- insert data into waitStaff table
 INSERT INTO waitStaff(empID)
 VALUES 
@@ -782,8 +806,8 @@ insert into MenuPrices (menuItemNum, menu, price)
 	(8, 'Lunch', 7),
 	(8, 'Evening', 9),
 	(8, 'Childrens', 5),
-	(9, 'Sunday Brunch Buffet', 16),
-	(10, 'Sunday Brunch Buffet', 12);
+	(9, 'Sunday Afternoon Brunch Buffet ', 16),
+	(10, 'Sunday Evening Brunch Buffet', 12);
 
 -- insert data into OrderItem table
 INSERT INTO OrderItem (orderNumber, orderItemNum, menuItemNum, menu, meat, spiciness)
