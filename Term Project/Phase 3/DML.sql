@@ -2794,6 +2794,7 @@ insert into MenuUsage (name, day, useStartTime, useEndTime)
     ('Childrens', 'Sunday', '10:00', '23:00'),
     ('Sunday Brunch Buffet', 'Sunday', '10:00', '14:00');
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 INSERT INTO company ('accountNo', 'companyName', 'companyDep', 'contactEmail', 'contactPhone')
@@ -2927,7 +2928,9 @@ VALUES
 ('23283', 'Oakland', '29857 Medway Street', 'CA', 'Elena Sellers', '0'),
 ('48131', 'Bakersfield', '44795 Hall Park Road', 'CA', 'Eliza Mccray', '0')
 ;
+
 =======
+
 insert into menuPrices (menuItemNum, menu, price) 
 	values (1, 'Lunch', 4),
 	(1, 'Evening', 5),
@@ -2955,6 +2958,3 @@ insert into menuPrices (menuItemNum, menu, price)
 	(8, 'Childrens', 5),
 	(9, 'Sunday Brunch Buffet', 16),
 	(10, 'Sunday Brunch Buffet', 12);
->>>>>>> b8c3529f27fff5793c9acc821d43e3c479e14ab3
-=======
->>>>>>> parent of b8c3529... Posted menu prices
