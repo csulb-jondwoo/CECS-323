@@ -2759,6 +2759,7 @@ insert into MenuItems (itemNum, name, description, recipeNo)
     (5, 'Egg Rolls', 'Deep-fried appetizers. Savory roll with shredded cabbage, chopped pork, and other fillings.', 5),
     (6, 'Chow Mein', 'Chinese stir-fried noodles with choice of meat.', 6),
     (7, 'Egg Foo Young', 'Chinese egg omelette dish made with an easy gravy topping, vegatable and choice of meat', 7),
+<<<<<<< HEAD
     (8, 'Chop Suey', 'Choice of meat and eggs, cooked quickly with vegetables such as bean sprouts, cabbage, and celery and flavorful ', 8);
 
 INSERT INTO expertise (itemNum, chefID)
@@ -2774,6 +2775,13 @@ VALUES
 
 -- fix value order
 insert into MenuUsage (name, day, useStartTime, useEndTime) 
+=======
+    (8, 'Chop Suey', 'Choice of meat and eggs, cooked quickly with vegetables such as bean sprouts, cabbage, and celery and flavorful ', 8)
+    (9, 'Adult Buffet', 'All you can eat buffet for adults 12 and over', 9),
+    (10, 'Childrens Buffet', 'All you can eat buffet for children 11 and under', 10);
+    
+insert into menuusage (name, day, useStartTime, useEndTime) 
+>>>>>>> 1969a0b0c728233f939d58605f8bb2df0f86190f
     values ('Lunch', 'Monday', '10:00', '14:00'),
     ('Lunch', 'Tuesday', '10:00', '14:00'),
     ('Lunch', 'Wednesday', '10:00', '14:00'),
