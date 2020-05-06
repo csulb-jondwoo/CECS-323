@@ -1,6 +1,5 @@
 CREATE DATABASE mimings_cuisine;	
 use mimings_cuisine;
-
 -- create tables for Staff
 CREATE TABLE employees (
 	empID			INT NOT NULL,
@@ -220,5 +219,93 @@ CREATE TABLE lineCookStation (
 --     CONSTRAINT 'comp_customer_fk1' FOREIGN KEY ('Account#') REFERENCES 'Customer'
 -- };
 
+<<<<<<< HEAD
 
+=======
+CREATE TABLE customer (
+    accountNo INT(10) NOT NULL,
+    city VARCHAR (15),
+    address VARCHAR(30),
+    state VARCHAR(2),
+    custName VARCHAR(20),
+    mimingMoney INT,
+    CONSTRAINT customers_pk PRIMARY KEY (accountNo),
+    CONSTRAINT customers_uk01 UNIQUE (city, address, state, custName)
+);
+
+CREATE TABLE individual (
+    accountNo INTEGER NOT NULL,
+    emailAddress VARCHAR(25) NOT NULL,
+    DOB DATE NOT NULL,
+    CONSTRAINT individual_customer_pk PRIMARY KEY(accountNo),
+    CONSTRAINT individual_uk01 UNIQUE (emailAddress,DOB),
+    CONSTRAINT ind_customer_fk01 FOREIGN KEY (accountNo) REFERENCES customer(accountNo)
+);
+
+CREATE TABLE company (
+    accountNo INTEGER NOT NULL,
+    companyDep VARCHAR(15) NOT NULL,
+    companyName VARCHAR(20) NOT NULL,
+    contactEmail VARCHAR(25) NOT NULL,
+    contactPhone VARCHAR(10) NOT NULL,
+    CONSTRAINT company_customer_pk PRIMARY KEY(accountNo),
+    CONSTRAINT copmany_ck01 UNIQUE (companyDep,companyName,contactEmail,contactPhone),
+    CONSTRAINT comp_customer_fk01 FOREIGN KEY (accountNo) REFERENCES customer(accountNo)
+);
+
+CREATE TABLE Bill (
+    orderNumber INT NOT NULL,
+    paymentType VARCHAR(20) NOT NULL,
+    AccountNo INT,
+    CONSTRAINT Bill_pk PRIMARY KEY (orderNumber, paymentType),
+    CONSTRAINT Bill_customer_fk01 FOREIGN KEY (AccountNo) REFERENCES customer(AccountNo)
+);
+
+CREATE TABLE Orders (
+    orderNumber INT NOT NULL,
+    paymentType VARCHAR(20),
+    orderDateTime TIMESTAMP,
+    AccountNo INT,
+    CONSTRAINT Order_pk PRIMARY KEY (orderNumber),
+    CONSTRAINT Order_customer_fk01 FOREIGN KEY (AccountNo) REFERENCES customer(AccountNo),
+    CONSTRAINT Order_Bill_fk02 FOREIGN KEY (orderNumber, paymentType) REFERENCES Bill(orderNumber, paymentType)
+    
+);
+
+CREATE TABLE `Online` (
+    orderNumber INT NOT NULL,
+    OrdererEmail VARCHAR(35),
+    EstPickupTime TIMESTAMP,
+    ReadyPickupTime TIMESTAMP,
+    CONSTRAINT Online_pk PRIMARY KEY (orderNumber),
+    CONSTRAINT Online_Order_fk01 FOREIGN KEY (orderNumber) REFERENCES Orders(orderNumber)
+);
+CREATE TABLE Phone (
+    orderNumber INT NOT NULL,
+    PhonerNumber VARCHAR(20),
+    EstPickupTime TIMESTAMP,
+    ReadyPickupTime TIMESTAMP,
+    CONSTRAINT Phone_pk PRIMARY KEY (orderNumber),
+    CONSTRAINT Phone_Order_fk01 FOREIGN KEY (orderNumber) REFERENCES Orders(orderNumber)
+);
+CREATE TABLE EatIn (
+    orderNumber INT NOT NULL,
+    CONSTRAINT EatIn_pk PRIMARY KEY (orderNumber),
+    CONSTRAINT EatIn_Order_fk01 FOREIGN KEY (orderNumber) REFERENCES Orders(orderNumber)
+);
+CREATE TABLE `Table` (
+    TableNumber INT NOT NULL,
+    CONSTRAINT Table_pk PRIMARY KEY (TableNumber)
+);
+CREATE TABLE Seat (
+    TableNumber INT NOT NULL,
+    SeatNumber INT NOT NULL,
+    orderNumber INT NOT NULL,
+    empID INT NOT NULL,
+    CONSTRAINT Seat_pk PRIMARY KEY (TableNumber, SeatNumber, orderNumber, empID),
+    CONSTRAINT Seat_Table_fk01 FOREIGN KEY (TableNumber) REFERENCES `Table`(TableNumber),
+    CONSTRAINT Seat_EatIn_fk02 FOREIGN KEY (orderNumber) REFERENCES EatIn(orderNumber),
+    CONSTRAINT Seat_waitStaff_fk03 FOREIGN KEY (empID) REFERENCES waitStaff(empID)
+);
+>>>>>>> 48730562a3c33676eca8a7e89fea38a2c4b2001b
 -- DROP DATABASE mimings_cuisine;
