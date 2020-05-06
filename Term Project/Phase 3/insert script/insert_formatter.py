@@ -33,24 +33,7 @@ def getRange():
 
     return int(colRange), int(rowRange)
 
-# boolean flag to for parsing in parsedContents()
-def isDateTime():
-    Timeflag = input("does this table contain TIME? y/n\n")
-    Dateflag = input("does this table contain DATE? y/n\n")
-    
-    if Timeflag == "y":
-        Timeflag = True
-    else:
-        Timeflag = False
-    
-    if Dateflag == "y":
-        Dateflag = True
-    else:
-        Dateflag = False
-
-    return Timeflag,Dateflag
-
-def parseContents(data, colRange, rowRange, timeFlag, dateFlag):
+def parseContents(data, colRange, rowRange):
     # parse data and separate new entry by every "colRange" attributes
     parsedData = []
     for value in data:
@@ -60,16 +43,17 @@ def parseContents(data, colRange, rowRange, timeFlag, dateFlag):
             if isinstance(value, str):
                 new_str = normalize('NFKD', value)
                 parsedData.append(new_str)
-            
+
             # if table has DATE
-            if (dateFlag):
-                if isinstance(value, datetime.datetime):
-                    parsedData.append(value.strftime('%Y-%m-%d'))
-            
+            # if (dateFlag):
+            if isinstance(value, datetime.datetime):
+                parsedData.append(value.strftime('%Y-%m-%d'))
+        
             # if table has TIME           
-            if (timeFlag):
-                if isinstance(value, datetime.time):
-                    parsedData.append(value.strftime('%H:%M:%S'))
+            # if (timeFlag):
+            if isinstance(value, datetime.time):
+                parsedData.append(value.strftime('%H:%M:%S'))
+            
         else:
             parsedData.append(value)
     
@@ -82,22 +66,26 @@ def displayOutput(output, tableName):
     print("VALUES ")    
     for entry in range(1, len(output)):
         print(output[entry])
-
-    pause = input("Enter to quit")
     
 def main():
-    path = os.path.dirname(os.path.realpath(__file__))  # Get the current working directory (cwd)
-    os.chdir(path)
-    cwd = os.getcwd()
-    print(cwd)
+    repeat = True
+    while(repeat):
+        path = os.path.dirname(os.path.realpath(__file__))  # Get the current working directory (cwd)
+        os.chdir(path)
+        cwd = os.getcwd()
+        print(cwd)
 
-    fileName = getFileName()
-    ws = getWS(fileName)
-    colRange,rowRange = getRange()
-    data = getContents(ws, colRange, rowRange)
-    timeFlag,dateFlag = isDateTime()
-    compositeList = parseContents(data, colRange, rowRange, timeFlag, dateFlag)
-    displayOutput(compositeList, fileName)
+        fileName = getFileName()
+        ws = getWS(fileName)
+        colRange,rowRange = getRange()
+        data = getContents(ws, colRange, rowRange)
+        compositeList = parseContents(data, colRange, rowRange)
+        displayOutput(compositeList, fileName)
+        user_input = input("format another table? y/n\n")
+        if user_input == 'y':
+            repeat = True
+        else:
+            repeat = False
 
 
 if __name__ == "__main__":

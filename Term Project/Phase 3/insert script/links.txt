@@ -1,0 +1,23 @@
+DATETIME:
+http://random-date-generator.com/
+
+INTEGER:
+https://www.random.org/integers/
+
+NAME:
+https://www.name-generator.org.uk/quick/
+
+COMPANY NAME:
+https://gist.github.com/demersdesigns/aac366882659a989e958
+
+EMAIL:
+https://www.randomlists.com/email-addresses
+
+STREET NAME:
+https://www.name-generator.org.uk/?i=2e0qnc0u
+
+CITY:
+https://www.name-generator.org.uk/?i=1znascgv
+
+STATE: (only keep the 2 letters)
+https://randomlistgenerator.com/us-states
