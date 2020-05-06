@@ -2,7 +2,6 @@
 -- his or her contact information. If you have more than one independent categorization of customers, 
 -- please indicate which category the customer falls into for all of the
 -- categorizations.
-
     SELECT "Catergory" as 'Individual', * FROM customers c 
     INNER JOIN individuals i ON (c.accountNo = i.accountNo)
     UNION
@@ -24,7 +23,14 @@ LIMIT 3;
 -- each sous chef, list their name, the number of menu items that they can prepare, and
 -- each of the menu items. You can use group_concat to get all of a given sous chef’s data
 -- on one row, or print out one row per sous chef per menu item.
-
+	-- count sousChef expertise
+    SELECT itemNum, chefID, mentorID, menteeID
+    FROM expertise
+    INNER JOIN mentorship USING itemNum;
+    
+    -- filter by three or more
+    
+    
 -- 4) Find all of the sous chefs who have three or more menu items in common.
 -- i. Please give the name of each of the two sous chefs sharing three or more menu
 -- items.
