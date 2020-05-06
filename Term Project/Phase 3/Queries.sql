@@ -42,6 +42,12 @@ LIMIT 3;
 
 -- 5) Find the three menu items most often ordered from the Children’s menu and order them
 -- from most frequently ordered to least frequently ordered.
+select name, count(orderItemNum) from orderItem
+inner join menuitems on menuItems.itemNum = orderItem.menuItemNum
+where menu = 'Childrens'
+group by name
+order by count(orderItemNum) desc
+limit 3;
 
 -- 6) Show by week, how many hours each employee works.
 
