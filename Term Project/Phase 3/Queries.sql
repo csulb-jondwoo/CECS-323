@@ -104,6 +104,15 @@ ORDER BY SUM(mp.price) ASC;
 
 -- 11) List the five menu items that have generated the most revenue for Miming’s over the past
 -- year (365 days).
+select name, sum(price) as Revenue from orderItem, menuItems, menuPrices, orders 
+where orderItem.menuItemNum = menuItems.itemNum
+and menuItems.itemNum = menuPrices.menuItemNum
+and menuPrices.menu = orderItem.menu
+and orders.orderNumber = orderItem.orderNumber
+and datediff(now(), orderDateTime) <= 365
+group by name
+order by Revenue desc
+limit 5;
 
 -- 12) Find the sous chef who is mentoring the most other sous chef. List the menu items that
 -- the sous chef is passing along to the other sous chefs.
