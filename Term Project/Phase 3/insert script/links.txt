@@ -1,0 +1,28 @@
+DATETIME:
+http://random-date-generator.com/
+
+TIME: generate times that make sense. (i.e no times when stores are closed, ready times can't be before estPickup times)
+https://www.browserling.com/tools/random-time
+
+
+INTEGER: make sure ID's match (like chefID from headChef table must be and empID from employees table, orderNumber from online must be same from orders)
+https://www.random.org/integer-sets/
+
+NAME:
+https://www.name-generator.org.uk/quick/
+
+COMPANY NAME:
+https://gist.github.com/demersdesigns/aac366882659a989e958
+
+EMAIL:
+https://www.randomlists.com/email-addresses
+
+STREET NAME:
+https://www.name-generator.org.uk/?i=2e0qnc0u
+
+CITY:
+https://www.name-generator.org.uk/?i=1znascgv
+
+STATE: (only keep the 2 letters)
+https://randomlistgenerator.com/us-statesAydin Hanson
+
