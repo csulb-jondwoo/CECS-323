@@ -365,28 +365,6 @@ VALUES
 (1152),
 (1153);
 
--- insert data into mentorship table
-INSERT INTO mentorship (itemNum, mentorID, menteeID, startDate, endDate)
-VALUES 
-(1, 1101, 1142, '2018-01-01', '2019-05-12'),
-(1, 1101, 1145, '2018-01-09', '2019-05-17'),
-(1, 1101, 1149, '2018-01-22', '2019-06-02'),
-(2, 1114, 1142, '2018-02-12', '2019-06-23'),
-(2, 1114, 1152, '2018-02-23', '2019-07-07'),
-(2, 1114, 1153, '2018-02-27', '2019-07-26'),
-(3, 1101, 1149, '2018-03-03', '2019-07-28'),
-(3, 1101, 1152, '2018-03-13', '2019-08-11'),
-(4, 1114, 1142, '2018-03-25', '2019-08-17'),
-(4, 1114, 1145, '2018-05-30', '2019-09-05'),
-(4, 1114, 1153, '2018-06-19', '2019-09-20'),
-(5, 1101, 1142, '2018-07-11', '2019-10-06'),
-(5, 1101, 1153, '2018-08-11', '2019-10-16'),
-(6, 1114, 1142, '2018-09-18', '2019-11-02'),
-(6, 1114, 1145, '2018-09-24', '2019-11-04'),
-(6, 1114, 1153, '2018-11-18', '2019-11-27'),
-(7, 1101, 1142, '2018-11-28', '2019-11-30'),
-(8, 1114, 1142, '2018-12-07', '2019-11-30'),
-(8, 1114, 1149, '2018-12-08', '2019-12-04');
 
 
 -- insert data into waitStaff table
@@ -455,16 +433,7 @@ insert into AvailableDays (dayName)
     ('Thursday'),
     ('Friday'),
     ('Saturday');
-    
--- insert data into Meats table
-insert into Meats (name)
-values ('Chefs Special'),
-    ('Pork'),
-    ('Chicken'),
-    ('Beef'),
-    ('Seafood'),
-    ('Vegetables'),
-    ('N/A');
+
     
 -- insert data into SpiceLevels table
 insert into SpiceLevels (name)
@@ -498,6 +467,29 @@ VALUES
 (6, 1114),
 (7, 1101),
 (8, 1114);
+
+-- insert data into mentorship table
+INSERT INTO mentorship (itemNum, mentorID, menteeID, startDate, endDate)
+VALUES 
+(1, 1101, 1142, '2018-01-01', '2019-05-12'),
+(1, 1101, 1145, '2018-01-09', '2019-05-17'),
+(1, 1101, 1149, '2018-01-22', '2019-06-02'),
+(2, 1114, 1142, '2018-02-12', '2019-06-23'),
+(2, 1114, 1152, '2018-02-23', '2019-07-07'),
+(2, 1114, 1153, '2018-02-27', '2019-07-26'),
+(3, 1101, 1149, '2018-03-03', '2019-07-28'),
+(3, 1101, 1152, '2018-03-13', '2019-08-11'),
+(4, 1114, 1142, '2018-03-25', '2019-08-17'),
+(4, 1114, 1145, '2018-05-30', '2019-09-05'),
+(4, 1114, 1153, '2018-06-19', '2019-09-20'),
+(5, 1101, 1142, '2018-07-11', '2019-10-06'),
+(5, 1101, 1153, '2018-08-11', '2019-10-16'),
+(6, 1114, 1142, '2018-09-18', '2019-11-02'),
+(6, 1114, 1145, '2018-09-24', '2019-11-04'),
+(6, 1114, 1153, '2018-11-18', '2019-11-27'),
+(7, 1101, 1142, '2018-11-28', '2019-11-30'),
+(8, 1114, 1142, '2018-12-07', '2019-11-30'),
+(8, 1114, 1149, '2018-12-08', '2019-12-04');
 
 -- insert data into MenuUsage table
 insert into MenuUsage (name, day, useStartTime, useEndTime) 
@@ -806,59 +798,51 @@ insert into MenuPrices (menuItemNum, menu, price)
 	(8, 'Lunch', 7),
 	(8, 'Evening', 9),
 	(8, 'Childrens', 5),
-	(9, 'Sunday Afternoon Brunch Buffet ', 16),
-	(10, 'Sunday Evening Brunch Buffet', 12);
+	(9, 'Sunday Brunch Buffet', 16),
+	(10, 'Sunday Brunch Buffet', 12);
 
+
+-- insert data into Meats table
+insert into Meats (name)
+values ('Chefs Special'),
+    ('Pork'),
+    ('Chicken'),
+    ('Beef'),
+    ('Seafood'),
+    ('Vegetables'),
+    ('N/A');
+    
 -- insert data into OrderItem table
 INSERT INTO OrderItem (orderNumber, orderItemNum, menuItemNum, menu, meat, spiciness)
 VALUES 
-(1000, 1, 1, 'Lunch', 'N/A', 'Hot'),
-(1000, 2, 1, 'Lunch', 'N/A', 'Hot'),
-(1000, 3, 8, 'Lunch', 'Chefs Special', 'Hot'),
-(1000, 4, 6, 'Lunch', 'Beef', 'Hot'),
-(1001, 1, 6, 'Childrens', 'Chicken', 'Mild'),
-(1001, 2, 6, 'Childrens', 'Beef', 'Mild'),
-(1001, 3, 2, 'Evening', 'N/A', 'Mild'),
-(1001, 4, 6, 'Evening', 'Chicken', 'Mild'),
-(1002, 1, 3, 'Evening', 'N/A', 'Hot'),
-(1002, 2, 7, 'Evening', 'Pork', 'Hot'),
-(1003, 1, 4, 'Lunch', 'N/A', 'Hot'),
-(1004, 1, 5, 'Lunch', 'N/A', 'Piquant'),
-(1005, 1, 1, 'Lunch', 'N/A', 'Mild'),
-(1005, 2, 6, 'Childrens', 'Chicken', 'Mild'),
-(1005, 3, 8, 'Lunch', 'Vegetable', 'Oh My God'),
-(1006, 1, 2, 'Lunch', 'N/A', 'Piquant'),
-(1007, 1, 6, 'Childrens', 'Chicken', 'Tangy'),
-(1007, 2, 6, 'Evening', 'Beef', 'Hot'),
-(1007, 3, 7, 'Evening', 'Pork', 'Tangy'),
-(1008, 1, 4, 'Lunch', 'N/A', 'Mild'),
-(1008, 2, 7, 'Childrens', 'Chicken', 'Mild'),
-(1008, 3, 7, 'Childrens', 'Beef', 'Mild'),
-(1009, 1, 8, 'Evening', 'Chefs Special', 'Hot'),
-(1010, 1, 2, 'Evening', 'Chefs Special', 'Piquant'),
-(1011, 1, 7, 'Evening', 'Beef', 'Hot'),
-(1012, 1, 4, 'Evening', 'Beef', 'Oh My God'),
-(1013, 1, 2, 'Evening', 'Vegetables', 'Mild'),
-(1014, 1, 4, 'Evening', 'Vegetables', 'Piquant'),
-(1015, 1, 6, 'Lunch', 'Beef', 'Oh My God'),
-(1016, 1, 5, 'Lunch', 'Seafood', 'Oh My God'),
-(1017, 1, 3, 'Lunch', 'Beef', 'Oh My God'),
-(1018, 1, 1, 'Lunch', 'Seafood', 'Mild'),
-(1019, 1, 8, 'Lunch', 'Pork', 'Tangy'),
-(1020, 1, 9, 'Sunday Brunch Buffet', 'N/A', NULL),
-(1021, 1, 9, 'Sunday Brunch Buffet', 'N/A', NULL),
-(1022, 1, 10, 'Sunday Brunch Buffet', 'N/A', NULL),
-(1023, 1, 9, 'Sunday Brunch Buffet', 'N/A', NULL),
-(1024, 1, 10, 'Sunday Brunch Buffet', 'N/A', NULL),
-(1025, 1, 8, 'Evening', 'Beef', 'Piquant'),
-(1026, 1, 7, 'Evening', 'Beef', 'Piquant'),
-(1027, 1, 6, 'Childrens', 'Chicken', 'Mild'),
-(1027, 2, 6, 'Evening', 'Seafood', 'Tangy'),
-(1027, 3, 5, 'Childrens', 'N/A', 'Mild'),
-(1028, 1, 4, 'Childrens', 'Chicken', 'Tangy'),
-(1028, 2, 4, 'Evening', 'Vegetables', 'Piquant'),
-(1028, 3, 4, 'Childrens', 'Beef', 'Mild'),
-(1028, 4, 4, 'Evening', 'Chefs Special', 'Hot'),
-(1029, 1, 8, 'Childrens', 'Chicken', 'Mild'),
-(1029, 2, 6, 'Evening', 'Vegetables', 'Tangy'),
-(1029, 3, 5, 'Evening', 'N/A', 'Mild');
+(1000, 1, 1, 'Lunch', 'Pork', 'Hot'),
+(1001, 2, 2, 'Childrens', 'Pork', 'Mild'),
+(1002, 3, 3, 'Evening', 'Pork', 'Hot'),
+(1003, 4, 4, 'Lunch', 'Seafood', 'Hot'),
+(1004, 5, 5, 'Lunch', 'Chicken', 'Piquant'),
+(1005, 6, 1, 'Childrens', 'Chicken', 'Mild'),
+(1006, 7, 2, 'Lunch', 'Chicken', 'Piquant'),
+(1007, 8, 6, 'Childrens', 'Beef', 'Tangy'),
+(1008, 9, 7, 'Childrens', 'Chefs Special', 'Mild'),
+(1009, 10, 8, 'Evening', 'Chefs Special', 'Hot'),
+(1010, 11, 2, 'Evening', 'Chefs Special', 'Piquant'),
+(1011, 12, 7, 'Evening', 'Beef', 'Hot'),
+(1012, 13, 4, 'Evening', 'Beef', 'Oh My God'),
+(1013, 14, 2, 'Evening', 'Vegetables', 'Mild'),
+(1014, 15, 4, 'Evening', 'Vegetables', 'Piquant'),
+(1015, 16, 6, 'Lunch', 'Beef', 'Oh My God'),
+(1016, 17, 5, 'Lunch', 'Seafood', 'Oh My God'),
+(1017, 18, 3, 'Lunch', 'Beef', 'Oh My God'),
+(1018, 19, 1, 'Lunch', 'Seafood', 'Mild'),
+(1019, 20, 8, 'Lunch', 'Pork', 'Tangy'),
+(1020, 21, 9, 'Sunday Brunch Buffet', 'N/A', NULL),
+(1021, 22, 9, 'Sunday Brunch Buffet', 'N/A', NULL),
+(1022, 23, 10, 'Sunday Brunch Buffet', 'N/A', NULL),
+(1023, 24, 9, 'Sunday Brunch Buffet', 'N/A', NULL),
+(1024, 25, 10, 'Sunday Brunch Buffet', 'N/A', NULL),
+(1025, 26, 8, 'Evening', 'Beef', 'Piquant'),
+(1026, 27, 7, 'Evening', 'Beef', 'Piquant'),
+(1027, 28, 5, 'Childrens', 'Seafood', 'Tangy'),
+(1028, 29, 4, 'Childrens', 'Vegetables', 'Mild'),
+(1029, 30, 6, 'Childrens', 'Vegetables', 'Tangy');
+

@@ -119,7 +119,7 @@ create table MenuItems(
     -- price: the price of the item on the menu
 create table MenuPrices(
     menuItemNum int not null,
-    menu varchar(20) not null,
+    menu varchar(50) not null,
     price decimal(5,2) not null,
     primary key (menuItemNum, menu),
     constraint menuPrices_menuItems_fk01 foreign key (menuItemNum) references MenuItems(itemNum),

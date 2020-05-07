@@ -1,0 +1,378 @@
+-- 2) List the top three customers in terms of their net spending for the past two years (last
+-- 730 days), and the total that they have spent in that period.
+SELECT 'Individual' as "Category",c.custName,c.city,c.address,c.state,c.custName,c.mimingMoney,i.emailAddress as "Email",i.DOB as "DOB",NULL as "companyDep",NULL as "companyName",NULL as "contactPhone" FROM customers c 
+INNER JOIN individual i ON (c.accountNo = i.accountNo)
+UNION
+SELECT 'Individual' as "Category",c.custName,c.city,c.address,c.state,c.custName,c.mimingMoney,comp.contactEmail as "Email",NULL as "DOB",comp.companyDep as "companyDep",comp.companyName as "companyName",comp.contactPhone as "contactPhone" FROM customers c 
+INNER JOIN company comp ON (c.accountNo = comp.accountNo);
+
+Category, custName, city, address, state, custName, mimingMoney, Email, DOB, companyDep, companyName, contactPhone
+Individual	Ibrar Goddard	Huntington Beach	91140 Cheriton Road	CA	Ibrar Goddard	25	amaranth@sbcglobal.net	1993-02-25			
+Individual	Clementine Faulkner	Oakland	54265 Noel Street	CA	Clementine Faulkner	0	arandal@me.com	2000-10-06			
+Individual	Yusha Wilson	Garden Grove	52190 Eaton Mews	CA	Yusha Wilson	6	bjornk@hotmail.com	1991-08-25			
+Individual	Alannah Monaghan	Long Beach	16835 Blossom Way	CA	Alannah Monaghan	0	cgarcia@live.com	1981-10-03			
+Individual	Gabija Gaines	Riverside	28405 Bryan Street	CA	Gabija Gaines	0	cgcra@live.com	1971-08-09			
+Individual	Taryn Reeve	Elk Grove	56976 Hanworth Road	CA	Taryn Reeve	0	crobles@msn.com	1981-10-31			
+Individual	Fletcher Emerson	Long Beach	30039 Fernside Close	CA	Fletcher Emerson	7	denism@msn.com	1993-07-15			
+Individual	Antony Miller	Moreno Valley	36958 Admiralty Way	CA	Antony Miller	0	dhwon@aol.com	1990-08-14			
+Individual	Freyja Graves	Ontario	12158 Bellevue Street	CA	Freyja Graves	0	dimensio@gmail.com	1993-05-25			
+Individual	Sidney Acevedo	Anaheim	4052 Walsall Street	CA	Sidney Acevedo	0	dwheeler@hotmail.com	1990-07-29			
+Individual	Charley Velez	Oceanside	2764 Slad Lane	CA	Charley Velez	0	emcleod@aol.com	1972-12-15			
+Individual	Ferne Lott	Bakersfield	54839 Cherry Garden Road	CA	Ferne Lott	0	gtaylor@msn.com	1993-03-23			
+Individual	Lacey-Mai Milner	Irvine	98137 Hall Rise	CA	Lacey-Mai Milner	0	ideguy@yahoo.com	1971-08-19			
+Individual	Finnlay Cope	Santa Rosa	5499 Warburton Street	CA	Finnlay Cope	0	ilial@att.net	1994-06-02			
+Individual	Bibi Mcdonnell	Glendale	33304 Carnegie Drive	CA	Bibi Mcdonnell	12	jaxweb@icloud.com	1966-09-15			
+Individual	Kyle Mcdonald	Stockton	11141 Whitley Lane	CA	Kyle Mcdonald	0	jcholewa@live.com	2001-09-18			
+Individual	Kaine Olsen	Oakland	84314 Latham Court	CA	Kaine Olsen	0	jhardin@optonline.net	1996-05-24			
+Individual	Ahsan Bass	Fontana	92211 Mylor Close	CA	Ahsan Bass	4	kspiteri@sbcglobal.net	1998-06-22			
+Individual	Paris Kenny	Garden Grove	56015 North Cross Street	CA	Paris Kenny	6	loscar@yahoo.ca	1984-09-10			
+Individual	Conrad Branch	Ontario	11180 Hall Green Lane	CA	Conrad Branch	150	malvar@att.net	1982-09-13			
+Individual	Tracy Miranda	Long Beach	45949 Parkfield Road	CA	Tracy Miranda	0	miltchev@yahoo.com	1971-01-23			
+Individual	Kianna Cottrell	Santa Ana	24045 Fell Road	CA	Kianna Cottrell	0	mrsam@yahoo.com	1971-06-07			
+Individual	Kajus Marsh	Bakersfield	68114 Beacon Way	CA	Kajus Marsh	0	nichoj@att.net	2001-11-18			
+Individual	Clarice Pennington	Oxnard	62393 Fleming Court	CA	Clarice Pennington	0	okroeger@yahoo.ca	1969-06-01			
+Individual	Ingrid Browning	Oceanside	24399 Ashwell Place	CA	Ingrid Browning	0	russotto@yahoo.ca	1995-11-08			
+Individual	Macaulay Dodson	Chula Vista	93102 Hiley Road	CA	Macaulay Dodson	0	sherzodr@outlook.com	1990-05-31			
+Individual	Eliza Mccray	Bakersfield	44795 Hall Park Road	CA	Eliza Mccray	0	sopwith@yahoo.ca	2000-02-01			
+Individual	Chester Walter	Elk Grove	72097 Burlington Street	CA	Chester Walter	2	treit@comcast.net	1979-03-22			
+Individual	Kelsie Bouvet	Rancho Cucamonga	9385 Kings Mount	CA	Kelsie Bouvet	47	wayward@yahoo.ca	1983-06-04			
+Individual	Elena Sellers	Oakland	29857 Medway Street	CA	Elena Sellers	0	wikinerd@yahoo.com	1993-02-03			
+Individual	Openlane accounting	Los Angeles	15296 The Walks	CA	Openlane accounting	0	cgarcia@live.com		accounting	Openlane	909-555-0103
+Individual	year-job administration	Long Beach	56312 Whitestone Road	CA	year-job administration	0	jmmuller@yahoo.com		administration	year-job	323-555-0104
+Individual	Isdom customer service	Oakland	74079 Erskine Street	CA	Isdom customer service	70	konit@mac.com		customer service	Isdom	323-555-0146
+Individual	Gogozoom customer support	Bakersfield	80816 Cheviot Place	CA	Gogozoom customer support	0	arathi@optonline.net		customer support	Gogozoom	323-555-0141
+Individual	Sumace engineering	Modesto	63774 Marles Close	CA	Sumace engineering	0	multiplx@yahoo.com		engineering	Sumace	714-555-0172
+Individual	Treequote export	Santa Clarita	13305 Alyth Gardens	CA	Treequote export	0	ournews@outlook.com		export	Treequote	805-555-0186
+Individual	Yearin finance	San Diego	22029 Kings Parade	CA	Yearin finance	1	jhardin@optonline.net		finance	Yearin	909-555-0197
+Individual	Faxquote human resources	Irvine	35929 Dovecote Mews	CA	Faxquote human resources	0	jugalator@verizon.net		human resources	Faxquote	714-555-0166
+Individual	Codehow inventory	Santa Rosa	75793 Blockley Road	CA	Codehow inventory	0	amimojo@verizon.net		inventory	Codehow	562-555-0113
+Individual	Opentech IT	Fresno	61252 Beechcroft Road	CA	Opentech IT	0	kiddailey@att.net		IT	Opentech	909-555-0185
+Individual	Conecom logistics	Garden Grove	75375 Blackwood Street	CA	Conecom logistics	0	hauma@aol.com		logistics	Conecom	562-555-0104
+Individual	Donquadtech logistics	Riverside	31156 Cardigan Terrace	CA	Donquadtech logistics	0	cliffski@msn.com		logistics	Donquadtech	323-555-0115
+Individual	Golddex management	Sacramento	81976 Quay Hill	CA	Golddex management	12	rkobes@sbcglobal.net		management	Golddex	909-555-0163
+Individual	Nam-zim marketing	Santa Ana	88658 Bray Close	CA	Nam-zim marketing	52	rjones@att.net		marketing	Nam-zim	323-555-0150
+Individual	Statholdings marketing	Oceanside	27983 St Andrews Place	CA	Statholdings marketing	0	rwelty@yahoo.ca		marketing	Statholdings	562-555-0181
+Individual	Warephase operations	Stockton	20534 Braeside Gardens	CA	Warephase operations	42	rnewman@icloud.com		operations	Warephase	714-555-0170
+Individual	Zathunicon operations	Ontario	62237 College Yard	CA	Zathunicon operations	5	notaprguy@msn.com		operations	Zathunicon	562-555-0170
+Individual	Donware planning	Chula Vista	15660 Church Plain	CA	Donware planning	101	nelson@yahoo.ca		planning	Donware	714-555-0177
+Individual	Labdrill planning	Elk Grove	2896 Larkins Close	CA	Labdrill planning	0	isotopian@att.net		planning	Labdrill	562-555-0161
+Individual	Toughzap product quality	Glendale	2069 Southwood Close	CA	Toughzap product quality	0	jkegl@mac.com		product quality	Toughzap	805-555-0173
+Individual	Plusstrip production	Moreno Valley	71448 Edison Close	CA	Plusstrip production	0	syrinx@icloud.com		production	Plusstrip	805-555-0170
+Individual	Zencorporation public relations	Oxnard	14687 Bridgwater Road	CA	Zencorporation public relations	0	pierce@msn.com		public relations	Zencorporation	805-555-0114
+Individual	Sunnamplex purchasing	Fremont	32514 Old Dairy Court	CA	Sunnamplex purchasing	0	giafly@comcast.net		purchasing	Sunnamplex	714-555-0181
+Individual	Lexiqvolax quality assurance	San Bernardino	96843 Rosemary Crescent	CA	Lexiqvolax quality assurance	0	drjlaw@live.com		quality assurance	Lexiqvolax	714-555-0158
+Individual	Condax research and development	San Francisco	35483 Old Heath Road	CA	Condax research and development	0	singer@mac.com		research and development	Condax	909-555-0161
+Individual	Goodsilron sales	San Jose	92418 Whitfield Street	CA	Goodsilron sales	0	gtaylor@msn.com		sales	Goodsilron	909-555-0141
+Individual	Iselectrics shipping	Fontana	13825 Folly Way	CA	Iselectrics shipping	0	kassiesa@comcast.net		shipping	Iselectrics	805-555-0112
+Individual	dambase supervision	Huntington Beach	92514 Claremont Grove	CA	dambase supervision	0	dimensio@live.com		supervision	dambase	805-555-0112
+Individual	Y-corporation technical support	Anaheim	92799 Old Edinburgh Road	CA	Y-corporation technical support	0	gordonjcp@verizon.net		technical support	Y-corporation	323-555-0165
+Individual	Zotware technical support	Rancho Cucamonga	17653 Bryn Hafod	CA	Zotware technical support	0	rafasgj@comcast.net		technical support	Zotware	562-555-0126
+
+
+
+
+
+
+
+
+
+
+-- 3) Find all of the sous chefs who have three or more menu items that they can prepare. For
+-- each sous chef, list their name, the number of menu items that they can prepare, and
+-- each of the menu items. You can use group_concat to get all of a given sous chef’s data
+-- on one row, or print out one row per sous chef per menu item
+SELECT empName, COUNT(`name`) AS `Item Count`, GROUP_CONCAT(`name`) AS `Menu Items`
+FROM employees NATURAL JOIN (sousChef INNER JOIN (MenuItems INNER JOIN expertise ON expertise.itemNum = MenuItems.itemNum) ON empID = chefID)
+GROUP BY empID
+HAVING COUNT(`name`) >= 3;
+
+empName, Item Count, Menu Items
+Angela Mcdonald	4	Hot and Sour Soup,Egg Drop Soup,Egg Rolls,Egg Foo Young
+Guy Salas	4	Wonton Soup,Fried Wontons,Chow Mein,Chop Suey
+
+
+
+
+
+
+
+
+
+
+
+-- 4) Find all of the sous chefs who have three or more menu items in common.
+-- i. Please give the name of each of the two sous chefs sharing three or more menu
+-- items.
+-- ii. Please make sure that any given pair of sous chefs only shows up once.
+-- iii. Please list the items that the two Sous Chefs have in common. Again, you can use
+-- group_concat to get all of those items into one value in the output.
+	SELECT sChef1.empName, sChef2.empName
+	FROM
+	   (
+	   SELECT empName, COUNT(`name`) AS `Item Count`, GROUP_CONCAT(`name`) AS `Menu Items`
+		FROM employees NATURAL JOIN (sousChef INNER JOIN (MenuItems INNER JOIN expertise ON expertise.itemNum = MenuItems.itemNum) ON empID = chefID)
+		GROUP BY empID
+		) sChef1
+	   INNER JOIN
+	   (
+	   SELECT empName, COUNT(`name`) AS `Item Count`, GROUP_CONCAT(`name`) AS `Menu Items`
+		FROM employees NATURAL JOIN (sousChef INNER JOIN (MenuItems INNER JOIN expertise ON expertise.itemNum = MenuItems.itemNum) ON empID = chefID)
+		GROUP BY empID
+	   ) sChef2
+	   ON sChef1.empName = sChef2.empName
+	WHERE sChef1.empName < sChef2.empName
+	ORDER BY sChef1.empName;
+	
+empName, empName
+	
+	
+	
+	
+	
+	
+-- 5) Find the three menu items most often ordered from the Children’s menu and order them
+-- from most frequently ordered to least frequently ordered.
+select name, count(orderItemNum) from OrderItem
+inner join MenuItems on MenuItems.itemNum = OrderItem.menuItemNum
+where menu = 'Childrens'
+group by name
+order by count(orderItemNum) desc
+limit 3;
+
+name, count(orderItemNum)
+Chow Mein	2
+Hot and Sour Soup	1
+Wonton Soup	1
+
+
+
+
+
+
+
+
+
+-- 7) List the customers, sorted by the amount of Miming’s Money that they have, from largest
+-- to smallest.
+SELECT custName AS Customer, mimingMoney FROM individual
+NATURAL JOIN customers
+GROUP BY Customer, mimingMoney
+UNION
+SELECT companyName AS Customer, mimingMoney FROM company
+NATURAL JOIN customers
+GROUP BY Customer, mimingMoney
+ORDER BY mimingMoney DESC;
+
+Customer, mimingMoney
+Conrad Branch	150
+Donware	101
+Isdom	70
+Nam-zim	52
+Kelsie Bouvet	47
+Warephase	42
+Ibrar Goddard	25
+Golddex	12
+Bibi Mcdonnell	12
+Fletcher Emerson	7
+Yusha Wilson	6
+Paris Kenny	6
+Zathunicon	5
+Ahsan Bass	4
+Chester Walter	2
+Yearin	1
+Donquadtech	0
+Openlane	0
+Faxquote	0
+Zotware	0
+Codehow	0
+Y-corporation	0
+Opentech	0
+dambase	0
+Iselectrics	0
+Conecom	0
+Labdrill	0
+Goodsilron	0
+Condax	0
+Statholdings	0
+Lexiqvolax	0
+Sunnamplex	0
+Zencorporation	0
+Plusstrip	0
+Toughzap	0
+Kaine Olsen	0
+Clementine Faulkner	0
+Alannah Monaghan	0
+Gabija Gaines	0
+Taryn Reeve	0
+Antony Miller	0
+Freyja Graves	0
+Sidney Acevedo	0
+Charley Velez	0
+Ferne Lott	0
+Lacey-Mai Milner	0
+Finnlay Cope	0
+Kyle Mcdonald	0
+Treequote	0
+Tracy Miranda	0
+Kianna Cottrell	0
+Kajus Marsh	0
+Clarice Pennington	0
+Ingrid Browning	0
+Macaulay Dodson	0
+Eliza Mccray	0
+Elena Sellers	0
+year-job	0
+Gogozoom	0
+Sumace	0
+
+
+
+
+
+
+
+
+
+-- 8) List the customers and the total that they have spent at Miming’s ever, in descending
+-- order by the amount that they have spent.
+SELECT cust.CustName,cust.MimingMoney FROM customers as cust 
+ORDER BY cust.MimingMoney DESC;
+
+CustName, MimingMoney
+Ferne Lott	21.00
+Lacey-Mai Milner	21.00
+dambase supervision	21.00
+Ahsan Bass	21.00
+Codehow inventory	21.00
+Plusstrip production	21.00
+Zathunicon operations	21.00
+Ibrar Goddard	21.00
+Zencorporation public relations	21.00
+Kyle Mcdonald	16.00
+Kianna Cottrell	16.00
+Sidney Acevedo	16.00
+Labdrill planning	12.00
+Macaulay Dodson	12.00
+Gabija Gaines	12.00
+Treequote export	12.00
+Sumace engineering	12.00
+Clarice Pennington	12.00
+Lexiqvolax quality assurance	12.00
+Conecom logistics	12.00
+Zotware technical support	12.00
+Antony Miller	12.00
+Alannah Monaghan	12.00
+Sunnamplex purchasing	12.00
+Iselectrics shipping	12.00
+Statholdings marketing	12.00
+Toughzap product quality	12.00
+Faxquote human resources	12.00
+Kaine Olsen	12.00
+Donware planning	12.00
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- 10) List the three customers who have spent the most at Miming’s over the past year (365
+-- days). Order by the amount that they spent, from largest to smallest.
+SELECT c.custName, SUM(mp.price) as "Bill Total", DATEDIFF(CURDATE(),o.orderDateTime) as numDays FROM customers c
+INNER JOIN Orders o ON (c.accountNo = o.accountNo)
+INNER JOIN OrderItem oi ON (o.orderNumber = oi.orderNumber)
+INNER JOIN MenuPrices mp ON (oi.menuItemNum =  mp.menuItemNum)
+GROUP BY c.custName, o.orderDateTime
+HAVING numDays < 366
+ORDER BY SUM(mp.price) ASC;
+
+custName, Bill Total, numDays
+Labdrill planning	12.00	123
+Macaulay Dodson	12.00	120
+Gabija Gaines	12.00	120
+Treequote export	12.00	125
+Sumace engineering	12.00	125
+Clarice Pennington	12.00	119
+Lexiqvolax quality assurance	12.00	126
+Conecom logistics	12.00	123
+Zotware technical support	12.00	124
+Alannah Monaghan	12.00	123
+Donware planning	12.00	126
+Kaine Olsen	12.00	122
+Faxquote human resources	12.00	126
+Toughzap product quality	12.00	124
+Statholdings marketing	12.00	124
+Iselectrics shipping	12.00	125
+Sunnamplex purchasing	12.00	126
+Antony Miller	12.00	119
+Sidney Acevedo	16.00	121
+Kianna Cottrell	16.00	121
+Kyle Mcdonald	16.00	120
+Zencorporation public relations	21.00	125
+Ibrar Goddard	21.00	119
+Zathunicon operations	21.00	123
+Plusstrip production	21.00	125
+Codehow inventory	21.00	124
+Ahsan Bass	21.00	119
+dambase supervision	21.00	124
+Lacey-Mai Milner	21.00	119
+Ferne Lott	21.00	121
+
+
+
+
+
+
+
+
+-- 14) List all of the customers who eat at Miming’s on their own as well as ordering for their
+-- corporation.
+SELECT custName
+FROM customers
+INNER JOIN company USING (accountNo)
+INNER JOIN individual ON individual.emailAddress = company.contactEmail;
+
+custName
+Openlane accounting
+Yearin finance
+Goodsilron sales
+
+
+
+
+
+
+
+
+-- Business Rules
+-- 1) An individual customer can only have one miming account
+    SELECT c.custName, cust.custName FROM individual a INNER JOIN customers c ON c.accountNo = a.accountNo , individual b INNER JOIN customers cust ON cust.accountNo = b.accountNo 
+    WHERE a.emailAddress = b.emailAddress AND c.custName != cust.custName;
+    
+custName, custName
+    
+    
+    
+    
+    
+    
+-- 2) company accounts can share a contact (the person ordering the food)
+SELECT c.custName,a.emailAddress, cust.custName,b.contactEmail FROM individual a INNER JOIN customers c 
+ON c.accountNo = a.accountNo ,company b INNER JOIN customers cust ON cust.accountNo = b.accountNo 
+WHERE a.emailAddress = b.contactEmail AND c.custName != cust.custName;
+
+custName, emailAddress, custName, contactEmail
+Alannah Monaghan	cgarcia@live.com	Openlane accounting	cgarcia@live.com
+Kaine Olsen	jhardin@optonline.net	Yearin finance	jhardin@optonline.net
+Ferne Lott	gtaylor@msn.com	Goodsilron sales	gtaylor@msn.com
+
